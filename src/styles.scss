@@ -1,1 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'styles/variables';
+@import 'styles/checkbox.scss';
+
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+body{
+  background-color: var(--second_color);
+}
+
+.svg-inline--fa {
+  display: inline-block;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+
+main{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  header{
+    width: 100%;
+
+    h1{
+      color: var(--second_text);
+      margin: 0;
+    }
+  }
+
+  section{
+    width: 100%;
+  }
+}
+
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--second_color);
+  border-radius: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary_btn);
+  border-radius: 7px;
+}

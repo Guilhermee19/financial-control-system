@@ -1,0 +1,119 @@
+.top{
+  position: fixed;
+  top: 2%;
+  left: 1%;
+  width: 98%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+
+  nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    i{
+      width: 45px;
+      aspect-ratio: 1/1;
+      border-radius: 10px;
+      background-color: var(--primary_color);
+      color: var(--primary_text);
+      font-size: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all .2s;
+
+      &:hover{
+        background-color: var(--green_color);
+        transform: translateY(-5px);
+        border-bottom: 5px solid var(--green_color_hover);
+      }
+    }
+  }
+}
+
+.left{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--primary_color);
+  border-right: 2px solid var(--border_color);
+
+  nav{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 20px;
+
+    .option{
+      padding: 10px 15px;
+      border-radius: 10px;
+      background-color: var(--three_color);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+      transition: all .2s;
+
+      i{
+        color: var(--second_text);
+      }
+
+      h4{
+        margin: 0;
+        color: var(--second_text);
+      }
+
+      &:hover{
+        i{
+          color: var(--navbar);
+        }
+
+        h4{
+          margin: 0;
+          color: var(--navbar);
+        }
+      }
+
+      &.active{
+        background-color: var(--green_color_hover);
+
+        i{
+          color: var(--green_color);
+        }
+
+        h4{
+          margin: 0;
+          color: var(--green_color);
+        }
+      }
+
+      &:last-of-type{
+        margin-top: auto;
+      }
+    }
+  }
+}
+
+.screen{
+  margin: 100px 1% 0 auto;
+  width: calc(98% - 220px);
+  height: calc(100vh - 100px);
+}
