@@ -24,6 +24,7 @@ import { IconDirective } from './directives/icon.directive';
 import { InputFileDirective } from './directives/input-file.directive';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ButtonActionComponent } from './components/button-action/button-action.component';
 
 registerLocaleData(localePt);
 
@@ -39,6 +40,7 @@ registerLocaleData(localePt);
     InputNumberDirective,
     HomeComponent,
     LoginComponent,
+    ButtonActionComponent,
   ],
   imports: [
     BrowserModule,
