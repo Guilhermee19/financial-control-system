@@ -1,41 +1,11 @@
-<section class="top">
-  <nav>
-    <i icon="search" class="icon_color"></i>
-    <i icon="notification" class="icon_color"></i>
-    <i icon="user" class="icon_color" routerLink="/profile"></i>
-  </nav>
-</section>
+<main>
+  <header>
+    <img src="../../../assets/logo_fcs.png" alt="" routerLink="/home" />
 
-<section class="left">
-  <nav>
-    <div class="option" routerLink="/dashboard" routerLinkActive="active">
-      <i icon="home" class="icon_color"></i>
-      <h4> Dashboard </h4>
-    </div>
-
-    <div class="option">
-      <i icon="card" class="icon_color"></i>
-      <h4> Cartão </h4>
-    </div>
-
-    <div class="option">
-      <i icon="account" class="icon_color"></i>
-      <h4> Contas </h4>
-    </div>
-
-    <div class="option">
-      <i icon="tools" class="icon_color"></i>
-      <h4> Config </h4>
-    </div>
-
-    <div class="option" (click)="logof()">
-      <i icon="logof" class="icon_color"></i>
-      <h4> Sair </h4>
-    </div>
-  </nav>
-</section>
-
-
-<section class="screen">
-  <router-outlet></router-outlet>
-</section>
+    <nav>
+      <figure>
+        <img src="../../../assets/user_photo.png" alt="foto perfil" />
+      </figure>
+    </nav>
+  </header>
+</main>

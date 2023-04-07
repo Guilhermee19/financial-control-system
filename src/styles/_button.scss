@@ -1,0 +1,21 @@
+.mat-raised-button {
+  padding: 10px 20px !important;
+  border-radius: 10px !important;
+  min-width: 0 !important;
+  line-height: normal !important;
+  box-shadow: 2px 2px 4px var(--shadow);
+
+  span {
+    font-size: 16px !important;
+  }
+
+  &.purple {
+    background-color: var(--bgMain);
+    color: var(--secondText);
+  }
+
+  &.blue_dark {
+    background-color: var(--primaryText);
+    color: var(--secondText);
+  }
+}

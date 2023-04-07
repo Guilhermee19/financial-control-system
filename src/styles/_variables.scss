@@ -1,24 +1,16 @@
 :root {
   --ts: all 0.3s ease-in-out;
 
-  --primary_text: #ffffff;
-  --second_text: #56585D;
+  --primaryText: #142534;
+  --secondText: #fafafa;
 
-  --navbar: #f2f2f2;
+  --bgDark: #ebe9e7;
+  --bgLight: #fafafa;
+  --bgMain: #6e6af5;
 
-  --primary_color: #1A1E27;
-  --second_color: #15181F;
-  --three_color: #22262F;
+  --colorBlue: #01c6ff;
+  --colorGreen: #01ffb9;
+  --colorRed: #e64849;
 
-  --border_color: #2A2E36;
-
-  --primary_btn: #6c5dd3;
-
-  --orange_color: #FF9A19;
-  --blue_color: #2D87DA;
-  --green_color: #0BBE35;
-  --green_color_hover: #153D2A;
-  --red_color: #BC052B;
-
-  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow: rgba(0, 0, 0, 0.15);
 }
