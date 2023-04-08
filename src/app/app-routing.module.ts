@@ -9,9 +9,12 @@ const routes: Routes = [
   {
     path: '',
     component: NavbarComponent,
-    children: [{ path: 'home', component: HomeComponent }],
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'profile', component: HomeComponent },
+    ],
   },
-  { path: '**', redirectTo: 'home' },
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({

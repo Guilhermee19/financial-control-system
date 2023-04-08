@@ -11,13 +11,20 @@ main {
     width: 90%;
     max-width: 330px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 25px;
 
     h1 {
+      width: 100%;
       text-align: center;
       font-size: 40px !important;
       color: var(--secondText);
+    }
+
+    .blue_dark {
+      width: calc(100% - 69px);
     }
   }
 }

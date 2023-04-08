@@ -1,9 +1,28 @@
-<div class="wrapper">
-  <input type="checkbox" title="checkbox" />
-  <div class="fab"></div>
-  <div class="fac">
-    <a href="#"><i icon="suitcase"></i></a>
-    <a href="#"><i icon="paper"></i></a>
-    <a href="#"><i icon="wallet"></i></a>
-  </div>
+<div class="list-container" id="list-container">
+  <button class="more-button" (click)="open()" aria-label="Menu Button">
+    <div class="menu-icon-wrapper">
+      <div class="menu-icon-line half first"></div>
+      <div class="menu-icon-line"></div>
+      <div class="menu-icon-line half last"></div>
+    </div>
+  </button>
+
+  <ul class="more-button-list">
+    <li class="more-button-list-item">
+      <i icon="home"></i>
+      <span> Dashboard </span>
+    </li>
+
+    <li class="more-button-list-item">
+      <i icon="card"></i>
+      <span> Cartões </span>
+    </li>
+
+    <br /><br />
+
+    <li class="more-button-list-item" (click)="logof()">
+      <i icon="logof"></i>
+      <span> Sair </span>
+    </li>
+  </ul>
 </div>
