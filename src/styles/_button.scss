@@ -18,4 +18,18 @@
     background-color: var(--primaryText);
     color: var(--secondText);
   }
+
+  &.white {
+    background-color: var(--bgLight);
+    color: var(--primaryText);
+  }
+
+  &.btn_img {
+    padding: 8px !important;
+
+    img {
+      width: 28px;
+      object-fit: contain;
+    }
+  }
 }
