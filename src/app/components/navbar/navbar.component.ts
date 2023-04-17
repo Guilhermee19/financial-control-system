@@ -10,6 +10,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(private storage: StorageService) {}
 
   loading = false;
+  showFiller = false;
 
   ngOnInit(): void {
     this.getMe();

@@ -14,6 +14,10 @@ import { NgxMaskModule } from 'ngx-mask';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { InputNumberDirective } from './directives/input-number.directive';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+import { ConvertMoneyPipe } from './pipes/convert-money.pipe';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -41,17 +45,13 @@ registerLocaleData(localePt);
     HomeComponent,
     LoginComponent,
     ButtonActionComponent,
+    ConvertMoneyPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatInputModule,
     HttpClientModule,
-    MatSnackBarModule,
-    FormsModule,
-    ReactiveFormsModule,
     NgxMaskModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
@@ -59,6 +59,13 @@ registerLocaleData(localePt);
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    MatButtonModule,
+    MatInputModule,
+    MatSnackBarModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     DatePipe,

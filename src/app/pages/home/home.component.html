@@ -1,1 +1,61 @@
-<p>home works!</p>
+<main>
+  <header>
+    <h1>Home</h1>
+  </header>
+
+  <section class="card white flex row">
+    <div class="card">
+      <header>
+        <h5>Contas Fixas</h5>
+        <h2>{{ salary * tax.fixedAccounts | convertMoney }}</h2>
+      </header>
+
+      <div class="graphic">
+        <h1>{{ tax.fixedAccounts * 100 }}%</h1>
+        <mat-progress-spinner
+          [mode]="'determinate'"
+          [value]="tax.fixedAccounts * 100"
+        >
+        </mat-progress-spinner>
+        <mat-progress-spinner [mode]="'determinate'" [value]="100">
+        </mat-progress-spinner>
+      </div>
+    </div>
+
+    <div class="card">
+      <header>
+        <h5>Contas Fixas</h5>
+        <h2>{{ salary * tax.investment | convertMoney }}</h2>
+      </header>
+
+      <div class="graphic">
+        <h1>{{ tax.investment * 100 }}%</h1>
+        <mat-progress-spinner
+          [mode]="'determinate'"
+          [value]="tax.investment * 100"
+        >
+        </mat-progress-spinner>
+        <mat-progress-spinner [mode]="'determinate'" [value]="100">
+        </mat-progress-spinner>
+      </div>
+    </div>
+
+    <div class="card">
+      <header>
+        <h5>Contas Fixas</h5>
+        <h2>{{ salary * tax.expenses | convertMoney }}</h2>
+      </header>
+
+      <div class="graphic">
+        <h1>{{ tax.expenses * 100 }}%</h1>
+        <mat-progress-spinner
+          [mode]="'determinate'"
+          [value]="tax.expenses * 100"
+        >
+        </mat-progress-spinner>
+        <mat-progress-spinner [mode]="'determinate'" [value]="100">
+        </mat-progress-spinner>
+      </div>
+    </div>
+  </section>
+</main>
