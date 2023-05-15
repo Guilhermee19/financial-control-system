@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
   selector: 'app-home',
@@ -6,19 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {
+  constructor(private configService: ConfigService) {
     console.log('');
   }
 
   salary = 3500;
 
-  tax = {
-    fixedAccounts: 0.5,
-    investment: 0.2,
-    expenses: 0.3,
-  };
+  list_goals = this.configService.list_goals;
 
   ngOnInit(): void {
-    console.log('');
+    console.log('-', this.list_goals);
   }
 }

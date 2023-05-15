@@ -29,6 +29,9 @@ import { InputFileDirective } from './directives/input-file.directive';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ButtonActionComponent } from './components/button-action/button-action.component';
+import { GoalsComponent } from './pages/goals/goals.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { MatSliderModule } from '@angular/material/slider';
 
 registerLocaleData(localePt);
 
@@ -46,6 +49,7 @@ registerLocaleData(localePt);
     LoginComponent,
     ButtonActionComponent,
     ConvertMoneyPipe,
+    GoalsComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +70,8 @@ registerLocaleData(localePt);
     ReactiveFormsModule,
     MatSidenavModule,
     MatProgressSpinnerModule,
+    NgApexchartsModule,
+    MatSliderModule,
   ],
   providers: [
     DatePipe,

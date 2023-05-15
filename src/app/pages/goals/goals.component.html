@@ -1,0 +1,41 @@
+<main>
+  <header>
+    <h1>Metas</h1>
+  </header>
+
+  <section class="card white flex row">
+    <div class="graphic">
+      <h1>Total {{ percent }} %</h1>
+      <apx-chart
+        id="char"
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [dataLabels]="chartOptions.dataLabels"
+        [responsive]="chartOptions.responsive"
+        [labels]="chartOptions.labels"
+        [legend]="chartOptions.legend"
+      ></apx-chart>
+    </div>
+
+    <div class="card_ranges">
+      <div
+        class="range"
+        *ngFor="let goal of list_goals; let idx = index"
+        [ngClass]="'goal_' + idx"
+      >
+        <label for="range_number"> {{ goal.title }}: {{ goal.goal }}% </label>
+        <mat-slider
+          min="0"
+          max="100"
+          step="1"
+          [(ngModel)]="goal.goal"
+          (input)="chanceGoal($event, idx)"
+        >
+          <input title="range" matSliderThumb />
+        </mat-slider>
+      </div>
+    </div>
+
+    <button mat-mini-fab class="more-button">+</button>
+  </section>
+</main>
