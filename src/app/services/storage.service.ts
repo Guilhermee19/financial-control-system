@@ -1,8 +1,8 @@
-import { IUser } from './../models/user';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
+import { IUser } from '../models/user';
 
 @Injectable({
   providedIn: 'root',

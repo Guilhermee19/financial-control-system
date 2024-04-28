@@ -14,48 +14,40 @@ import { NgxMaskModule } from 'ngx-mask';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { InputNumberDirective } from './directives/input-number.directive';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
-import { ConvertMoneyPipe } from './pipes/convert-money.pipe';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { LoadingComponent } from './components/shared/loading/loading.component';
-import { PageLoadingComponent } from './components/shared/page-loading/page-loading.component';
-import { PaginationComponent } from './components/shared/pagination/pagination.component';
-import { IconDirective } from './directives/icon.directive';
 import { InputFileDirective } from './directives/input-file.directive';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ButtonActionComponent } from './components/button-action/button-action.component';
-import { GoalsComponent } from './pages/goals/goals.component';
-import { NgApexchartsModule } from 'ng-apexcharts';
-import { MatSliderModule } from '@angular/material/slider';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { SharedModule } from './components/shared/shared.module';
 
 registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoadingComponent,
-    PageLoadingComponent,
     InputFileDirective,
-    IconDirective,
-    PaginationComponent,
     NavbarComponent,
     InputNumberDirective,
     HomeComponent,
     LoginComponent,
     ButtonActionComponent,
-    ConvertMoneyPipe,
-    GoalsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatButtonModule,
+    MatInputModule,
     HttpClientModule,
+    MatSnackBarModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
     NgxMaskModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
@@ -63,15 +55,6 @@ registerLocaleData(localePt);
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    MatButtonModule,
-    MatInputModule,
-    MatSnackBarModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSidenavModule,
-    MatProgressSpinnerModule,
-    NgApexchartsModule,
-    MatSliderModule,
   ],
   providers: [
     DatePipe,

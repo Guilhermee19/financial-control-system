@@ -1,14 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'convertMoney',
+  name: 'convertMoney'
 })
-export class ConvertMoneyPipe implements PipeTransform {
-  transform(money: number | null): unknown {
-    if (!money) {
-      return 'R$ 0,00';
-    }
 
+export class ConvertMoneyPipe implements PipeTransform {
+
+  transform(money: number): unknown {
     const formatter = new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',

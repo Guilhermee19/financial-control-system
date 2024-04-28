@@ -5,25 +5,16 @@ main {
   min-height: 100vh;
   background-color: var(--bgDark);
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 
   header {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
     background-color: var(--bgLight);
     border-radius: 10px;
     padding: 10px 15px;
     box-shadow: 2px 2px 4px var(--shadow);
-
-    i {
-      cursor: pointer;
-      font-size: 20px;
-    }
 
     img {
       height: 30px;
@@ -32,7 +23,6 @@ main {
     }
 
     nav {
-      margin-left: auto;
       figure {
         width: 40px;
         height: 40px;

@@ -3,13 +3,13 @@
     <img src="../../../assets/logo_fcs.png" alt="" routerLink="/home" />
 
     <nav>
-      <figure>
+      <figure routerLink="/profile">
         <img src="../../../assets/user_photo.png" alt="foto perfil" />
       </figure>
     </nav>
   </header>
 
-  <router-outlet *ngIf="!loading"></router-outlet>
-
+  <router-outlet></router-outlet>
   <app-button-action></app-button-action>
 </main>
+

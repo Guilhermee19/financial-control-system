@@ -1,4 +1,3 @@
-import { ConfigService } from 'src/app/services/config.service';
 import { StorageService } from './../../services/storage.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
@@ -8,13 +7,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  constructor(
-    private storage: StorageService,
-    private configService: ConfigService
-  ) {}
+  constructor(private storage: StorageService) {}
 
-  loading = true;
-  showFiller = false;
+  loading = false;
 
   ngOnInit(): void {
     this.getMe();
@@ -24,12 +19,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.getMe();
       },
     });
-
-    this.configService.setGoals();
-
-    setTimeout(() => {
-      this.loading = false;
-    }, 100);
   }
 
   ngOnDestroy(): void {
@@ -41,5 +30,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // if (error?.status === 401) {
     //   this.storageService.logout();
     // }
+  }
+
+  logof() {
+    this.storage.logout();
   }
 }

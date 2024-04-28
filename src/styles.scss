@@ -25,19 +25,6 @@ body {
   margin: 0;
 }
 
-.mat-typography {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  p,
-  span {
-    margin: 0;
-    line-height: normal;
-  }
-}
-
 .cdk-global-overlay-wrapper,
 .cdk-overlay-container {
   z-index: 10000000 !important;
@@ -48,46 +35,4 @@ body {
   height: 1em;
   overflow: visible;
   vertical-align: -0.125em;
-}
-
-main {
-  header {
-  }
-
-  section {
-  }
-}
-
-.card {
-  width: 100%;
-  border-radius: 10px;
-  padding: 10px 15px;
-
-  &.white {
-    background-color: var(--bgLight);
-    box-shadow: 2px 2px 4px var(--shadow);
-  }
-}
-
-.flex {
-  display: flex;
-
-  gap: 10px;
-
-  &.row {
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  &.column {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  &.center {
-    justify-content: center;
-    align-items: center;
-  }
 }
