@@ -5,7 +5,7 @@ import { FinanciaPhotographyRoutingModule } from './financia-photography-routing
 import { FinanciaPhotographyComponent } from './financia-photography.component';
 import {MatTableModule} from '@angular/material/table';
 import { SharedModule } from 'src/app/components/shared/shared.module';
-
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     FinanciaPhotographyComponent
@@ -14,7 +14,8 @@ import { SharedModule } from 'src/app/components/shared/shared.module';
     CommonModule,
     FinanciaPhotographyRoutingModule,
     MatTableModule,
-    SharedModule
+    SharedModule,
+    MatSelectModule
   ]
 })
 export class FinanciaPhotographyModule { }

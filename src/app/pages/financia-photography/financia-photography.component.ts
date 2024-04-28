@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FINANCE } from 'src/app/constants/finance';
+import { MONTHS } from 'src/app/constants/utils';
 import { IFinance } from 'src/app/models/finance';
 
 @Component({
@@ -13,6 +14,8 @@ export class FinanciaPhotographyComponent {
 
   displayedColumns: string[] = ['tag', 'date', 'description', 'value', 'status', 'payment_voucher'];
   dataSource: IFinance[] = FINANCE;
+
+  months = MONTHS
 
   // ngOnInit(): void {
   // }

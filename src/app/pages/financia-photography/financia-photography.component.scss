@@ -9,11 +9,18 @@ main {
 
   section {
     table {
-      width: 100%;
+      &.mat-table {
+        width: 100%;
+        max-width: 600px;
+        background: transparent;
+      }
 
       tr {
+        color: black;
+
         &.mat-header-row {
           height: 35px;
+          background: transparent !important;
         }
 
         &.mat-row {
@@ -28,23 +35,32 @@ main {
         }
       }
 
+      th {
+        &.mat-header-cell {
+          color: black;
+        }
+      }
+
       th.mat-header-cell,
       td.mat-cell {
+        padding: 0 0.7rem;
         border-bottom-width: 0;
         text-align: center;
       }
 
       th.mat-header-cell:first-of-type,
       th.mat-header-cell:last-of-type {
-        padding: 0;
+        padding: 0 1rem;
       }
 
       td.mat-cell:first-of-type,
       td.mat-cell:last-of-type {
-        padding: 0;
+        padding: 0 1rem;
       }
 
       td {
+        font-weight: 500;
+
         span {
           width: 100%;
           display: flex;
@@ -53,15 +69,23 @@ main {
         }
         &.G {
           background-color: #ffe5a0;
+          color: #433408;
         }
         &.CF {
           background-color: #bfe1f6;
+          color: #093048;
         }
         &.I {
           background-color: #d4edbc;
+          color: #244109;
         }
         &.C {
           background-color: #e6cff2;
+          color: #310a45;
+        }
+
+        &.mat-column-description {
+          width: 100%;
         }
 
         &.cdk-column-options {
