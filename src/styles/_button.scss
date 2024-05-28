@@ -3,7 +3,8 @@
 
   &.mdc-button {
     border-radius: var(--br);
-    padding: 21.5px 1rem;
+    padding: 5px 20px 5px 5px;
+    height: 40px !important;
 
     &.primary {
       background-color: var(--main-color);

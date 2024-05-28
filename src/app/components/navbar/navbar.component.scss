@@ -23,10 +23,12 @@ mat-drawer-container {
     overflow: visible;
     padding-top: calc(2rem - 14px);
     margin-left: -250px;
+    background-color: var(--secondary-bg);
+    border-right: 1px solid rgba(0, 0, 0, 0.07);
 
     &.mat-drawer-opened {
       overflow: visible;
-      width: 180px;
+      width: max-content;
       height: 100%;
       margin-left: 0;
     }
@@ -64,10 +66,8 @@ mat-drawer-container {
       ::ng-deep li {
         a,
         button {
-          justify-content: flex-start;
-          height: 54px;
           width: 100%;
-          padding-left: 16px;
+          justify-content: flex-start;
           color: var(--text-color);
           border-radius: 100px;
 

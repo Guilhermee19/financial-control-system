@@ -10,26 +10,14 @@ export const NAVBAR_PAGES: {
 }[] = [
   {
     label: 'Dashboard',
-    icon: 'dashboard',
+    icon: 'home',
     link: '/',
     roles: ['Admin', 'Desenvolvedor'],
   },
   {
-    label: 'Noclock',
-    icon: 'time_tracker',
-    link: '/noclock',
-    roles: ['Admin', 'Desenvolvedor'],
-  },
-  {
-    label: 'Calendário',
-    icon: 'calendar',
-    link: '/calendar',
-    roles: ['Admin', 'Desenvolvedor'],
-  },
-  {
-    label: 'Projetos',
-    icon: 'projects',
-    link: '/projects',
+    label: 'Finanças',
+    icon: 'finance',
+    link: '/finance',
     roles: ['Admin', 'Desenvolvedor'],
   },
 ];
