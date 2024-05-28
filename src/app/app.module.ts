@@ -23,6 +23,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ButtonActionComponent } from './components/button-action/button-action.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SharedModule } from './components/shared/shared.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 registerLocaleData(localePt);
 
@@ -43,6 +44,7 @@ registerLocaleData(localePt);
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
+    MatSidenavModule,
     HttpClientModule,
     MatSnackBarModule,
     FormsModule,

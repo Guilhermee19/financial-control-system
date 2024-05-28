@@ -19,7 +19,7 @@ export const FINANCE: IFinance[] = [
     Installments: 1,
     status: 'AGUARDANDO',
     card: null,
-    payment_voucher: '',
+    payment_voucher: 'was',
   },
   {
     tag: 'CF',

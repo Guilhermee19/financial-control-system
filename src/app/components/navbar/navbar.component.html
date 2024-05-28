@@ -1,15 +1,70 @@
-<main>
-  <header>
-    <img src="../../../assets/logo_fcs.png" alt="" routerLink="/home" />
+<mat-drawer-container autosize>
+  <mat-drawer #drawer [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile">
+    <div class="logo">
+      <img src="assets/icons/icon-512x512.png" alt="logo" />
+    </div>
 
-    <nav>
-      <figure routerLink="/profile">
-        <img src="../../../assets/user_photo.png" alt="foto perfil" />
-      </figure>
+    <ul class="list loading" *ngIf="loading">
+      <li class="skeleton dark" *ngFor="let item of [1, 2, 3, 4, 5]">
+        <button [disableRipple]="true" mat-button class="s">&rlm;</button>
+      </li>
+    </ul>
+    <ul class="list" *ngIf="!loading" (click)="isMobile && drawerToggle()">
+      <li *ngFor="let item of navbarPages">
+        <a
+          mat-button
+          [routerLink]="item.link"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{
+            exact: true
+          }"
+        >
+          <i [icon]="item.icon"></i>
+          <span class="one-line">{{ item.label }}</span>
+        </a>
+      </li>
+      <li class="logout">
+        <button title="Sair" mat-button (click)="logout()">
+          <i icon="logout"></i>
+          <span class="one-line">Sair</span>
+        </button>
+      </li>
+    </ul>
+    <div class="version">
+      <span class="f-10">{{ version }}</span>
+    </div>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <nav [@offcanvasTopAnimation]>
+      <div class="content">
+        <button
+          title="Encolher menu"
+          class="btn-drawer"
+          type="button"
+          mat-icon-button
+          (click)="drawerToggle()"
+          [ngClass]="{ close: !drawer.opened }"
+        >
+          <i icon="sidebar"></i>
+        </button>
+        <div class="menu">
+          <div class="quick-actions">
+            <app-theme-dark-light></app-theme-dark-light>
+          </div>
+
+          <a class="profile" mat-button routerLink="/profile">
+            <div class="image">
+              <img src="../../../assets/user_photo.png" alt="foto perfil" />
+            </div>
+          </a>
+        </div>
+      </div>
     </nav>
-  </header>
 
-  <router-outlet></router-outlet>
-  <app-button-action></app-button-action>
-</main>
+    <router-outlet #outlet="outlet"></router-outlet>
 
+  </mat-drawer-content>
+</mat-drawer-container>
+
+<div id="canvas"></div>

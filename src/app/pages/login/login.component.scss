@@ -1,7 +1,7 @@
 main {
   width: 100%;
   height: 100vh;
-  background-color: var(--bgMain);
+  background-color: var(--primary-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,7 +20,7 @@ main {
       width: 100%;
       text-align: center;
       font-size: 40px !important;
-      color: var(--secondText);
+      color: var(--text-secondary);
     }
 
     .blue_dark {

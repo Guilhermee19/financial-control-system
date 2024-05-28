@@ -6,6 +6,7 @@ import { FinanciaPhotographyComponent } from './financia-photography.component';
 import {MatTableModule} from '@angular/material/table';
 import { SharedModule } from 'src/app/components/shared/shared.module';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     FinanciaPhotographyComponent
@@ -15,7 +16,8 @@ import {MatSelectModule} from '@angular/material/select';
     FinanciaPhotographyRoutingModule,
     MatTableModule,
     SharedModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule
   ]
 })
 export class FinanciaPhotographyModule { }

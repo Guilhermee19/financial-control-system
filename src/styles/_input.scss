@@ -22,12 +22,12 @@
     border-radius: 10px;
     font-size: 16px;
     box-shadow: 2px 2px 4px var(--shadow);
-    border-left: 50px solid var(--bgDark);
+    border-left: 50px solid var(--primary-bg);
 
     &::placeholder {
       font-size: 14px;
       font-weight: 500;
-      color: var(--primaryText);
+      color: var(--text-primary);
       opacity: 0.9;
     }
 

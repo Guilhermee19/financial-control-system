@@ -15,7 +15,9 @@ export class FinanciaPhotographyComponent {
   displayedColumns: string[] = ['tag', 'date', 'description', 'value', 'status', 'payment_voucher'];
   dataSource: IFinance[] = FINANCE;
 
-  months = MONTHS
+  months = MONTHS;
+
+  current_month = new Date()
 
   // ngOnInit(): void {
   // }

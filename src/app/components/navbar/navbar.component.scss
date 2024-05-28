@@ -1,58 +1,309 @@
-main {
-  position: relative;
+@import 'src/styles/media';
+
+/*
+  ! Navbar
+  ! Se for usar configurações de CSS simples
+  ? ex: padding, bg e color
+  ! Use as variáveis de ambiente no arquivo:
+  * src/styles/_variables.scss
+
+  ! Obrigado :) - Noclaf Tech
+*/
+
+mat-drawer-container {
+  --mat-sidenav-content-background-color: var(--primary-bg);
+  --mat-sidenav-container-background-color: var(--primary-bg);
+  --mat-sidenav-container-divider-color: var(--primary-bg);
   width: 100%;
   height: 100%;
-  min-height: 100vh;
-  background-color: var(--bgDark);
-  padding: 20px;
+  position: absolute;
 
-  header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--bgLight);
-    border-radius: 10px;
-    padding: 10px 15px;
-    box-shadow: 2px 2px 4px var(--shadow);
+  mat-drawer {
+    width: 180px;
+    overflow: visible;
+    padding-top: calc(2rem - 14px);
+    margin-left: -250px;
 
-    img {
-      height: 30px;
-      object-fit: contain;
-      cursor: pointer;
+    &.mat-drawer-opened {
+      overflow: visible;
+      width: 180px;
+      height: 100%;
+      margin-left: 0;
     }
 
-    nav {
-      figure {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        box-shadow: 0 0 8px var(--shadow);
-        cursor: pointer;
-        overflow: hidden;
-        transition: var(--ts);
+    .logo {
+      max-width: 76px;
+      max-height: 76px;
+      padding: 0.8rem;
+      background-color: var(--secondary-bg);
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      position: relative;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      i {
+        position: absolute;
+        font-size: 1.5rem;
+        top: 20%;
+        left: 10%;
+        z-index: 10000;
+        transform: translate(-50%, -50%) rotate(-10deg);
+      }
+    }
 
-        &:hover {
-          transform: rotate(5deg);
+    .list {
+      height: calc(100% - 80px);
+      display: flex;
+      flex-direction: column;
+      list-style-type: none;
+      padding: 2rem 1rem 1rem;
+      ::ng-deep li {
+        a,
+        button {
+          justify-content: flex-start;
+          height: 54px;
+          width: 100%;
+          padding-left: 16px;
+          color: var(--text-color);
+          border-radius: 100px;
 
-          img {
-            transform: scale(1.1);
+          &.active {
+            background-color: var(--secondary-bg);
+          }
+
+          .mdc-button__label {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+
+            i {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 50%;
+              color: var(--main-color);
+              background-color: var(--primary-bg);
+              width: 32px;
+              height: 32px;
+            }
           }
         }
 
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: var(--ts);
+        & + li {
+          margin-top: 0.5rem;
+        }
+
+        &:last-of-type {
+          margin-top: auto;
+        }
+      }
+    }
+
+    .version {
+      position: absolute;
+      bottom: 2px;
+      text-align: center;
+      width: 100%;
+      opacity: 0.5;
+    }
+  }
+
+  nav {
+    width: var(--width-screen);
+    padding: 1rem 0 0;
+    margin: 0 auto;
+
+    @include media('<=desktop') {
+      padding: 1rem 4% 0;
+    }
+
+    .content {
+      width: 100%;
+      display: flex;
+      flex-wrap: inherit;
+      align-items: center;
+      justify-content: space-between;
+
+      .menu {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .quick-actions {
+          display: flex;
+          align-items: center;
+        }
+
+        .notification {
+          position: relative;
+          .badge {
+            transition: var(--ts);
+            opacity: 0;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: var(--main-color);
+            &.show {
+              opacity: 1;
+            }
+            &::after {
+              content: '';
+              position: absolute;
+              top: -2px;
+              left: -2px;
+              width: 5px;
+              height: 5px;
+              border: 2px solid var(--main-color);
+              border-radius: 50%;
+              transform: scale(0.5);
+              opacity: 1;
+              animation: pulse-notification 1.5s infinite;
+            }
+          }
+        }
+        .profile {
+          min-width: 36px;
+          width: 36px;
+          height: 36px;
+          padding: 0;
+          border-radius: 10px;
+
+          .image {
+            min-width: 36px;
+            width: 36px;
+            height: 36px;
+            background-color: var(--main-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // overflow: hidden;
+            i {
+              font-size: 1rem;
+              color: var(--primary-bg);
+            }
+            img {
+              width: 36px;
+              height: 36px;
+              object-fit: cover;
+              border-radius: 10px;
+            }
+          }
         }
       }
     }
   }
+}
 
-  app-button-action {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
+::ng-deep .mat-mdc-menu-panel.notifications-menu {
+  max-height: 600px;
+  max-width: 400px;
+  width: 100%;
+  border: 1px solid var(--border-color-light);
+
+  .mat-mdc-menu-content {
+    background-color: var(--secondary-bg);
+
+    h2 {
+      padding: 0.2rem 1rem 0.5rem;
+      margin: 0;
+      color: var(--text-color);
+      border-bottom: 1px solid var(--border-color-light);
+    }
+    .mat-mdc-menu-item {
+      padding: 0.5rem 1rem;
+      color: var(--text-color);
+      .mat-mdc-menu-item-text {
+        display: flex;
+        gap: 0.5rem;
+        & > .icon {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background-color: var(--primary-bg);
+          box-shadow: 0px 0px 1px 1px var(--primary-bg);
+          flex: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &.unread {
+            color: var(--main-color);
+            box-shadow: 0px 0px 1px 1px var(--main-color);
+          }
+        }
+      }
+
+      & + .mat-mdc-menu-item {
+        border-top: 1px solid var(--border-color-light);
+      }
+    }
   }
 }
+
+// main {
+//   position: relative;
+//   width: 100%;
+//   height: 100%;
+//   min-height: 100vh;
+//   background-color: var(--primary-bg);
+//   padding: 20px;
+
+//   header {
+//     width: 100%;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     background-color: var(--secondary-bg);
+//     border-radius: 10px;
+//     padding: 10px 15px;
+//     box-shadow: 2px 2px 4px var(--shadow);
+
+//     img {
+//       height: 30px;
+//       object-fit: contain;
+//       cursor: pointer;
+//     }
+
+//     nav {
+//       display: flex;
+//       gap: 0.5rem;
+//       figure {
+//         width: 40px;
+//         height: 40px;
+//         border-radius: 50%;
+//         box-shadow: 0 0 8px var(--shadow);
+//         cursor: pointer;
+//         overflow: hidden;
+//         transition: var(--ts);
+
+//         &:hover {
+//           transform: rotate(5deg);
+
+//           img {
+//             transform: scale(1.1);
+//           }
+//         }
+
+//         img {
+//           width: 100%;
+//           height: 100%;
+//           object-fit: cover;
+//           transition: var(--ts);
+//         }
+//       }
+//     }
+//   }
+
+//   app-button-action {
+//     position: fixed;
+//     bottom: 10px;
+//     right: 10px;
+//   }
+// }

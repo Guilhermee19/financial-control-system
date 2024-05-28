@@ -10,6 +10,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { PageLoadingComponent } from './page-loading/page-loading.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { IconDirective } from 'src/app/directives/icon.directive';
+import { ThemeDarkLightComponent } from './theme-dark-light/theme-dark-light.component';
 
 const IMPORTS = [
   MatButtonModule,
@@ -23,7 +24,8 @@ const DECLARATIONS = [
   PageLoadingComponent,
   PaginationComponent,
   ConvertMoneyPipe,
-  IconDirective
+  IconDirective,
+  ThemeDarkLightComponent
 ];
 
 @NgModule({
