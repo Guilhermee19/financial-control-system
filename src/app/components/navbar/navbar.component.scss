@@ -17,12 +17,16 @@ mat-drawer-container {
   width: 100%;
   height: 100%;
   position: absolute;
+  background-color: transparent !important;
 
   mat-drawer {
     width: 180px;
     overflow: visible;
     padding-top: calc(2rem - 14px);
     margin-left: -250px;
+    background-color: var(--secondary-bg);
+    box-shadow: 2px 2px 8px var(--shadow);
+    border: 0px solid transparent;
 
     &.mat-drawer-opened {
       overflow: visible;
@@ -56,20 +60,17 @@ mat-drawer-container {
     }
 
     .list {
-      height: calc(100% - 80px);
+      height: calc(100% - 100px);
       display: flex;
       flex-direction: column;
       list-style-type: none;
-      padding: 2rem 1rem 1rem;
+      padding: 2rem 0.5rem 0.5rem;
+
       ::ng-deep li {
         a,
         button {
-          justify-content: flex-start;
-          height: 54px;
           width: 100%;
-          padding-left: 16px;
           color: var(--text-color);
-          border-radius: 100px;
 
           &.active {
             background-color: var(--secondary-bg);
@@ -113,13 +114,12 @@ mat-drawer-container {
   }
 
   nav {
-    width: var(--width-screen);
-    padding: 1rem 0 0;
-    margin: 0 auto;
-
-    @include media('<=desktop') {
-      padding: 1rem 4% 0;
-    }
+    width: calc(100% - 1rem);
+    padding: 0.5rem 0.7rem;
+    margin: 0.5rem;
+    background-color: var(--secondary-bg);
+    border-radius: 12px;
+    box-shadow: 2px 2px 8px var(--shadow);
 
     .content {
       width: 100%;
@@ -246,64 +246,3 @@ mat-drawer-container {
     }
   }
 }
-
-// main {
-//   position: relative;
-//   width: 100%;
-//   height: 100%;
-//   min-height: 100vh;
-//   background-color: var(--primary-bg);
-//   padding: 20px;
-
-//   header {
-//     width: 100%;
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     background-color: var(--secondary-bg);
-//     border-radius: 10px;
-//     padding: 10px 15px;
-//     box-shadow: 2px 2px 4px var(--shadow);
-
-//     img {
-//       height: 30px;
-//       object-fit: contain;
-//       cursor: pointer;
-//     }
-
-//     nav {
-//       display: flex;
-//       gap: 0.5rem;
-//       figure {
-//         width: 40px;
-//         height: 40px;
-//         border-radius: 50%;
-//         box-shadow: 0 0 8px var(--shadow);
-//         cursor: pointer;
-//         overflow: hidden;
-//         transition: var(--ts);
-
-//         &:hover {
-//           transform: rotate(5deg);
-
-//           img {
-//             transform: scale(1.1);
-//           }
-//         }
-
-//         img {
-//           width: 100%;
-//           height: 100%;
-//           object-fit: cover;
-//           transition: var(--ts);
-//         }
-//       }
-//     }
-//   }
-
-//   app-button-action {
-//     position: fixed;
-//     bottom: 10px;
-//     right: 10px;
-//   }
-// }

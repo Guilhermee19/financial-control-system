@@ -1,4 +1,6 @@
 <main>
+  <app-theme-dark-light class="theme"></app-theme-dark-light>
+
   <form action="">
     <h1>Login</h1>
 
@@ -11,10 +13,22 @@
       <i icon="password"></i>
       <input title="password" type="password" placeholder="Senha" />
     </div>
-    <button mat-raised-button class="blue_dark" routerLink="/home">
+    <button
+      type="submit"
+      mat-raised-button
+      class="blue_dark"
+      routerLink="/home"
+    >
       Entrar
     </button>
-    <button mat-raised-button class="white btn_img" routerLink="/home">
+
+    <button
+      type="button"
+      title="login google"
+      mat-raised-button
+      class="white btn_img"
+      routerLink="/home"
+    >
       <img src="../../../assets/logo_google.png" alt="" />
     </button>
   </form>

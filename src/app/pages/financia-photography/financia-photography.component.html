@@ -3,7 +3,7 @@
     <a mat-button>
       <i icon="angle_left"></i>
     </a>
-    <h1> {{ current_month | date: 'MMMM'}} </h1>
+    <h1>{{ current_month | date : 'MMMM' }}</h1>
     <a mat-button>
       <i icon="angle_right"></i>
     </a>
@@ -13,43 +13,72 @@
     <div class="card-tablet">
       <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="tag">
-          <th mat-header-cell *matHeaderCellDef> Tag </th>
-          <td mat-cell *matCellDef="let row" [ngClass]="row.tag"> {{row.tag}} </td>
+          <th mat-header-cell *matHeaderCellDef>Tag</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
+            {{ row.tag }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef> Data </th>
-          <td mat-cell *matCellDef="let row" [ngClass]="row.tag"> {{row.date | date: "dd" }} </td>
+          <th mat-header-cell *matHeaderCellDef>Data</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
+            {{ row.date | date : 'dd' }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef> Descrição </th>
+          <th mat-header-cell *matHeaderCellDef>Descrição</th>
           <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
-            <span *ngIf="row.Installments <= 1">{{row.description}} </span>
-            <span *ngIf="row.Installments > 1">{{row.description}} ({{row.Installments ? '1/'+row.Installments : ''}})</span>
+            <span *ngIf="row.Installments <= 1">{{ row.description }} </span>
+            <span *ngIf="row.Installments > 1"
+              >{{ row.description }} ({{
+                row.Installments ? '1/' + row.Installments : ''
+              }})</span
+            >
           </td>
         </ng-container>
 
         <ng-container matColumnDef="value">
-          <th mat-header-cell *matHeaderCellDef> Valor </th>
-          <td mat-cell *matCellDef="let row" [ngClass]="row.tag"> {{(row.value / row.Installments) | convertMoney}} </td>
+          <th mat-header-cell *matHeaderCellDef>Valor</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
+            {{ row.value / row.Installments | convertMoney }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef> Status </th>
-          <td mat-cell *matCellDef="let row" [ngClass]="row.tag"> {{row.status}} </td>
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
+            {{ row.status }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="payment_voucher">
-          <th mat-header-cell *matHeaderCellDef> Comprovante </th>
+          <th mat-header-cell *matHeaderCellDef>Comprovante</th>
           <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
-            <span *ngIf="!row.payment_voucher"> <i icon="import"> </i></span>
-            <span *ngIf="row.payment_voucher" [matTooltip]="row.payment_voucher"> <i icon="file"> </i></span>
+            <div class="buttons">
+              <span *ngIf="!row.payment_voucher"> <i icon="import"> </i></span>
+              <span
+                *ngIf="row.payment_voucher"
+                [matTooltip]="row.payment_voucher"
+              >
+                <i icon="file"> </i
+              ></span>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="options">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
+            <div class="buttons">
+              <span> <i icon="edit"> </i></span>
+              <!-- <span> <i icon="save"> </i></span> -->
+            </div>
           </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </div>
   </section>

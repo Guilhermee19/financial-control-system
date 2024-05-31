@@ -10,7 +10,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { NgxMaskModule } from 'ngx-mask';
+import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { InputNumberDirective } from './directives/input-number.directive';
@@ -50,7 +50,6 @@ registerLocaleData(localePt);
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    NgxMaskModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
@@ -66,6 +65,7 @@ registerLocaleData(localePt);
       provide: DEFAULT_CURRENCY_CODE,
       useValue: 'BRL',
     },
+    provideEnvironmentNgxMask(),
   ],
   bootstrap: [AppComponent],
 })

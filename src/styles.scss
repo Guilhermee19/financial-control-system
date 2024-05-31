@@ -4,43 +4,12 @@
 
 @import 'styles/theming';
 
-$theme-ignore-duplication-warnings: true;
-$app-primary: mat-palette($custom-brand-primary);
-$app-accent: mat-palette($custom-brand-accent);
-$app-warn: mat-palette($custom-brand-warn);
-$brand-dark-theme: mat-dark-theme(
-  (
-    color: (
-      primary: $app-primary,
-      accent: $app-accent,
-      warn: $app-warn,
-    ),
-    density: 0,
-  )
-);
-
-$brand-light-theme: mat-light-theme(
-  (
-    color: (
-      primary: $app-primary,
-      accent: $app-accent,
-      warn: $app-warn,
-    ),
-    density: 0,
-  )
-);
-
-@include angular-material-theme($brand-dark-theme);
-
-html:not(.dark) {
-  @include angular-material-theme($brand-light-theme);
-}
-
 @import 'styles/animations';
 @import 'styles/button';
 @import 'styles/input';
 @import 'styles/media';
 @import 'styles/scroll';
+@import 'styles/table';
 @import 'styles/transitions';
 @import 'styles/typography';
 @import 'styles/variables';
@@ -63,6 +32,7 @@ body {
 }
 body {
   margin: 0;
+  background-color: var(--primary-bg);
 }
 
 .cdk-global-overlay-wrapper,

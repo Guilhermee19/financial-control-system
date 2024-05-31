@@ -18,6 +18,7 @@ export class FinanciaPhotographyComponent implements OnInit {
     'value',
     'status',
     'payment_voucher',
+    'options',
   ];
 
   dataSource: IFinance[] = [];
@@ -34,7 +35,16 @@ export class FinanciaPhotographyComponent implements OnInit {
       next: (data) => {
         console.log(data);
         this.dataSource = data;
+        this.dataSource = this.sortByDate(data, 'date');
       },
+    });
+  }
+
+  sortByDate(array: any[], dateField: string): any[] {
+    return array.sort((a, b) => {
+      const dateA = new Date(a[dateField]);
+      const dateB = new Date(b[dateField]);
+      return dateA.getTime() - dateB.getTime();
     });
   }
 }

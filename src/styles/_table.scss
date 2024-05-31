@@ -1,0 +1,106 @@
+@import 'src/styles/_typography.scss';
+
+.card-tablet {
+  overflow-x: auto;
+
+  --mat-table-row-item-container-height: 45px;
+
+  table {
+    width: 100%;
+
+    &.mat-table {
+      background: transparent;
+    }
+
+    thead {
+      background: transparent;
+
+      tr {
+        color: var(--text-primary);
+        height: 40px;
+        background: transparent !important;
+
+        &.mat-row {
+          z-index: 10;
+          transition: all 0.2s;
+          cursor: pointer;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        border-radius: 12px;
+      }
+    }
+
+    th {
+      &.mat-header-cell {
+        color: var(--text-primary);
+      }
+    }
+
+    th.mat-mdc-header-cell,
+    th.mat-header-cell,
+    td.mat-cell {
+      padding: 0 0.7rem;
+      border-bottom-width: 0;
+      text-align: center;
+    }
+
+    th.mat-header-cell:first-of-type,
+    th.mat-header-cell:last-of-type {
+      padding: 0 1rem;
+    }
+
+    td.mat-cell:first-of-type,
+    td.mat-cell:last-of-type {
+      padding: 0 1rem;
+    }
+
+    td {
+      font-weight: 500;
+      @extend .f-12;
+
+      span {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @extend .f-12;
+      }
+
+      &.G {
+        background-color: #ffe5a0;
+        color: #433408;
+      }
+      &.CF {
+        background-color: #bfe1f6;
+        color: #093048;
+      }
+      &.I {
+        background-color: #d4edbc;
+        color: #244109;
+      }
+      &.C {
+        background-color: #e6cff2;
+        color: #310a45;
+      }
+
+      &.mat-column-description {
+        width: 100%;
+      }
+
+      &.cdk-column-options {
+        width: 60px;
+        // padding: 0;
+
+        .row-icons {
+          display: flex;
+          gap: 1rem;
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+}

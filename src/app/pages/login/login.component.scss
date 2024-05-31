@@ -1,4 +1,5 @@
 main {
+  position: relative;
   width: 100%;
   height: 100vh;
   background-color: var(--primary-color);
@@ -7,6 +8,12 @@ main {
   justify-content: center;
   align-items: center;
 
+  .theme {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
   form {
     width: 90%;
     max-width: 330px;
@@ -14,7 +21,7 @@ main {
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 1rem;
 
     h1 {
       width: 100%;
@@ -24,7 +31,17 @@ main {
     }
 
     .blue_dark {
-      width: calc(100% - 69px);
+      width: calc(100% - 50px - 1rem);
+    }
+
+    .btn_img {
+      min-width: 50px;
+      padding: 0 10px;
+
+      img {
+        width: 25px;
+        object-fit: contain;
+      }
     }
   }
 }

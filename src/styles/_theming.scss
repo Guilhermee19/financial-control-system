@@ -97,3 +97,35 @@ $custom-brand-warn: (
 :root {
   --mat-sidenav-scrim-color: #0009;
 }
+
+$theme-ignore-duplication-warnings: true;
+$app-primary: mat-palette($custom-brand-primary);
+$app-accent: mat-palette($custom-brand-accent);
+$app-warn: mat-palette($custom-brand-warn);
+$brand-dark-theme: mat-dark-theme(
+  (
+    color: (
+      primary: $app-primary,
+      accent: $app-accent,
+      warn: $app-warn,
+    ),
+    density: 0,
+  )
+);
+
+$brand-light-theme: mat-light-theme(
+  (
+    color: (
+      primary: $app-primary,
+      accent: $app-accent,
+      warn: $app-warn,
+    ),
+    density: 0,
+  )
+);
+
+@include angular-material-theme($brand-dark-theme);
+
+html:not(.dark) {
+  @include angular-material-theme($brand-light-theme);
+}

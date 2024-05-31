@@ -25,16 +25,11 @@ const DECLARATIONS = [
   PaginationComponent,
   ConvertMoneyPipe,
   IconDirective,
-  ThemeDarkLightComponent
+  ThemeDarkLightComponent,
 ];
 
 @NgModule({
-  imports: [
-    ...IMPORTS,
-    CommonModule,
-    MatDialogModule,
-    MatTooltipModule,
-  ],
+  imports: [...IMPORTS, CommonModule, MatDialogModule, MatTooltipModule],
   declarations: [...DECLARATIONS],
   exports: [...IMPORTS, ...DECLARATIONS],
 })
