@@ -2,6 +2,12 @@ import { Injectable } from '@angular/core';
 import { BodyJson, HttpService } from './http.service';
 import { Observable } from 'rxjs';
 import { IFinance } from '../models/finance';
+import { HttpParams } from '@angular/common/http';
+
+interface IFilter {
+  _sort: string;
+  _order: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +15,13 @@ import { IFinance } from '../models/finance';
 export class FinancesService {
   constructor(private http: HttpService) {}
 
-  getAllFinances(): Observable<IFinance[]> {
-    return this.http.get<IFinance[]>('finances');
+  getAllFinances(params: IFilter): Observable<IFinance[]> {
+    let query = new HttpParams();
+
+    if (params._sort) query = query.set('_sort', params._sort);
+    if (params._order) query = query.set('_order', params._order);
+
+    return this.http.get<IFinance[]>('finances', query);
   }
 
   postFinance(body: BodyJson): Observable<IFinance> {

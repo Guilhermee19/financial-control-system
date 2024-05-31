@@ -1,13 +1,13 @@
-export type TTag = "G" | "CF" | "I" | "C";
+export type TTag = 'G' | 'CF' | 'I' | 'C';
 
-export type TStatus = "AGUARDANDO" | "PAGO" | "ATRASADO";
+export type TStatus = 'WAITING' | 'PAID_OUT' | 'LATE';
 
 export interface ICard {
   due_date: string;
   payday: string;
   name: string;
   flag: string;
-  limit: number,
+  limit: number;
 }
 
 export interface IFinance {
@@ -15,8 +15,8 @@ export interface IFinance {
   date: string;
   description: string;
   value: number;
-  Installments: number,
+  Installments: number;
   status: TStatus;
-  card?: ICard | null,
+  card?: ICard | null;
   payment_voucher: string;
 }

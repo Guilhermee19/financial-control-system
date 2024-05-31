@@ -7,7 +7,7 @@ main {
 
   header {
     width: 100%;
-    max-width: 600px;
+    // max-width: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +15,7 @@ main {
     color: var(--text-primary);
 
     a {
-      &.mat-button {
+      &.mat-icon-button {
         min-width: 35px;
         min-height: 35px;
         line-height: 1;
@@ -44,16 +44,28 @@ main {
     gap: 1rem;
 
     .card-tablet {
-      width: 50%;
-      min-height: 40vh;
+      width: 100%;
+      // width: 50%;
 
       table {
         width: 100%;
-        min-width: 580px;
+        // min-width: 580px;
       }
     }
 
+    .info_mobile {
+      display: none;
+    }
+
     @include media('<=650px') {
+      .info_web {
+        display: none;
+      }
+
+      .info_mobile {
+        display: flex;
+      }
+
       flex-direction: column;
       .card-tablet {
         width: 100%;

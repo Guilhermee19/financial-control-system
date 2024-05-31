@@ -4,9 +4,11 @@
   overflow-x: auto;
 
   --mat-table-row-item-container-height: 45px;
+  --mat-table-background-color: transparent;
 
   table {
     width: 100%;
+    border-spacing: 0 5px; // Espaço entre as linhas
 
     &.mat-table {
       background: transparent;
@@ -25,12 +27,6 @@
           transition: all 0.2s;
           cursor: pointer;
         }
-      }
-    }
-
-    tbody {
-      tr {
-        border-radius: 12px;
       }
     }
 
@@ -60,13 +56,25 @@
 
     td {
       font-weight: 500;
+      border-bottom: none; // Remove a borda inferior padrão das células
       @extend .f-12;
+
+      --br: 15px;
+
+      &:first-child {
+        border-radius: var(--br) 0 0 var(--br);
+      }
+
+      &:last-child {
+        border-radius: 0 var(--br) var(--br) 0;
+      }
 
       span {
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        text-align: center;
         @extend .f-12;
       }
 
@@ -92,13 +100,21 @@
       }
 
       &.cdk-column-options {
-        width: 60px;
+        width: max-content;
         // padding: 0;
 
         .row-icons {
           display: flex;
-          gap: 1rem;
-          padding-right: 10px;
+          gap: 0.5rem;
+
+          a {
+            --mdc-icon-button-state-layer-size: 30px;
+            font-size: 12px;
+            padding: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
     }

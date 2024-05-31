@@ -3,21 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { FinanciaPhotographyRoutingModule } from './financia-photography-routing.module';
 import { FinanciaPhotographyComponent } from './financia-photography.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from 'src/app/components/shared/shared.module';
-import {MatSelectModule} from '@angular/material/select';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConvertStatusPipe } from 'src/app/pipes/convert-status.pipe';
 @NgModule({
-  declarations: [
-    FinanciaPhotographyComponent
-  ],
+  declarations: [FinanciaPhotographyComponent, ConvertStatusPipe],
   imports: [
     CommonModule,
     FinanciaPhotographyRoutingModule,
     MatTableModule,
     SharedModule,
     MatSelectModule,
-    MatTooltipModule
-  ]
+    MatTooltipModule,
+  ],
 })
-export class FinanciaPhotographyModule { }
+export class FinanciaPhotographyModule {}
