@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FINANCE } from 'src/app/constants/finance';
 import { MONTHS } from 'src/app/constants/utils';
 import { IFinance } from 'src/app/models/finance';
 import { FinancesService } from 'src/app/services/finances.service';
@@ -9,7 +8,7 @@ import { FinancesService } from 'src/app/services/finances.service';
   templateUrl: './financia-photography.component.html',
   styleUrls: ['./financia-photography.component.scss'],
 })
-export class FinanciaPhotographyComponent {
+export class FinanciaPhotographyComponent implements OnInit {
   constructor(private sinancesService: FinancesService) {}
 
   displayedColumns: string[] = [
@@ -21,19 +20,20 @@ export class FinanciaPhotographyComponent {
     'payment_voucher',
   ];
 
-  dataSource: IFinance[] = FINANCE;
+  dataSource: IFinance[] = [];
   months = MONTHS;
 
   current_month = new Date();
 
   ngOnInit() {
-    this.getAllEmployees();
+    this.getAllFinances();
   }
 
-  getAllEmployees() {
-    this.sinancesService.getAllEmployees().subscribe({
+  getAllFinances() {
+    this.sinancesService.getAllFinances().subscribe({
       next: (data) => {
         console.log(data);
+        this.dataSource = data;
       },
     });
   }

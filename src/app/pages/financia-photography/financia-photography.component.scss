@@ -45,11 +45,12 @@ main {
 
     .card-tablet {
       width: 50%;
+      min-height: 40vh;
       overflow-x: auto;
 
       table {
         width: 100%;
-        min-width: 500px;
+        min-width: 580px;
 
         &.mat-table {
           background: transparent;

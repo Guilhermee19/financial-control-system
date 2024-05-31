@@ -1,6 +1,4 @@
-export type TypeProfile =
-  | 'Desenvolvedor'
-  | 'Admin';
+export type TypeProfile = 'Desenvolvedor' | 'Admin';
 
 export const NAVBAR_PAGES: {
   label: string;
@@ -15,21 +13,15 @@ export const NAVBAR_PAGES: {
     roles: ['Admin', 'Desenvolvedor'],
   },
   {
-    label: 'Noclock',
-    icon: 'time_tracker',
-    link: '/noclock',
+    label: 'Finanças',
+    icon: 'finance',
+    link: '/finance',
     roles: ['Admin', 'Desenvolvedor'],
   },
   {
-    label: 'Calendário',
-    icon: 'calendar',
-    link: '/calendar',
-    roles: ['Admin', 'Desenvolvedor'],
-  },
-  {
-    label: 'Projetos',
-    icon: 'projects',
-    link: '/projects',
+    label: 'Cartão',
+    icon: 'cards',
+    link: '/cards',
     roles: ['Admin', 'Desenvolvedor'],
   },
 ];

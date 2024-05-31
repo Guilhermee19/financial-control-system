@@ -1,4 +1,4 @@
-import { IFinance } from "../models/finance";
+import { IFinance } from '../models/finance';
 
 export const FINANCE: IFinance[] = [
   {
@@ -8,7 +8,13 @@ export const FINANCE: IFinance[] = [
     value: 3960,
     Installments: 10,
     status: 'AGUARDANDO',
-    card: {name: 'Nubank', due_date: '2031-09-05', payday: '2031-09-05', flag: 'MasterCard', limit: 2000},
+    card: {
+      name: 'Nubank',
+      due_date: '2031-09-05',
+      payday: '2031-09-05',
+      flag: 'MasterCard',
+      limit: 2000,
+    },
     payment_voucher: '',
   },
   {
@@ -19,7 +25,7 @@ export const FINANCE: IFinance[] = [
     Installments: 1,
     status: 'AGUARDANDO',
     card: null,
-    payment_voucher: 'was',
+    payment_voucher: '',
   },
   {
     tag: 'CF',
@@ -48,7 +54,13 @@ export const FINANCE: IFinance[] = [
     value: 1230,
     Installments: 1,
     status: 'AGUARDANDO',
-    card: {name: 'Inter', due_date: '2031-09-07', payday: '2031-09-07', flag: 'MasterCard', limit: 2000},
+    card: {
+      name: 'Inter',
+      due_date: '2031-09-07',
+      payday: '2031-09-07',
+      flag: 'MasterCard',
+      limit: 2000,
+    },
     payment_voucher: '',
-  }
-]
+  },
+];

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BodyJson, HttpService } from './http.service';
 import { Observable } from 'rxjs';
-import { IUser } from '../models/user';
+import { IFinance } from '../models/finance';
 
 @Injectable({
   providedIn: 'root',
@@ -9,19 +9,19 @@ import { IUser } from '../models/user';
 export class FinancesService {
   constructor(private http: HttpService) {}
 
-  getAllEmployees(): Observable<IUser> {
-    return this.http.get<IUser>('finances');
+  getAllFinances(): Observable<IFinance[]> {
+    return this.http.get<IFinance[]>('finances');
   }
 
-  postEmployee(body: BodyJson): Observable<IUser> {
-    return this.http.post<IUser>(`finances`, body);
+  postFinance(body: BodyJson): Observable<IFinance> {
+    return this.http.post<IFinance>(`finances`, body);
   }
 
-  patchEmployee(id: number, body: BodyJson): Observable<IUser> {
-    return this.http.patch<IUser>(`finances/${id}`, body);
+  patchFinance(id: number, body: BodyJson): Observable<IFinance> {
+    return this.http.patch<IFinance>(`finances/${id}`, body);
   }
 
-  deletEmployee(id: number): Observable<IUser> {
-    return this.http.delete<IUser>(`finances/${id}`);
+  deletFinance(id: number): Observable<IFinance> {
+    return this.http.delete<IFinance>(`finances/${id}`);
   }
 }
