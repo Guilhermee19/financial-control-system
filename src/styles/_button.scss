@@ -10,9 +10,12 @@ a:-webkit-any-link {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-radius: 100px;
-    padding: 3px 5px;
+    border-radius: 10px;
+    padding: 10px 25px;
     transition: var(--ts);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     loading {
       opacity: 0;
@@ -32,9 +35,10 @@ a:-webkit-any-link {
     }
 
     &.primary {
-      background-color: var(--main-color);
+      background-color: var(--btn-bg);
+
       .mdc-button__label {
-        color: var(--primary-bg);
+        color: var(--colorWhite);
         loading {
           background-color: var(--main-color);
         }
@@ -45,8 +49,7 @@ a:-webkit-any-link {
     }
 
     &.white {
-      background-color: var(--avatar-light-color);
-      color: var(--avatar-dark-color);
+      background-color: var(--input-bg);
       font-size: 1rem;
       transition: var(--ts);
       &:hover {

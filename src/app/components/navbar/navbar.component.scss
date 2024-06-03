@@ -71,6 +71,9 @@ mat-drawer-container {
         button {
           width: 100%;
           color: var(--text-color);
+          padding: 5px 6px;
+          border-radius: 100px;
+          justify-content: flex-start;
 
           &.active {
             background-color: var(--secondary-bg);

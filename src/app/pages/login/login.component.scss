@@ -30,13 +30,12 @@ main {
       color: var(--text-secondary);
     }
 
-    .blue_dark {
+    .primary {
       width: calc(100% - 50px - 1rem);
     }
 
-    .btn_img {
+    .white.btn_img {
       min-width: 50px;
-      padding: 0 10px;
 
       img {
         width: 25px;

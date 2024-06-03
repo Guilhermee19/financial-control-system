@@ -20,7 +20,6 @@ export class FinanciaPhotographyComponent implements OnInit {
     'value',
     'status',
     'payment_voucher',
-    'options',
   ];
 
   dataSource: IFinance[] = [];
@@ -29,6 +28,10 @@ export class FinanciaPhotographyComponent implements OnInit {
   months = MONTHS;
 
   current_month = new Date().getMonth();
+
+  isEdit = -1;
+
+  total = 0;
 
   ngOnInit() {
     this.getAllFinances(this.current_month);
@@ -45,29 +48,17 @@ export class FinanciaPhotographyComponent implements OnInit {
     this.financesService.getAllFinances(params).subscribe({
       next: (data) => {
         this.backupFinancias = data;
-        const today = new Date();
-        const date = new Date(today.getFullYear() + '-' + (month + 1) + '-01');
-
-        const firstAndLastDay = this.setMonthBoundaries(date);
-
-        this.dataSource = this.filterData(
-          this.backupFinancias,
-          firstAndLastDay.firstDayOfMonth,
-          firstAndLastDay.lastDayOfMonth
-        );
-
+        this.changeMonth('today');
         this.loading = false;
       },
     });
   }
 
-  changeMonth(action: 'next' | 'back') {
+  changeMonth(action: 'next' | 'back' | 'today') {
     if (action === 'back')
       this.current_month = this.current_month > 0 ? this.current_month - 1 : 11;
     if (action === 'next')
       this.current_month = this.current_month < 11 ? this.current_month + 1 : 0;
-
-    // this.getAllFinances(this.current_month);
 
     const today = new Date();
     const date = new Date(
@@ -102,5 +93,14 @@ export class FinanciaPhotographyComponent implements OnInit {
     } else {
       return data;
     }
+  }
+
+  modeEdit(index: number) {
+    if (this.isEdit !== -1) return;
+    this.isEdit = index;
+  }
+
+  saveEdit() {
+    this.isEdit = -1;
   }
 }
