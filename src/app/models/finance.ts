@@ -15,7 +15,8 @@ export interface IFinance {
   date: string;
   description: string;
   value: number;
-  Installments: number;
+  installments: number;
+  current_installment: number;
   status: TStatus;
   card?: ICard | null;
   payment_voucher: string;

@@ -1,8 +1,9 @@
 import { MatSidenav } from '@angular/material/sidenav';
-import { StorageService } from './../../services/storage.service';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { NAVBAR_PAGES } from 'src/app/constants/navbar';
+import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ import { NAVBAR_PAGES } from 'src/app/constants/navbar';
 export class NavbarComponent implements OnInit, OnDestroy {
   @ViewChild('drawer') drawer: MatSidenav = {} as MatSidenav;
 
-  constructor(private storage: StorageService) {}
+  constructor(private storage: StorageService, private router: Router) {}
 
   loading = false;
 
@@ -42,7 +43,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }, 300);
   }
 
-
   getMe() {
     // Requisição para pegar o usuário logado
     // if (error?.status === 401) {
@@ -50,13 +50,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // }
   }
 
- logout() {
+  logout() {
     // const dialogRef = this.dialog.open(ConfirmExitComponent, {
     //   panelClass: 'dialog-container',
     // });
     // dialogRef.afterClosed().subscribe((result) => {
     //   if (result) {
-    //     this.authService.logout();
+    this.storage.logout();
     //   }
     // });
   }

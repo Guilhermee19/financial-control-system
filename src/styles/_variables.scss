@@ -3,6 +3,7 @@
   --ts: all 0.3s ease-in-out;
 
   --text-primary: #142534;
+  --placeholder-primary: rgba(20, 37, 52, 0.5);
   --text-secondary: #fafafa;
   --input-bg: #fff;
 
@@ -30,6 +31,8 @@
 
 .dark:root {
   --text-primary: #fafafa;
+  --placeholder-primary: rgba(250, 250, 250, 0.5);
+
   --text-secondary: #142534;
   --input-bg: #424242;
 

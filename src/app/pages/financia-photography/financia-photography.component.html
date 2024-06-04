@@ -3,14 +3,23 @@
     <a mat-icon-button (click)="changeMonth('back')">
       <i icon="angle_left"></i>
     </a>
-    <h1>{{ months[current_month].label }}</h1>
+    <h1>
+      {{ current_year }} <br />
+      {{ months[current_month].label }}
+    </h1>
     <a mat-icon-button (click)="changeMonth('next')">
       <i icon="angle_right"></i>
     </a>
   </header>
 
   <div class="buttons">
-    <button type="button" title="adicionar" mat-raised-button class="primary">
+    <button
+      type="button"
+      title="adicionar"
+      mat-raised-button
+      class="primary"
+      (click)="craateFinance()"
+    >
       Adicionar
     </button>
   </div>
@@ -18,6 +27,10 @@
   <page-loading *ngIf="loading"></page-loading>
 
   <section *ngIf="!loading">
+    <div class="top_info">
+      <h3>{{ totalForTheMonth | convertMoney }}</h3>
+    </div>
+
     <div class="card-tablet">
       <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="tag">
@@ -37,10 +50,12 @@
         <ng-container matColumnDef="description">
           <th mat-header-cell *matHeaderCellDef>Descrição</th>
           <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
-            <span *ngIf="row.Installments <= 1">{{ row.description }} </span>
-            <span *ngIf="row.Installments > 1"
+            <span *ngIf="row.installments <= 1">{{ row.description }} </span>
+            <span *ngIf="row.installments > 1"
               >{{ row.description }} ({{
-                row.Installments ? '1/' + row.Installments : ''
+                row.installments
+                  ? row.current_installment + '/' + row.installments
+                  : ''
               }})</span
             >
           </td>
@@ -49,7 +64,7 @@
         <ng-container matColumnDef="value">
           <th mat-header-cell *matHeaderCellDef>Valor</th>
           <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
-            {{ row.value / row.Installments | convertMoney }}
+            {{ row.value / row.installments | convertMoney }}
           </td>
         </ng-container>
 
@@ -94,6 +109,9 @@
               ></a>
               <a mat-icon-button *ngIf="isEdit === idx" (click)="saveEdit()">
                 <i icon="save"> </i
+              ></a>
+              <a mat-icon-button (click)="deletItem(row.id)">
+                <i icon="delet"> </i
               ></a>
             </div>
           </td>

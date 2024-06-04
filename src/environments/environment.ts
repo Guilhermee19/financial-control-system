@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   base_url: 'https://api.iamgui.dev/',
-  version: '0.2.1',
+  version: '1.0.0',
 };
 
 /*

@@ -1,4 +1,7 @@
+import { configModals } from './../../constants/utils';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DetailFinanceComponent } from 'src/app/components/modals/detail-finance/detail-finance.component';
 import { MONTHS } from 'src/app/constants/utils';
 import { IFinance } from 'src/app/models/finance';
 import { FinancesService } from 'src/app/services/finances.service';
@@ -9,7 +12,10 @@ import { FinancesService } from 'src/app/services/finances.service';
   styleUrls: ['./financia-photography.component.scss'],
 })
 export class FinanciaPhotographyComponent implements OnInit {
-  constructor(private financesService: FinancesService) {}
+  constructor(
+    private financesService: FinancesService,
+    private dialog: MatDialog
+  ) {}
 
   loading = false;
 
@@ -20,6 +26,7 @@ export class FinanciaPhotographyComponent implements OnInit {
     'value',
     'status',
     'payment_voucher',
+    'options',
   ];
 
   dataSource: IFinance[] = [];
@@ -28,6 +35,7 @@ export class FinanciaPhotographyComponent implements OnInit {
   months = MONTHS;
 
   current_month = new Date().getMonth();
+  current_year = new Date().getFullYear();
 
   isEdit = -1;
 
@@ -54,11 +62,34 @@ export class FinanciaPhotographyComponent implements OnInit {
     });
   }
 
+  craateFinance() {
+    const dialogRef = this.dialog.open(DetailFinanceComponent, {
+      ...configModals,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (result.action === 'yes') this.getAllFinances(this.current_month);
+      }
+    });
+  }
+
   changeMonth(action: 'next' | 'back' | 'today') {
-    if (action === 'back')
-      this.current_month = this.current_month > 0 ? this.current_month - 1 : 11;
-    if (action === 'next')
-      this.current_month = this.current_month < 11 ? this.current_month + 1 : 0;
+    if (action === 'back') {
+      if (this.current_month > 0) {
+        this.current_month--;
+      } else {
+        this.current_month = 11;
+        this.current_year--;
+      }
+    }
+    if (action === 'next') {
+      if (this.current_month < 11) {
+        this.current_month++;
+      } else {
+        this.current_month = 0;
+        this.current_year++;
+      }
+    }
 
     const today = new Date();
     const date = new Date(
@@ -75,8 +106,8 @@ export class FinanciaPhotographyComponent implements OnInit {
   }
 
   setMonthBoundaries(date: Date) {
-    const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
-    const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    const firstDayOfMonth = new Date(this.current_year, date.getMonth(), 1);
+    const lastDayOfMonth = new Date(this.current_year, date.getMonth() + 1, 0);
 
     return { firstDayOfMonth, lastDayOfMonth };
   }
@@ -98,6 +129,29 @@ export class FinanciaPhotographyComponent implements OnInit {
   modeEdit(index: number) {
     if (this.isEdit !== -1) return;
     this.isEdit = index;
+  }
+
+  get totalForTheMonth() {
+    return this.dataSource.reduce((total, el) => {
+      // Extrair o valor e as parcelas
+      const value =
+        typeof el.value === 'string' ? parseFloat(el.value) : el.value;
+      const installments =
+        typeof el.installments === 'string'
+          ? parseFloat(el.installments)
+          : el.installments;
+
+      // Adicionar ao total a divisão do valor pelo número de parcelas
+      return total + value / installments;
+    }, 0); // Iniciar o total em 0
+  }
+
+  deletItem(id: number) {
+    this.financesService.deletFinance(id).subscribe({
+      next: (data) => {
+        this.getAllFinances(this.current_month);
+      },
+    });
   }
 
   saveEdit() {

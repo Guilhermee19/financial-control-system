@@ -1,0 +1,65 @@
+<form (ngSubmit)="saveSubmitHandler()" [formGroup]="finance_form">
+  <h1>Finança</h1>
+
+  <div class="card_input">
+    <i icon="tag"></i>
+    <mat-select formControlName="tag" name="tag" placeholder="Tag">
+      <mat-option *ngFor="let tag of tags" [value]="tag.tag">
+        {{ tag.text }}
+      </mat-option>
+    </mat-select>
+  </div>
+
+  <div class="card_input">
+    <i icon="date"></i>
+    <input title="date" type="date" formControlName="date" placeholder="Data" />
+  </div>
+
+  <div class="card_input">
+    <i icon="description"></i>
+    <input
+      title="description"
+      type="text"
+      formControlName="description"
+      placeholder="Descrição"
+    />
+  </div>
+
+  <div class="card_input">
+    <i icon="value"></i>
+    <input
+      title="value"
+      type="text"
+      mask="separator.2"
+      [thousandSeparator]="'.'"
+      [decimalMarker]="','"
+      prefix="R$ "
+      formControlName="value"
+      placeholder="R$ 0,00"
+    />
+  </div>
+
+  <div class="card_input">
+    <i icon="installments"></i>
+    <input
+      title="installments"
+      type="number"
+      formControlName="installments"
+      placeholder="Parcelas"
+    />
+  </div>
+
+  <!-- <div class="card_input">
+    <i icon="card"></i>
+    <input
+      title="card"
+      type="text"
+      formControlName="card"
+      placeholder="Cartão/Conta"
+    />
+  </div> -->
+
+  <button type="submit" title="adicionar" mat-raised-button class="primary">
+    Adicionar
+  </button>
+</form>

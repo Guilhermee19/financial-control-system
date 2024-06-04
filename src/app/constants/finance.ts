@@ -6,8 +6,9 @@ export const FINANCE: IFinance[] = [
     date: '2031-09-05',
     description: 'Plastation 5',
     value: 3960,
-    Installments: 10,
-    status: 'AGUARDANDO',
+    installments: 10,
+    current_installment: 10,
+    status: 'WAITING',
     card: {
       name: 'Nubank',
       due_date: '2031-09-05',
@@ -22,8 +23,9 @@ export const FINANCE: IFinance[] = [
     date: '2031-09-06',
     description: 'Manutenção do Carro',
     value: 150,
-    Installments: 1,
-    status: 'AGUARDANDO',
+    installments: 1,
+    current_installment: 1,
+    status: 'WAITING',
     card: null,
     payment_voucher: '',
   },
@@ -32,8 +34,9 @@ export const FINANCE: IFinance[] = [
     date: '2031-09-06',
     description: 'Estacionamento',
     value: 280,
-    Installments: 1,
-    status: 'AGUARDANDO',
+    installments: 1,
+    current_installment: 1,
+    status: 'WAITING',
     card: null,
     payment_voucher: '',
   },
@@ -42,8 +45,9 @@ export const FINANCE: IFinance[] = [
     date: '2031-09-06',
     description: 'FGTS',
     value: 160,
-    Installments: 1,
-    status: 'AGUARDANDO',
+    installments: 1,
+    current_installment: 1,
+    status: 'WAITING',
     card: null,
     payment_voucher: '',
   },
@@ -52,8 +56,9 @@ export const FINANCE: IFinance[] = [
     date: '2031-09-07',
     description: 'Cartão Inter',
     value: 1230,
-    Installments: 1,
-    status: 'AGUARDANDO',
+    installments: 1,
+    current_installment: 1,
+    status: 'WAITING',
     card: {
       name: 'Inter',
       due_date: '2031-09-07',
@@ -62,5 +67,39 @@ export const FINANCE: IFinance[] = [
       limit: 2000,
     },
     payment_voucher: '',
+  },
+];
+
+export const TAGS = [
+  {
+    text: 'Gasto',
+    tag: 'G',
+  },
+  {
+    text: 'Conta Fixa',
+    tag: 'CF',
+  },
+  {
+    text: 'Investimento',
+    tag: 'I',
+  },
+  {
+    text: 'Conta',
+    tag: 'C',
+  },
+];
+
+export const STATUS = [
+  {
+    text: 'Aguardando',
+    status: 'WAITING',
+  },
+  {
+    text: 'Pago',
+    status: 'PAID_OUT',
+  },
+  {
+    text: 'Atrasado',
+    status: 'LATE',
   },
 ];
