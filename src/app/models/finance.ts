@@ -11,6 +11,7 @@ export interface ICard {
 }
 
 export interface IFinance {
+  id?: number;
   tag: TTag;
   date: string;
   description: string;

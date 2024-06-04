@@ -12,11 +12,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DetailFinanceComponent } from 'src/app/components/modals/detail-finance/detail-finance.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { CardFinancialComponent } from 'src/app/components/card-financial/card-financial.component';
 @NgModule({
   declarations: [
     FinanciaPhotographyComponent,
     ConvertStatusPipe,
     DetailFinanceComponent,
+    CardFinancialComponent,
   ],
   imports: [
     CommonModule,

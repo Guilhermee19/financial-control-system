@@ -1,0 +1,33 @@
+<section [ngClass]="financial.tag" (click)="isSelect = !isSelect">
+  <div class="tag">
+    {{ financial.tag }}
+  </div>
+
+  <div class="info">
+    <h2 class="f-14">{{ financial.description }}</h2>
+    <h3 class="f-10 status" [ngClass]="financial.status">
+      {{ financial.status | convertStatus }}
+    </h3>
+    <h5 class="f-10 date">
+      {{ financial.date | date : 'EE' }} {{ financial.date | date : 'd' }} de
+      {{ financial.date | date : 'MMM' }}
+    </h5>
+  </div>
+
+  <div class="price">
+    <h5 class="f-10">{{ financial.installments === 1 ? '' : 'parcelado' }}</h5>
+    <h3 class="f-12">
+      {{ financial.value / financial.installments | convertMoney }}
+    </h3>
+    <h5 class="f-10" *ngIf="financial.installments > 1">
+      {{ financial.current_installment }} de {{ financial.installments }}x
+    </h5>
+  </div>
+
+  <div class="options" [ngClass]="{ open: isSelect }">
+    <div class="row-icons">
+      <a mat-icon-button (click)="modeEdit()"> <i icon="edit"> </i></a>
+      <a mat-icon-button (click)="deletItem()"> <i icon="delet"> </i></a>
+    </div>
+  </div>
+</section>

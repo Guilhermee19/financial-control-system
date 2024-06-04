@@ -22,16 +22,24 @@
     >
       Adicionar
     </button>
+
+    <div class="top_info">
+      <h5>Total do Mês</h5>
+      <h3>{{ totalForTheMonth | convertMoney }}</h3>
+    </div>
   </div>
 
   <page-loading *ngIf="loading"></page-loading>
 
   <section *ngIf="!loading">
-    <div class="top_info">
-      <h3>{{ totalForTheMonth | convertMoney }}</h3>
+    <div class="finances">
+      <app-card-financial
+        *ngFor="let financial of dataSource"
+        [financial]="financial"
+      ></app-card-financial>
     </div>
 
-    <div class="card-tablet">
+    <!-- <div class="card-tablet">
       <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="tag">
           <th mat-header-cell *matHeaderCellDef>Tag</th>
@@ -128,6 +136,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
-    </div>
+    </div> -->
   </section>
 </main>

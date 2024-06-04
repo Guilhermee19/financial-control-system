@@ -36,6 +36,24 @@ main {
     }
   }
 
+  .buttons {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .top_info {
+      width: 100%;
+      text-align: right;
+
+      h5 {
+        opacity: 0.5;
+      }
+      h3 {
+        margin: 0;
+      }
+    }
+  }
+
   section {
     width: 100%;
     display: flex;
@@ -44,12 +62,17 @@ main {
     align-items: flex-start;
     gap: 1rem;
 
-    .top_info {
+    .finances {
       width: 100%;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
 
-      h3 {
-        margin: 0;
+      app-card-financial {
+        min-width: 250px;
+        flex: 1;
       }
     }
 
