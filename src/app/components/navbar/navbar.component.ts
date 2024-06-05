@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { NAVBAR_PAGES } from 'src/app/constants/navbar';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,11 @@ import { StorageService } from 'src/app/services/storage.service';
 export class NavbarComponent implements OnInit, OnDestroy {
   @ViewChild('drawer') drawer: MatSidenav = {} as MatSidenav;
 
-  constructor(private storage: StorageService, private router: Router) {}
+  constructor(
+    private storage: StorageService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   loading = false;
 
@@ -44,20 +49,21 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   getMe() {
-    // Requisição para pegar o usuário logado
-    // if (error?.status === 401) {
-    //   this.storageService.logout();
-    // }
+    this.authService.user$.subscribe((user) => {
+      if (user) {
+        this.authService.currentUserSig.set({
+          email: user.email!,
+          username: user.displayName!,
+        });
+        this.router.navigate(['/']);
+      } else {
+        this.authService.currentUserSig.set(null);
+        this.router.navigate(['/login']);
+      }
+    });
   }
 
   logout() {
-    // const dialogRef = this.dialog.open(ConfirmExitComponent, {
-    //   panelClass: 'dialog-container',
-    // });
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    this.storage.logout();
-    //   }
-    // });
+    this.authService.logout();
   }
 }

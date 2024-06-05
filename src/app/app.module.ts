@@ -24,7 +24,9 @@ import { ButtonActionComponent } from './components/button-action/button-action.
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SharedModule } from './components/shared/shared.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -56,6 +58,9 @@ registerLocaleData(localePt);
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
   ],
   providers: [
     DatePipe,

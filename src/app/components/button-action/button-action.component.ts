@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./button-action.component.scss'],
 })
 export class ButtonActionComponent implements OnInit {
-  constructor(private storage: StorageService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     console.log('');
@@ -19,6 +20,6 @@ export class ButtonActionComponent implements OnInit {
   }
 
   logof() {
-    this.storage.logout();
+    this.authService.logout();
   }
 }
