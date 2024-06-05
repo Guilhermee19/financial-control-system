@@ -55,7 +55,16 @@
 
           <a class="profile" mat-button routerLink="/profile">
             <div class="image">
-              <img src="../../../assets/user_photo.png" alt="foto perfil" />
+              <img
+                *ngIf="!user.picture"
+                src="../../../assets/user_photo.png"
+                alt="foto perfil"
+              />
+              <img
+                *ngIf="user.picture"
+                [src]="user.picture"
+                alt="foto perfil"
+              />
             </div>
           </a>
         </div>

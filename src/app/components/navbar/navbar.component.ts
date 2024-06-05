@@ -5,6 +5,7 @@ import { NAVBAR_PAGES } from 'src/app/constants/navbar';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { IUser } from 'src/app/models/user';
 
 @Component({
   selector: 'app-navbar',
@@ -26,6 +27,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   version = environment.version;
   isMobile = window.innerWidth < 1024;
+
+  user: IUser = {} as IUser;
 
   ngOnInit(): void {
     this.getMe();
@@ -50,11 +53,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   getMe() {
     this.authService.user$.subscribe((user) => {
+      console.log(user);
+
       if (user) {
-        this.authService.currentUserSig.set({
-          email: user.email!,
-          username: user.displayName!,
-        });
+        this.user.picture = user.photoURL || '';
+        this.user.username = user.displayName || '';
+        this.user.email = user.email || '';
+
+        // this.authService.currentUserSig.set({
+        //   email: user.email!,
+        //   username: user.displayName!,
+        //   picture: user.photoURL!,
+        // });
         this.router.navigate(['/']);
       } else {
         this.authService.currentUserSig.set(null);

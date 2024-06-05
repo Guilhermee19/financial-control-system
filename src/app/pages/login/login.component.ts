@@ -55,8 +55,6 @@ export class LoginComponent {
 
   loginGoogleSubmit() {
     const provider = new GoogleAuthProvider();
-    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-
     const auth = getAuth();
     signInWithPopup(auth, provider)
       .then((result) => {
