@@ -11,7 +11,6 @@ const routes: Routes = [
     component: NavbarComponent,
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'profile', component: HomeComponent },
       {
         path: 'finance',
         loadChildren: () =>
@@ -25,6 +24,11 @@ const routes: Routes = [
           import('./pages/category/category.module').then(
             (m) => m.CategoryModule
           ),
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./pages/profile/profile.module').then((m) => m.ProfileModule),
       },
       {
         path: 'config',

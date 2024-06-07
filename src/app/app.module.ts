@@ -21,7 +21,6 @@ import { InputFileDirective } from './directives/input-file.directive';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ButtonActionComponent } from './components/button-action/button-action.component';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { SharedModule } from './components/shared/shared.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
@@ -38,7 +37,6 @@ registerLocaleData(localePt);
     HomeComponent,
     LoginComponent,
     ButtonActionComponent,
-    ProfileComponent,
   ],
   imports: [
     BrowserModule,

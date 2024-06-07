@@ -36,12 +36,35 @@
       }
     }
 
+    &.title-left {
+      th.mat-mdc-header-cell,
+      th.mat-header-cell,
+      td.mat-cell {
+        text-align: left;
+      }
+    }
+
+    &.title-center {
+      th.mat-mdc-header-cell,
+      th.mat-header-cell,
+      td.mat-cell {
+        text-align: center;
+      }
+    }
+
+    &.title-right {
+      th.mat-mdc-header-cell,
+      th.mat-header-cell,
+      td.mat-cell {
+        text-align: right;
+      }
+    }
+
     th.mat-mdc-header-cell,
     th.mat-header-cell,
     td.mat-cell {
       padding: 0 0.7rem;
       border-bottom-width: 0;
-      text-align: center;
     }
 
     th.mat-header-cell:first-of-type,
@@ -58,6 +81,8 @@
       font-weight: 500;
       border-bottom: none; // Remove a borda inferior padrão das células
       @extend .f-12;
+      background-color: #fff;
+      color: #433408;
 
       --br: 15px;
 
@@ -130,5 +155,10 @@
         }
       }
     }
+  }
+
+  .no_results {
+    padding: 1rem 0 !important;
+    border-radius: var(--br) !important;
   }
 }
