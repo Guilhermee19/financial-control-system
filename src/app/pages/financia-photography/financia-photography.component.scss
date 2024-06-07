@@ -10,7 +10,7 @@ main {
     // max-width: 600px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     margin-bottom: 1rem;
     color: var(--text-primary);
 
@@ -24,15 +24,23 @@ main {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 5px;
       }
     }
 
-    h1 {
+    .date {
       width: 100%;
       max-width: 180px;
-      text-transform: uppercase;
-      text-align: center;
-      margin: 0;
+      h5,
+      h1 {
+        text-transform: uppercase;
+        text-align: center;
+        margin: 0;
+      }
+      h5 {
+        opacity: 0.6;
+        letter-spacing: 5px;
+      }
     }
   }
 
@@ -70,38 +78,14 @@ main {
       flex-wrap: wrap;
       gap: 0.5rem;
 
+      .empyty,
       app-card-financial {
-        min-width: 250px;
+        min-width: 350px;
         flex: 1;
       }
-    }
 
-    .card-tablet {
-      width: 100%;
-      // width: 50%;
-
-      table {
-        width: 100%;
-        // min-width: 580px;
-      }
-    }
-
-    .info_mobile {
-      display: none;
-    }
-
-    @include media('<=650px') {
-      .info_web {
-        display: none;
-      }
-
-      .info_mobile {
-        display: flex;
-      }
-
-      flex-direction: column;
-      .card-tablet {
-        width: 100%;
+      .empyty {
+        content: '';
       }
     }
   }

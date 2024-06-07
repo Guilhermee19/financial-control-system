@@ -65,7 +65,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         //   username: user.displayName!,
         //   picture: user.photoURL!,
         // });
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
       } else {
         this.authService.currentUserSig.set(null);
         this.router.navigate(['/login']);

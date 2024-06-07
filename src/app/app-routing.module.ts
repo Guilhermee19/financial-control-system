@@ -19,6 +19,18 @@ const routes: Routes = [
             './pages/financia-photography/financia-photography.module'
           ).then((m) => m.FinanciaPhotographyModule),
       },
+      {
+        path: 'category',
+        loadChildren: () =>
+          import('./pages/category/category.module').then(
+            (m) => m.CategoryModule
+          ),
+      },
+      {
+        path: 'config',
+        loadChildren: () =>
+          import('./pages/config/config.module').then((m) => m.ConfigModule),
+      },
     ],
   },
   { path: '**', redirectTo: 'login' },

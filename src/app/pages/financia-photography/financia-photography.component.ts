@@ -19,16 +19,6 @@ export class FinanciaPhotographyComponent implements OnInit {
 
   loading = false;
 
-  displayedColumns: string[] = [
-    'tag',
-    'date',
-    'description',
-    'value',
-    'status',
-    'payment_voucher',
-    'options',
-  ];
-
   dataSource: IFinance[] = [];
   backupFinancias: IFinance[] = [];
 
@@ -36,8 +26,6 @@ export class FinanciaPhotographyComponent implements OnInit {
 
   current_month = new Date().getMonth();
   current_year = new Date().getFullYear();
-
-  isEdit = -1;
 
   total = 0;
 
@@ -126,9 +114,9 @@ export class FinanciaPhotographyComponent implements OnInit {
     }
   }
 
-  modeEdit(index: number) {
-    if (this.isEdit !== -1) return;
-    this.isEdit = index;
+  action(event: string) {
+    console.log(event);
+    if (event === 'DELET') this.getAllFinances(this.current_month);
   }
 
   get totalForTheMonth() {
@@ -144,17 +132,5 @@ export class FinanciaPhotographyComponent implements OnInit {
       // Adicionar ao total a divisão do valor pelo número de parcelas
       return total + value / installments;
     }, 0); // Iniciar o total em 0
-  }
-
-  deletItem(id: number) {
-    this.financesService.deletFinance(id).subscribe({
-      next: (data) => {
-        this.getAllFinances(this.current_month);
-      },
-    });
-  }
-
-  saveEdit() {
-    this.isEdit = -1;
   }
 }

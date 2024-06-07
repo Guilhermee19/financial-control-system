@@ -19,9 +19,21 @@ export const NAVBAR_PAGES: {
     roles: ['Admin', 'Desenvolvedor'],
   },
   {
-    label: 'Cartão',
-    icon: 'cards',
-    link: '/cards',
+    label: 'Categoria',
+    icon: 'category',
+    link: '/category',
     roles: ['Admin', 'Desenvolvedor'],
   },
+  {
+    label: 'Configuração',
+    icon: 'config',
+    link: '/config',
+    roles: ['Admin', 'Desenvolvedor'],
+  },
+  // {
+  //   label: 'Cartão',
+  //   icon: 'cards',
+  //   link: '/cards',
+  //   roles: ['Admin', 'Desenvolvedor'],
+  // },
 ];

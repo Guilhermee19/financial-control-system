@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IFinance } from 'src/app/models/finance';
 import { FinancesService } from 'src/app/services/finances.service';
 
@@ -9,6 +9,7 @@ import { FinancesService } from 'src/app/services/finances.service';
 })
 export class CardFinancialComponent {
   @Input() financial!: IFinance;
+  @Output() event = new EventEmitter<string>();
 
   constructor(private financesService: FinancesService) {}
 
@@ -24,6 +25,7 @@ export class CardFinancialComponent {
     this.financesService.deletFinance(this.financial.id).subscribe({
       next: (data) => {
         // this.getAllFinances(this.current_month);
+        this.event.emit('DELET');
       },
     });
   }

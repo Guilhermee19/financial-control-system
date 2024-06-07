@@ -3,10 +3,14 @@
     <a mat-icon-button (click)="changeMonth('back')">
       <i icon="angle_left"></i>
     </a>
-    <h1>
-      {{ current_year }} <br />
-      {{ months[current_month].label }}
-    </h1>
+    <div class="date">
+      <h5>
+        {{ current_year }}
+      </h5>
+      <h1>
+        {{ months[current_month].label }}
+      </h1>
+    </div>
     <a mat-icon-button (click)="changeMonth('next')">
       <i icon="angle_right"></i>
     </a>
@@ -36,106 +40,9 @@
       <app-card-financial
         *ngFor="let financial of dataSource"
         [financial]="financial"
+        (event)="action($event)"
       ></app-card-financial>
+      <div class="empyty" *ngFor="let obj of [].constructor(5)"></div>
     </div>
-
-    <!-- <div class="card-tablet">
-      <table mat-table [dataSource]="dataSource">
-        <ng-container matColumnDef="tag">
-          <th mat-header-cell *matHeaderCellDef>Tag</th>
-          <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
-            {{ row.tag }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef>Data</th>
-          <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
-            {{ row.date | date : 'dd' }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef>Descrição</th>
-          <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
-            <span *ngIf="row.installments <= 1">{{ row.description }} </span>
-            <span *ngIf="row.installments > 1"
-              >{{ row.description }} ({{
-                row.installments
-                  ? row.current_installment + '/' + row.installments
-                  : ''
-              }})</span
-            >
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="value">
-          <th mat-header-cell *matHeaderCellDef>Valor</th>
-          <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
-            {{ row.value / row.installments | convertMoney }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>Status</th>
-          <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
-            <span class="info_web"> {{ row.status | convertStatus }} </span>
-            <span
-              class="info_mobile"
-              matTooltip="{{ row.status | convertStatus }}"
-            >
-              <i [icon]="row.status"> </i>
-            </span>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="payment_voucher">
-          <th mat-header-cell *matHeaderCellDef>Comprov.</th>
-          <td mat-cell *matCellDef="let row" [ngClass]="row.tag">
-            <div class="buttons">
-              <span *ngIf="!row.payment_voucher"> <i icon="import"> </i></span>
-              <span
-                *ngIf="row.payment_voucher"
-                [matTooltip]="row.payment_voucher"
-              >
-                <i icon="file"> </i>
-              </span>
-            </div>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="options">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td
-            mat-cell
-            *matCellDef="let row; let idx = index"
-            [ngClass]="row.tag"
-          >
-            <div class="row-icons">
-              <a mat-icon-button *ngIf="isEdit !== idx" (click)="modeEdit(idx)">
-                <i icon="edit"> </i
-              ></a>
-              <a mat-icon-button *ngIf="isEdit === idx" (click)="saveEdit()">
-                <i icon="save"> </i
-              ></a>
-              <a mat-icon-button (click)="deletItem(row.id)">
-                <i icon="delet"> </i
-              ></a>
-            </div>
-          </td>
-        </ng-container>
-
-        <tr *matNoDataRow>
-          <td colspan="100%">
-            <div class="no-data-container">
-              <p>Nenhum resultado encontrado</p>
-            </div>
-          </td>
-        </tr>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-    </div> -->
   </section>
 </main>

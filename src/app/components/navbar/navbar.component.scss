@@ -20,7 +20,7 @@ mat-drawer-container {
   background-color: transparent !important;
 
   mat-drawer {
-    width: 180px;
+    width: max-content;
     overflow: visible;
     padding-top: calc(2rem - 14px);
     margin-left: -250px;
@@ -30,7 +30,7 @@ mat-drawer-container {
 
     &.mat-drawer-opened {
       overflow: visible;
-      width: 180px;
+      width: max-content;
       height: 100%;
       margin-left: 0;
     }
@@ -71,7 +71,7 @@ mat-drawer-container {
         button {
           width: 100%;
           color: var(--text-color);
-          padding: 5px 6px;
+          padding: 5px 15px 5px 6px;
           border-radius: 100px;
           justify-content: flex-start;
 
@@ -248,4 +248,11 @@ mat-drawer-container {
       }
     }
   }
+}
+
+app-button-action {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 900;
 }
