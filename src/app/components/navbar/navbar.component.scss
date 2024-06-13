@@ -24,9 +24,11 @@ mat-drawer-container {
     overflow: visible;
     padding-top: calc(2rem - 14px);
     margin-left: -250px;
-    background-color: var(--secondary-bg);
+    background-color: var(--main-color);
     box-shadow: 2px 2px 8px var(--shadow);
     border: 0px solid transparent;
+    border-radius: 0 76px 0 0;
+    transition: var(--ts);
 
     &.mat-drawer-opened {
       overflow: visible;
@@ -36,15 +38,17 @@ mat-drawer-container {
     }
 
     .logo {
+      position: relative;
       max-width: 76px;
       max-height: 76px;
       padding: 0.8rem;
-      background-color: var(--secondary-bg);
+      background-color: var(--main-color);
       border-radius: 50%;
       width: 100%;
       height: 100%;
       margin: 0 auto;
-      position: relative;
+      transition: var(--ts);
+
       img {
         width: 100%;
         height: 100%;
@@ -70,13 +74,15 @@ mat-drawer-container {
         a,
         button {
           width: 100%;
-          color: var(--text-color);
-          padding: 5px 15px 5px 6px;
-          border-radius: 100px;
+          color: var(--text-white);
+          padding: 5px;
+          // border-radius: 100px;
           justify-content: flex-start;
+          box-shadow: none;
 
           &.active {
-            background-color: var(--secondary-bg);
+            background-color: var(--text-white);
+            color: var(--text-black);
           }
 
           .mdc-button__label {
@@ -88,11 +94,12 @@ mat-drawer-container {
               display: inline-flex;
               align-items: center;
               justify-content: center;
-              border-radius: 50%;
+              border-radius: 12px;
               color: var(--main-color);
-              background-color: var(--primary-bg);
+              background-color: var(--text-white);
               width: 32px;
               height: 32px;
+              font-size: 0.8rem;
             }
           }
         }

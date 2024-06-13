@@ -11,11 +11,16 @@
   label {
     font-size: 1rem;
     padding-left: 5px;
-    color: var(--text-primary);
+    color: var(--label);
   }
 
   i {
-    color: var(--text-primary);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    font-size: 16px;
+    color: var(--label);
   }
 
   input,
@@ -26,9 +31,9 @@
     padding: 10px 20px;
     border-radius: 10px;
     font-size: 16px;
-    color: var(--text-primary);
-    box-shadow: 2px 2px 4px var(--shadow);
-    border-left: 50px solid var(--primary-bg);
+    color: var(--label);
+    box-shadow: var(--shadow);
+    border-right: 20px solid transparent;
     background-color: var(--input-bg);
 
     &::placeholder {
@@ -48,11 +53,27 @@
       -webkit-appearance: none;
     }
     &.ng-touched.ng-invalid {
-      border-color: var(--red_color);
+      background-color: var(--red_br);
+      color: var(--red_text);
       @include shake;
     }
     &[type='file'] {
       display: none;
+    }
+    /* Para navegadores WebKit (Chrome, Safari, Opera) */
+    &[type='date']::-webkit-inner-spin-button,
+    &[type='date']::-webkit-calendar-picker-indicator {
+      right: 26px;
+      margin-right: -26px;
+      z-index: 5;
+      cursor: pointer;
+      padding: 3px;
+      font-size: 1rem;
+      opacity: 0;
+
+      // &:hover {
+      //   background-color: red;
+      // }
     }
   }
 
@@ -62,9 +83,9 @@
     padding: 10px 20px;
     border-radius: 10px;
     font-size: 16px;
-    color: var(--text-primary);
-    box-shadow: 2px 2px 4px var(--shadow);
-    border-left: 50px solid var(--primary-bg);
+    color: var(--label);
+    box-shadow: var(--shadow);
+    border-right: 20px solid transparent;
     background-color: var(--input-bg);
 
     &::placeholder {
@@ -73,13 +94,5 @@
       color: var(--placeholder-primary);
       opacity: 0.9;
     }
-  }
-
-  i {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 15px;
-    font-size: 20px;
   }
 }

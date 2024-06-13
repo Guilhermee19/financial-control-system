@@ -3,20 +3,20 @@ section {
   --txt: black;
 
   &.G {
-    --bg: #ffe5a0;
-    --txt: #f7bb08;
+    --bg: #f8e2c0;
+    --txt: #ebaa49;
   }
   &.CF {
-    --bg: #bfe1f6;
-    --txt: #0f74b3;
+    --bg: #b0d8ee;
+    --txt: #1e8ecd;
   }
   &.I {
-    --bg: #d4edbc;
-    --txt: #54a30a;
+    --bg: #baf4ab;
+    --txt: #3ebd1e;
   }
   &.C {
-    --bg: #e6cff2;
-    --txt: #7b09b4;
+    --bg: #d7b0ee;
+    --txt: #8b1ecd;
   }
 
   position: relative;
@@ -36,7 +36,7 @@ section {
     min-height: 35px;
     display: flex;
     aspect-ratio: 1/1;
-    border-radius: 50%;
+    border-radius: 12px;
     box-shadow: 0 0 8px var(--shadow);
     display: flex;
     justify-content: center;
@@ -49,6 +49,7 @@ section {
 
   .info {
     width: calc(100% - 35px - 1rem - 60px);
+    color: var(--text-black);
 
     h2 {
     }
@@ -71,6 +72,7 @@ section {
 
     h5 {
       opacity: 0.5;
+      color: var(--text-black);
     }
 
     h3 {
