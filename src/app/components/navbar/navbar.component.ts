@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -18,7 +19,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(
     private storage: StorageService,
     private authService: AuthService,
-    private router: Router
+    private userService: UserService
   ) {}
 
   loading = false;
@@ -52,25 +53,26 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   getMe() {
-    this.authService.user$.subscribe((user) => {
-      console.log(user);
+    this.user = this.storage.myself;
 
-      if (user) {
-        this.user.picture = user.photoURL || '';
-        this.user.username = user.displayName || '';
-        this.user.email = user.email || '';
+    if (this.storage.token) {
+      this.userService.getMe().subscribe({
+        next: (data) => {
+          this.user = data;
+          this.storage.myself = data;
 
-        // this.authService.currentUserSig.set({
-        //   email: user.email!,
-        //   username: user.displayName!,
-        //   picture: user.photoURL!,
-        // });
-        // this.router.navigate(['/']);
-      } else {
-        this.authService.currentUserSig.set(null);
-        this.router.navigate(['/login']);
-      }
-    });
+          console.log(this.user);
+          // if(localStorage.getItem('__DEV__')) this.openPopupBids()
+        },
+        error: (error) => {
+          if (error?.status === 401) {
+            this.storage.logout();
+          }
+        },
+      });
+    } else {
+      this.storage.logout();
+    }
   }
 
   logout() {

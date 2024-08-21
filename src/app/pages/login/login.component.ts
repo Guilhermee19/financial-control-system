@@ -4,8 +4,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
-import * as firebase from 'firebase/app';
 import { getAuth } from '@firebase/auth';
+import { IUser } from 'src/app/models/user';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -28,73 +28,67 @@ export class LoginComponent {
   });
 
   loginSubmit() {
-    console.log(this.login_form.value);
-
-    if (this.login_form.invalid) {
-      this.login_form.markAllAsTouched();
-      return;
-    }
-
-    this.loading = true;
-
-    console.log(this.login_form.value);
-
-    const email: string = this.login_form.value.email as string;
-    const password: string = this.login_form.value.password as string;
-
-    this.authService.login(email, password).subscribe({
-      next: (response) => {
-        console.log(response);
+    this.authService.login(this.login_form.value).subscribe(
+      (data) => {
+        this.storage.setToken(data.token, true);
         this.router.navigate(['/']);
       },
-      error: () => {
+      (error) => {
         this.loading = false;
-      },
-    });
+
+        if (error?.error?.non_field_errors != null) {
+          // this.notifier.show({
+          //   type: 'error',
+          //   message:
+          //     'Não é possível fazer login com as credenciais fornecidas.',
+          // });
+        } else {
+          // this.notifier.show({
+          //   type: 'error',
+          //   message:
+          //     'Não foi possível fazer login, por favor verifique as informações inseridas.',
+          // });
+        }
+      }
+    );
   }
 
   loginGoogleSubmit() {
     const provider = new GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/user.birthday.read');
+
     const auth = getAuth();
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log(result);
 
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        if (!credential) return;
-
-        const token = credential.accessToken;
-        console.log(token);
-        // The signed-in user info.
-        const user = result.user;
-        console.log(user);
-
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
+        this.loginGoogleSuccess(result);
       })
       .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-
-        // The email of the user's account used.
-        const email = error.customData.email;
-        console.log(email);
-
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(credential);
-        // ...
+        console.error(error);
       });
-    // this.authService.login(email, password).subscribe({
-    //   next: (response) => {
-    //     console.log(response);
-    //   },
-    //   error: () => {
-    //     this.loading = false;
-    //   },
-    // });
+  }
+
+  loginGoogleSuccess(response: any) {
+    this.authService.loginGoogle(response, 'Google').subscribe(
+      (data) => {
+        localStorage.setItem('token', data.token);
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        this.loading = false;
+        // this.storageService.checkError(
+        //   error,
+        //   'Ops, algo deu errado. Por favor, entre em contato com o suporte da Box4u.'
+        // );
+
+        if (error.error.non_field_errors != null) {
+          // this.registerError = "Não é possível fazer login com as credenciais fornecidas."
+        } else {
+          // this.registerError = "Não foi possível fazer login, caso não possua uma conta, clique em 'Cadastre-se'."
+          this.loading = false;
+        }
+      }
+    );
   }
 }

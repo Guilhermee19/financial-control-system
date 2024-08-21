@@ -4,6 +4,8 @@
       <img src="assets/icons/icon-512x512.png" alt="logo" />
     </div>
 
+    <div class="line"></div>
+
     <ul class="list loading" *ngIf="loading">
       <li class="skeleton dark" *ngFor="let item of [1, 2, 3, 4, 5]">
         <button [disableRipple]="true" mat-button class="s">&rlm;</button>
@@ -20,61 +22,21 @@
           }"
         >
           <i [icon]="item.icon"></i>
-          <span class="one-line">{{ item.label }}</span>
+          <!-- <span class="one-line">{{ item.label }}</span> -->
         </a>
       </li>
       <li class="logout">
         <button title="Sair" mat-button (click)="logout()">
           <i icon="logof"></i>
-          <span class="one-line">Sair</span>
+          <!-- <span class="one-line">Sair</span> -->
         </button>
       </li>
     </ul>
-    <div class="version">
-      <span class="f-10">{{ version }}</span>
-    </div>
   </mat-drawer>
-
-  <mat-drawer-content>
-    <nav>
-      <div class="content">
-        <button
-          title="Encolher menu"
-          class="btn-drawer"
-          type="button"
-          mat-icon-button
-          (click)="drawerToggle()"
-          [ngClass]="{ close: !drawer.opened }"
-        >
-          <i icon="sidebar"></i>
-        </button>
-        <div class="menu">
-          <div class="quick-actions">
-            <app-theme-dark-light></app-theme-dark-light>
-          </div>
-
-          <a class="profile" mat-button routerLink="/profile">
-            <div class="image">
-              <img
-                *ngIf="!user.picture"
-                src="../../../assets/user_photo.png"
-                alt="foto perfil"
-              />
-              <img
-                *ngIf="user.picture"
-                [src]="user.picture"
-                alt="foto perfil"
-              />
-            </div>
-          </a>
-        </div>
-      </div>
-    </nav>
-
-    <router-outlet #outlet="outlet"></router-outlet>
-  </mat-drawer-content>
 </mat-drawer-container>
 
-<!-- <app-button-action></app-button-action> -->
-
 <div id="canvas"></div>
+
+<div class="scrren">
+  <router-outlet></router-outlet>
+</div>

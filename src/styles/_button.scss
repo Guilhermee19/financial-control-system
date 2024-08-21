@@ -93,9 +93,15 @@ a:-webkit-any-link {
     }
 
     .mdc-button__label {
-      display: flex;
+      width: 100%;
       gap: 0.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: var(--text-color);
       }
     }

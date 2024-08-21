@@ -16,23 +16,23 @@ export class FinancesService {
   constructor(private http: HttpService) {}
 
   getAllFinances(params: IFilter): Observable<IFinance[]> {
-    let query = new HttpParams();
+    const query = new HttpParams();
 
-    if (params._sort) query = query.set('_sort', params._sort);
-    if (params._order) query = query.set('_order', params._order);
+    // if (params._sort) query = query.set('_sort', params._sort);
+    // if (params._order) query = query.set('_order', params._order);
 
-    return this.http.get<IFinance[]>('finances', query);
+    return this.http.get<IFinance[]>('core/all-finances/', query);
   }
 
   postFinance(body: BodyJson): Observable<IFinance> {
-    return this.http.post<IFinance>(`finances`, body);
+    return this.http.post<IFinance>(`core/create-finance/`, body);
   }
 
   patchFinance(id: number, body: BodyJson): Observable<IFinance> {
-    return this.http.patch<IFinance>(`finances/${id}`, body);
+    return this.http.patch<IFinance>(`core/edit-finance/${id}/`, body);
   }
 
   deletFinance(id: number): Observable<IFinance> {
-    return this.http.delete<IFinance>(`finances/${id}`);
+    return this.http.delete<IFinance>(`core/delete-finance/${id}/`);
   }
 }

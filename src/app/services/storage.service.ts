@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
 import { IUser } from '../models/user';
-import { signOut } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -54,5 +53,10 @@ export class StorageService {
       true,
       'Strict'
     );
+  }
+
+  logout() {
+    this.setToken('', false);
+    this.router.navigate(['/login']);
   }
 }

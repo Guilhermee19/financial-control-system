@@ -1,9 +1,8 @@
 export interface IUser {
   id?: number;
   email: string;
-  username: string;
-  picture: string;
-  // ...
+  name: string;
+  profile_image: string;
 }
 
 export interface IToken {
