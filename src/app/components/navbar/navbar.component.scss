@@ -305,6 +305,13 @@ mat-drawer-container {
   }
 }
 
+app-theme-dark-light {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 900;
+}
+
 app-button-action {
   position: fixed;
   bottom: 10px;

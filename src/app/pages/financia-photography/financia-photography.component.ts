@@ -30,21 +30,23 @@ export class FinanciaPhotographyComponent implements OnInit {
   total = 0;
 
   ngOnInit() {
-    this.getAllFinances(this.current_month);
+    this.getAllFinances();
   }
 
-  getAllFinances(month: number) {
-    console.log(month);
+  getAllFinances() {
     this.loading = true;
 
     const params = {
-      _sort: 'date',
-      _order: 'asc',
+      year: this.current_year,
+      month: this.months[this.current_month].month,
     };
+
     this.financesService.getAllFinances(params).subscribe({
       next: (data) => {
-        this.backupFinancias = data;
-        this.changeMonth('today');
+        this.backupFinancias = data.results;
+
+        // this.changeMonth('today');
+        this.dataSource = this.backupFinancias;
         this.loading = false;
       },
     });
@@ -56,7 +58,7 @@ export class FinanciaPhotographyComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        if (result.action === 'yes') this.getAllFinances(this.current_month);
+        if (result.action === 'yes') this.getAllFinances();
       }
     });
   }
@@ -79,18 +81,7 @@ export class FinanciaPhotographyComponent implements OnInit {
       }
     }
 
-    const today = new Date();
-    const date = new Date(
-      today.getFullYear() + '-' + (this.current_month + 1) + '-01'
-    );
-
-    const firstAndLastDay = this.setMonthBoundaries(date);
-
-    this.dataSource = this.filterData(
-      this.backupFinancias,
-      firstAndLastDay.firstDayOfMonth,
-      firstAndLastDay.lastDayOfMonth
-    );
+    this.getAllFinances();
   }
 
   setMonthBoundaries(date: Date) {
@@ -116,21 +107,22 @@ export class FinanciaPhotographyComponent implements OnInit {
 
   action(event: string) {
     console.log(event);
-    if (event === 'DELET') this.getAllFinances(this.current_month);
+    if (event === 'DELET') this.getAllFinances();
   }
 
   get totalForTheMonth() {
-    return this.dataSource.reduce((total, el) => {
-      // Extrair o valor e as parcelas
-      const value =
-        typeof el.value === 'string' ? parseFloat(el.value) : el.value;
-      const installments =
-        typeof el.installments === 'string'
-          ? parseFloat(el.installments)
-          : el.installments;
+    return 0;
+    // return this.dataSource.reduce((total, el) => {
+    //   // Extrair o valor e as parcelas
+    //   const value =
+    //     typeof el.value === 'string' ? parseFloat(el.value) : el.value;
+    //   const installments =
+    //     typeof el.installments === 'string'
+    //       ? parseFloat(el.installments)
+    //       : el.installments;
 
-      // Adicionar ao total a divisão do valor pelo número de parcelas
-      return total + value / installments;
-    }, 0); // Iniciar o total em 0
+    //   // Adicionar ao total a divisão do valor pelo número de parcelas
+    //   return total + value / installments;
+    // }, 0); // Iniciar o total em 0
   }
 }
