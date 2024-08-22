@@ -1,65 +1,63 @@
 section {
-  --bg: white;
-  --txt: black;
-
-  &.G {
-    --bg: #f8e2c0;
-    --txt: #ebaa49;
-  }
-  &.CF {
-    --bg: #b0d8ee;
-    --txt: #1e8ecd;
-  }
-  &.I {
-    --bg: #baf4ab;
-    --txt: #3ebd1e;
-  }
-  &.C {
-    --bg: #d7b0ee;
-    --txt: #8b1ecd;
-  }
-
   position: relative;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
-  border-radius: 15px;
-  gap: 0.5rem;
+  border-radius: calc(12px + 0.5rem) 12px;
+  gap: 0 0.5rem;
   box-shadow: 0 0 8px var(--shadow);
-  background-color: var(--bg);
   overflow: hidden;
+  flex-wrap: wrap;
 
-  .tag {
-    min-width: 35px;
-    min-height: 35px;
-    display: flex;
-    aspect-ratio: 1/1;
-    border-radius: 12px;
-    box-shadow: 0 0 8px var(--shadow);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-weight: 600;
-    background-color: var(--txt);
-    color: white;
-  }
+  .left {
+    .row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 10px;
 
-  .info {
-    width: calc(100% - 35px - 1rem - 60px);
-    color: var(--text-black);
+      .tag {
+        min-width: 35px;
+        min-height: 35px;
+        display: flex;
+        aspect-ratio: 1/1;
+        border-radius: 12px;
+        box-shadow: 0 0 8px var(--shadow);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-weight: 600;
+        color: white;
+      }
 
-    h2 {
+      .info {
+        // width: calc(100% - 35px - 1rem - 60px);
+        color: var(--text-black);
+
+        h5 {
+          line-height: 1;
+        }
+
+        h2 {
+          text-transform: capitalize;
+          line-height: 1;
+        }
+
+        h3.status {
+          text-transform: lowercase;
+          line-height: 1;
+        }
+      }
     }
-
-    h3.status {
-      text-transform: lowercase;
-    }
-
-    h5.date {
+    .date {
+      width: 100%;
       opacity: 0.5;
+      text-transform: lowercase;
+      line-height: 1;
+      margin-top: 5px;
     }
   }
 

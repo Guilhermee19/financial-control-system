@@ -26,6 +26,11 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'tags',
+        loadChildren: () =>
+          import('./pages/tags/tags.module').then((m) => m.TagsModule),
+      },
+      {
         path: 'profile',
         loadChildren: () =>
           import('./pages/profile/profile.module').then((m) => m.ProfileModule),

@@ -1,13 +1,22 @@
-<section [ngClass]="financial.tag" (click)="isSelect = !isSelect">
-  <div class="tag">
-    {{ financial.tag }}
-  </div>
+<section
+  [style.backgroundColor]="financial.tag.bg_color"
+  (click)="isSelect = !isSelect"
+>
+  <div class="left">
+    <div class="row">
+      <div class="tag" [style.backgroundColor]="financial.tag.color">
+        {{ nameTag }}
+      </div>
 
-  <div class="info">
-    <h2 class="f-14">{{ financial.description }}</h2>
-    <h3 class="f-10 status" [ngClass]="financial.status">
-      {{ financial.status | convertStatus }}
-    </h3>
+      <div class="info">
+        <h5 class="f-10">{{ financial.account.name }}</h5>
+        <h2 class="f-16">{{ financial.description }}</h2>
+        <!-- <h3 class="f-10 status" [ngClass]="financial.status">
+        {{ financial.status | convertStatus }}
+      </h3> -->
+      </div>
+    </div>
+
     <h5 class="f-10 date">
       {{ financial.date | date : 'EE' }} {{ financial.date | date : 'd' }} de
       {{ financial.date | date : 'MMM' }}
@@ -15,13 +24,15 @@
   </div>
 
   <div class="price">
-    <h5 class="f-10">{{ financial.installments === 1 ? '' : 'parcelado' }}</h5>
+    <!-- <h5 class="f-10">{{ financial.installments === 1 ? '' : 'parcelado' }}</h5> -->
     <h3 class="f-12">
-      {{ financial.value / financial.installments | convertMoney }}
+      {{
+        financial.value / (financial.number_of_installments || 1) | convertMoney
+      }}
     </h3>
-    <h5 class="f-10" *ngIf="financial.installments > 1">
+    <!-- <h5 class="f-10" *ngIf="financial.installments > 1">
       {{ financial.current_installment }} de {{ financial.installments }}x
-    </h5>
+    </h5> -->
   </div>
 
   <div class="options" [ngClass]="{ open: isSelect }">

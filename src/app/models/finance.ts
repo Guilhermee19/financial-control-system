@@ -1,24 +1,34 @@
-export type TTag = 'G' | 'CF' | 'I' | 'C';
-
-export type TStatus = 'WAITING' | 'PAID_OUT' | 'LATE';
-
-export interface ICard {
-  due_date: string;
-  payday: string;
+export interface Account {
+  id: number;
   name: string;
-  flag: string;
-  limit: number;
+  balance_debit: string;
+  balance_credit: string;
+  credit_limit: string;
+  credit_due_date: string;
+  is_debit: boolean;
+  is_credit: boolean;
+}
+
+export interface ITag {
+  id: number;
+  bg_color: string;
+  color: string;
+  nome: string;
+  porcent: string;
 }
 
 export interface IFinance {
-  id?: number;
-  tag: TTag;
+  id: number;
+  account: Account;
+  tag: ITag;
+  created_at: string;
+  updated_at: string;
   date: string;
-  description: string;
   value: number;
-  installments: number;
-  current_installment: number;
-  status: TStatus;
-  card?: ICard | null;
-  payment_voucher: string;
+  is_cash: boolean;
+  is_installments: boolean;
+  number_of_installments: number;
+  description: string;
+  created_by: number;
+  updated_by: number;
 }

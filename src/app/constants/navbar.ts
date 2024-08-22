@@ -19,6 +19,12 @@ export const NAVBAR_PAGES: {
     roles: ['Admin', 'Desenvolvedor'],
   },
   {
+    label: 'Tag',
+    icon: 'tag',
+    link: '/tags',
+    roles: ['Admin', 'Desenvolvedor'],
+  },
+  {
     label: 'Categoria',
     icon: 'category',
     link: '/category',

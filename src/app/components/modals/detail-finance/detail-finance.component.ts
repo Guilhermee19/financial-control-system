@@ -57,37 +57,25 @@ export class DetailFinanceComponent {
 
   createFinance() {
     const value = this.finance_form.get('value')?.value || 0;
-    let installments = this.finance_form.get('installments')?.value || 1;
-
-    console.log(typeof installments);
-    if (typeof installments !== 'number') {
-      installments = 1;
-    }
+    const installments = this.finance_form.get('installments')?.value || 1;
 
     const dataCompra = new Date(
       this.finance_form.value.date + 'T12:00:00' || 0
     );
 
-    for (let i = 0; i < installments; i++) {
-      console.log(dataCompra);
+    const body = {
+      tag: this.finance_form.value.tag || 'G',
+      date: dataCompra.toISOString(),
+      value: value || 1,
+      account: 0,
+      is_cash: true,
+      is_installments: false,
+      number_of_installments: installments,
+      description: this.finance_form.value.description || '',
+    };
 
-      const dataVencimento = new Date(dataCompra);
-      console.log(dataVencimento);
-
-      dataVencimento.setMonth(dataVencimento.getMonth() + i);
-
-      const body = {
-        tag: this.finance_form.value.tag || 'G',
-        date: dataVencimento.toISOString(),
-        description: this.finance_form.value.description || '',
-        value: value || 1,
-        installments,
-        current_installment: i + 1,
-        status: 'WAITING',
-      };
-
-      this.financesService.postFinance(body).subscribe();
-    }
+    this.financesService.postFinance(body).subscribe();
+    // }
 
     this.chance('yes');
   }
