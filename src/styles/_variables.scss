@@ -26,6 +26,12 @@
   // ? size width
   --width-screen: 95%;
   --max-width: 1440px;
+
+  // ? avatar
+  --avatar-dark-color: #000000;
+  --avatar-light-color: #ffffff;
+  --avatar-br: 50%;
+  --avatar-ratio: 1/1;
 }
 
 .dark:root {
@@ -56,4 +62,10 @@
   // ? size width
   --width-screen: 95%;
   --max-width: 1440px;
+
+  // ? avatar
+  --avatar-dark-color: #000000;
+  --avatar-light-color: #ffffff;
+  --avatar-br: 50%;
+  --avatar-ratio: 1/1;
 }

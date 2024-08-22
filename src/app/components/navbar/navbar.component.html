@@ -1,7 +1,9 @@
-<mat-drawer-container autosize>
+<mat-drawer-container autosize *ngIf="!loading">
   <mat-drawer #drawer [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile">
     <div class="logo">
-      <img src="assets/icons/icon-512x512.png" alt="logo" />
+      <img *ngIf="user.profile_image" [src]="user.profile_image" alt="logo" />
+      <avatar *ngIf="!user.profile_image" [name]="user.name" color="dark" bg="#fff"></avatar>
+      <img *ngIf="!user.name" src="assets/icons/icon-512x512.png" alt="logo" />
     </div>
 
     <div class="line"></div>
@@ -37,6 +39,6 @@
 
 <div id="canvas"></div>
 
-<div class="scrren">
+<div class="scrren" *ngIf="!loading">
   <router-outlet></router-outlet>
 </div>

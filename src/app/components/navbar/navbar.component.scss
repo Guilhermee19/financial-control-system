@@ -68,6 +68,15 @@ mat-drawer-container {
         height: 100%;
       }
 
+      avatar {
+        width: 100%;
+        max-width: 32px;
+        height: 32px;
+        border-radius: 28px;
+        object-fit: cover;
+        font-size: 10px;
+      }
+
       i {
         position: absolute;
         font-size: 1.5rem;
