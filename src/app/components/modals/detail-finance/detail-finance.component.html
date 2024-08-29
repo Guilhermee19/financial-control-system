@@ -4,8 +4,8 @@
   <div class="card_input">
     <i icon="tag"></i>
     <mat-select formControlName="tag" name="tag" placeholder="Tag">
-      <mat-option *ngFor="let tag of tags" [value]="tag.tag">
-        {{ tag.text }}
+      <mat-option *ngFor="let tag of tags" [value]="tag.id">
+        {{ tag.nome }}
       </mat-option>
     </mat-select>
   </div>
