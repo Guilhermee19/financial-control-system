@@ -11,6 +11,15 @@
   </div>
 
   <div class="card_input">
+    <i icon="account"></i>
+    <mat-select formControlName="account" name="account" placeholder="Conta">
+      <mat-option *ngFor="let account of accounts" [value]="account.id">
+        {{ account.name }}
+      </mat-option>
+    </mat-select>
+  </div>
+
+  <div class="card_input">
     <i icon="date"></i>
     <input title="date" type="date" formControlName="date" placeholder="Data" />
   </div>

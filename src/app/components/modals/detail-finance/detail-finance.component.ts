@@ -2,7 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { STATUS, TAGS } from 'src/app/constants/finance';
+import { IAccount } from 'src/app/models/accounts';
 import { ITag } from 'src/app/models/tag';
+import { AccountsService } from 'src/app/services/accounts.service';
 import { FinancesService } from 'src/app/services/finances.service';
 import { BodyJson } from 'src/app/services/http.service';
 import { TagService } from 'src/app/services/tag.service';
@@ -26,17 +28,20 @@ export class DetailFinanceComponent implements OnInit {
     private financesService: FinancesService,
     public dialogRef: MatDialogRef<IDialogActions>,
     @Inject(MAT_DIALOG_DATA) public data: IData,
-    private tagService: TagService
+    private tagService: TagService,
+    private accountsService: AccountsService
   ) {}
 
   loading = false;
 
   // tags = TAGS;
   tags: ITag[] = [];
+  accounts: IAccount[] = [];
   status = STATUS;
 
   finance_form = this.fb.group({
-    tag: ['G', [Validators.required]],
+    tag: [0, [Validators.required]],
+    account: [0, [Validators.required]],
     date: [new Date().toISOString().split('T')[0], Validators.required],
     description: ['', [Validators.required]],
     value: [[Validators.required]],
@@ -60,11 +65,21 @@ export class DetailFinanceComponent implements OnInit {
 
     this.tagService.getAlltags().subscribe({
       next: (data) => {
-        // this.backupFinancias = data.results;
-        // console.log(this.backupFinancias);
-
-        // this.changeMonth('today');
         this.tags = data.results;
+        this.getAllAccounts();
+      },
+      error: () => {
+        this.getAllAccounts();
+      },
+    });
+  }
+
+  getAllAccounts() {
+    this.loading = true;
+
+    this.accountsService.getAllAccounts(1, true).subscribe({
+      next: (data) => {
+        this.accounts = data;
         this.loading = false;
       },
     });
@@ -93,9 +108,9 @@ export class DetailFinanceComponent implements OnInit {
 
     const body = {
       tag: this.finance_form.value.tag || 0,
+      account: this.finance_form.value.account || 0,
       date: dataCompra.toISOString().split('T')[0],
       value: value || 1,
-      account: 0,
       is_cash: true,
       is_installments: false,
       number_of_installments: installments,

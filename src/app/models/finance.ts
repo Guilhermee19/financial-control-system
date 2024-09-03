@@ -19,8 +19,10 @@ export interface ITag {
 
 export interface IFinance {
   id: number;
-  account: Account;
-  tag: ITag;
+  account: number;
+  account_obj: Account;
+  tag: number;
+  tag_obj: ITag;
   created_at: string;
   updated_at: string;
   date: string;
