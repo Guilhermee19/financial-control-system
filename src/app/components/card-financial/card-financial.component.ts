@@ -29,8 +29,4 @@ export class CardFinancialComponent {
       },
     });
   }
-
-  get nameTag() {
-    return this.financial.tag_obj.nome[0];
-  }
 }

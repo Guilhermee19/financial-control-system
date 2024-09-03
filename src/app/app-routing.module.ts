@@ -1,3 +1,4 @@
+import { AccountComponent } from './pages/account/account.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
@@ -29,6 +30,11 @@ const routes: Routes = [
         path: 'tags',
         loadChildren: () =>
           import('./pages/tags/tags.module').then((m) => m.TagsModule),
+      },
+      {
+        path: 'accounts',
+        loadChildren: () =>
+          import('./pages/account/account.module').then((m) => m.AccountModule),
       },
       {
         path: 'profile',
