@@ -4,9 +4,12 @@
 >
   <div class="left">
     <div class="row">
-      <div class="tag" [style.backgroundColor]="financial.tag_obj.color">
-        {{ nameTag }}
-      </div>
+      <div
+        class="tag"
+        [style.backgroundColor]="financial.tag_obj.color"
+        [initialLetters]="financial.tag_obj.nome"
+        [length]="2"
+      ></div>
 
       <div class="info">
         <h5 class="f-10">{{ financial.account_obj.name }}</h5>

@@ -18,8 +18,12 @@
       <ng-container matColumnDef="icon">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <span class="card-tag" [style.backgroundColor]="element.color">
-            {{ element.nome[0] }}
+          <span
+            class="card-tag"
+            [style.backgroundColor]="element.color"
+            [initialLetters]="element.nome"
+            [length]="2"
+          >
           </span>
         </td>
       </ng-container>

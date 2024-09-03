@@ -12,7 +12,13 @@ export class TagsComponent implements OnInit {
 
   loading = false;
 
-  displayedColumns: string[] = ['icon', 'name', 'porcent', 'options'];
+  displayedColumns: string[] = [
+    'icon',
+    'name',
+    'porcent',
+    // 'options'
+  ];
+
   dataSource: ITag[] = [];
 
   ngOnInit() {
