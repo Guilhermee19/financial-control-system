@@ -56,6 +56,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.user = this.storage.myself;
 
     if (this.storage.token) {
+      this.loading = true;
       this.userService.getMe().subscribe({
         next: (data) => {
           this.user = data;
@@ -63,11 +64,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
           console.log(this.user);
           // if(localStorage.getItem('__DEV__')) this.openPopupBids()
+          this.loading = false;
         },
         error: (error) => {
           if (error?.status === 401) {
             this.storage.logout();
           }
+          this.loading = false;
         },
       });
     } else {
