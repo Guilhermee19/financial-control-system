@@ -1,0 +1,46 @@
+<form (ngSubmit)="saveSubmitHandler()" [formGroup]="account_form">
+  <h1>Conta</h1>
+
+  <div class="card_input">
+    <i icon="name"></i>
+    <input title="name" type="text" formControlName="name" placeholder="Nome" />
+  </div>
+
+  <div class="card_input">
+    <i icon="date"></i>
+    <input
+      title="date"
+      type="date"
+      formControlName="credit_due_date"
+      placeholder="Data"
+    />
+  </div>
+
+  <div class="card_input">
+    <i icon="credit_limit"></i>
+    <input
+      title="credit_limit"
+      type="text"
+      mask="separator.2"
+      [thousandSeparator]="'.'"
+      [decimalMarker]="','"
+      prefix="R$ "
+      formControlName="credit_limit"
+      placeholder="Limite do cartão"
+    />
+  </div>
+
+  <div class="rows">
+    <div class="card_input">
+      <mat-checkbox formControlName="is_debit">Débito</mat-checkbox>
+    </div>
+
+    <div class="card_input">
+      <mat-checkbox formControlName="is_credit">Crédito</mat-checkbox>
+    </div>
+  </div>
+
+  <button type="submit" title="adicionar" mat-raised-button class="primary">
+    Adicionar
+  </button>
+</form>

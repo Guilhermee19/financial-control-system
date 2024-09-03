@@ -7,9 +7,12 @@ import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from 'src/app/components/shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DetailAccountComponent } from 'src/app/components/modals/detail-account/detail-account.component';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
-  declarations: [AccountComponent],
+  declarations: [AccountComponent, DetailAccountComponent],
   imports: [
     CommonModule,
     AccountRoutingModule,
@@ -17,6 +20,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     SharedModule,
     MatTooltipModule,
     MatDialogModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
+    MatCheckboxModule,
   ],
 })
 export class AccountModule {}

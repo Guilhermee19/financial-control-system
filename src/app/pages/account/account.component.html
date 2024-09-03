@@ -2,15 +2,15 @@
   <header>
     <h1>Contas</h1>
 
-    <!-- <button
+    <button
       type="button"
       mat-icon-button
       class="primary"
       matTooltip="Adicionar"
-      (click)="craateCategory()"
+      (click)="craateAccount()"
     >
       <i icon="plus" title="aticionar"></i>
-    </button> -->
+    </button>
   </header>
 
   <section class="card-tablet">
@@ -31,7 +31,7 @@
       <ng-container matColumnDef="credit_limit">
         <th mat-header-cell *matHeaderCellDef>Limite do Cartão</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.credit_limit || '-' }}
+          {{ element.credit_limit | convertMoney }}
         </td>
       </ng-container>
 

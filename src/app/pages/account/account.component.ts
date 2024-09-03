@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DetailAccountComponent } from 'src/app/components/modals/detail-account/detail-account.component';
+import { configModals } from 'src/app/constants/utils';
 import { IAccount } from 'src/app/models/accounts';
 import { AccountsService } from 'src/app/services/accounts.service';
 
@@ -8,7 +11,10 @@ import { AccountsService } from 'src/app/services/accounts.service';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-  constructor(private accountsService: AccountsService) {}
+  constructor(
+    private accountsService: AccountsService,
+    private dialog: MatDialog
+  ) {}
 
   loading = false;
 
@@ -41,7 +47,14 @@ export class AccountComponent implements OnInit {
     });
   }
 
-  craateCategory() {
-    console.log('');
+  craateAccount() {
+    const dialogRef = this.dialog.open(DetailAccountComponent, {
+      ...configModals,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (result.action === 'yes') this.getAlltags();
+      }
+    });
   }
 }

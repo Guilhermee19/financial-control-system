@@ -1,12 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { STATUS, TAGS } from 'src/app/constants/finance';
+import { STATUS } from 'src/app/constants/finance';
 import { IAccount } from 'src/app/models/accounts';
 import { ITag } from 'src/app/models/tag';
 import { AccountsService } from 'src/app/services/accounts.service';
 import { FinancesService } from 'src/app/services/finances.service';
-import { BodyJson } from 'src/app/services/http.service';
 import { TagService } from 'src/app/services/tag.service';
 
 export interface IDialogActions {

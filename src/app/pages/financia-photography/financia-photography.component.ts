@@ -111,18 +111,12 @@ export class FinanciaPhotographyComponent implements OnInit {
   }
 
   get totalForTheMonth() {
-    return 0;
-    // return this.dataSource.reduce((total, el) => {
-    //   // Extrair o valor e as parcelas
-    //   const value =
-    //     typeof el.value === 'string' ? parseFloat(el.value) : el.value;
-    //   const installments =
-    //     typeof el.installments === 'string'
-    //       ? parseFloat(el.installments)
-    //       : el.installments;
-
-    //   // Adicionar ao total a divisão do valor pelo número de parcelas
-    //   return total + value / installments;
-    // }, 0); // Iniciar o total em 0
+    return this.dataSource.reduce((total, el) => {
+      // Extrair o valor e as parcelas
+      const value =
+        typeof el.value === 'string' ? parseFloat(el.value) : el.value;
+      // Adicionar ao total a divisão do valor pelo número de parcelas
+      return total + value;
+    }, 0); // Iniciar o total em 0
   }
 }

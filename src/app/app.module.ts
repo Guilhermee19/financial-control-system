@@ -26,6 +26,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { DetailTagComponent } from './components/modals/detail-tag/detail-tag.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -37,6 +38,7 @@ registerLocaleData(localePt);
     HomeComponent,
     LoginComponent,
     ButtonActionComponent,
+    DetailTagComponent,
   ],
   imports: [
     BrowserModule,
