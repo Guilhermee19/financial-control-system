@@ -1,9 +1,13 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { STATUS, TAGS } from 'src/app/constants/finance';
+import { IAccount } from 'src/app/models/accounts';
+import { ITag } from 'src/app/models/tag';
+import { AccountsService } from 'src/app/services/accounts.service';
 import { FinancesService } from 'src/app/services/finances.service';
 import { BodyJson } from 'src/app/services/http.service';
+import { TagService } from 'src/app/services/tag.service';
 
 export interface IDialogActions {
   action: 'yes' | 'no';
@@ -18,29 +22,68 @@ export interface IData {
   templateUrl: './detail-finance.component.html',
   styleUrls: ['./detail-finance.component.scss'],
 })
-export class DetailFinanceComponent {
+export class DetailFinanceComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private financesService: FinancesService,
     public dialogRef: MatDialogRef<IDialogActions>,
-    @Inject(MAT_DIALOG_DATA) public data: IData
+    @Inject(MAT_DIALOG_DATA) public data: IData,
+    private tagService: TagService,
+    private accountsService: AccountsService
   ) {}
 
   loading = false;
 
-  tags = TAGS;
+  // tags = TAGS;
+  tags: ITag[] = [];
+  accounts: IAccount[] = [];
   status = STATUS;
 
   finance_form = this.fb.group({
-    tag: ['G', [Validators.required]],
+    tag: [0, [Validators.required]],
+    account: [0, [Validators.required]],
     date: [new Date().toISOString().split('T')[0], Validators.required],
     description: ['', [Validators.required]],
     value: [[Validators.required]],
-    installments: [[Validators.required]],
-    status: ['WAITING'],
+    installments: [0, [Validators.required]],
     card: [this.fb.group({})],
     payment_voucher: [''],
   });
+
+  ngOnInit() {
+    this.finance_form.reset();
+
+    this.finance_form.patchValue({
+      date: new Date().toISOString().split('T')[0],
+      installments: 0,
+    });
+    this.getAlltags();
+  }
+
+  getAlltags() {
+    this.loading = true;
+
+    this.tagService.getAlltags().subscribe({
+      next: (data) => {
+        this.tags = data.results;
+        this.getAllAccounts();
+      },
+      error: () => {
+        this.getAllAccounts();
+      },
+    });
+  }
+
+  getAllAccounts() {
+    this.loading = true;
+
+    this.accountsService.getAllAccounts(1, true).subscribe({
+      next: (data) => {
+        this.accounts = data;
+        this.loading = false;
+      },
+    });
+  }
 
   saveSubmitHandler() {
     if (this.loading) return;
@@ -64,10 +107,10 @@ export class DetailFinanceComponent {
     );
 
     const body = {
-      tag: this.finance_form.value.tag || 'G',
-      date: dataCompra.toISOString(),
+      tag: this.finance_form.value.tag || 0,
+      account: this.finance_form.value.account || 0,
+      date: dataCompra.toISOString().split('T')[0],
       value: value || 1,
-      account: 0,
       is_cash: true,
       is_installments: false,
       number_of_installments: installments,

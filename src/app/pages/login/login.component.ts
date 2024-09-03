@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { IUser } from 'src/app/models/user';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public storage: StorageService,
@@ -27,11 +27,15 @@ export class LoginComponent {
     password: ['', Validators.required],
   });
 
+  ngOnInit() {
+    this.storage.logout();
+  }
+
   loginSubmit() {
     this.authService.login(this.login_form.value).subscribe(
       (data) => {
         this.storage.setToken(data.token, true);
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       },
       (error) => {
         this.loading = false;
@@ -73,7 +77,7 @@ export class LoginComponent {
     this.authService.loginGoogle(response, 'Google').subscribe(
       (data) => {
         localStorage.setItem('token', data.token);
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       },
       (error) => {
         this.loading = false;

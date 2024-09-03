@@ -1,15 +1,15 @@
 <section
-  [style.backgroundColor]="financial.tag.bg_color"
+  [style.backgroundColor]="financial.tag_obj.bg_color"
   (click)="isSelect = !isSelect"
 >
   <div class="left">
     <div class="row">
-      <div class="tag" [style.backgroundColor]="financial.tag.color">
+      <div class="tag" [style.backgroundColor]="financial.tag_obj.color">
         {{ nameTag }}
       </div>
 
       <div class="info">
-        <h5 class="f-10">{{ financial.account.name }}</h5>
+        <h5 class="f-10">{{ financial.account_obj.name }}</h5>
         <h2 class="f-16">{{ financial.description }}</h2>
         <!-- <h3 class="f-10 status" [ngClass]="financial.status">
         {{ financial.status | convertStatus }}
