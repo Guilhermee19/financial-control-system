@@ -34,7 +34,6 @@ section {
       }
 
       .info {
-        // width: calc(100% - 35px - 1rem - 60px);
         color: var(--text-black);
 
         h5 {
@@ -47,8 +46,18 @@ section {
         }
 
         h3.status {
-          text-transform: lowercase;
+          text-transform: uppercase;
           line-height: 1;
+
+          &.SOLD {
+            color: red;
+          }
+          &.PAY_TODAY {
+            color: rgb(10, 117, 160);
+          }
+          &.PAID {
+            color: rgb(57, 166, 37);
+          }
         }
       }
     }
@@ -74,7 +83,17 @@ section {
     }
 
     h3 {
-      color: #ff6666;
+      color: var(--text-black);
+
+      &.SOLD {
+        color: red;
+      }
+      &.PAY_TODAY {
+        color: rgb(10, 117, 160);
+      }
+      &.PAID {
+        color: rgb(57, 166, 37);
+      }
     }
   }
 

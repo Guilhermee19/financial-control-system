@@ -9,6 +9,19 @@ export interface Account {
   is_credit: boolean;
 }
 
+export interface Parcela {
+  created_at: string;
+  created_by: number;
+  current_installment: number;
+  date: string;
+  finance: number;
+  id: number;
+  installment_value: number;
+  is_paid: boolean;
+  updated_at: string;
+  updated_by: number;
+}
+
 export interface ITag {
   id: number;
   bg_color: string;
@@ -18,19 +31,20 @@ export interface ITag {
 }
 
 export interface IFinance {
-  id: number;
   account: number;
   account_obj: Account;
-  tag: number;
-  tag_obj: ITag;
   created_at: string;
-  updated_at: string;
+  created_by: number;
   date: string;
-  value: number;
+  description: string;
+  id: number;
   is_cash: boolean;
   is_installments: boolean;
   number_of_installments: number;
-  description: string;
-  created_by: number;
+  parcela: Parcela;
+  tag: number;
+  tag_obj: ITag;
+  updated_at: string;
   updated_by: number;
+  value: number;
 }

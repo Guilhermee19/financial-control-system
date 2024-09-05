@@ -46,8 +46,8 @@
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
           <div class="buttons end">
-            <i icon="edit"></i>
-            <i icon="delet"></i>
+            <!-- <i icon="edit"></i> -->
+            <i icon="delet" (click)="popupDelete(element)"></i>
           </div>
         </td>
       </ng-container>

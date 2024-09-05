@@ -91,20 +91,6 @@ export class FinanciaPhotographyComponent implements OnInit {
     return { firstDayOfMonth, lastDayOfMonth };
   }
 
-  filterData(data: IFinance[], startDate: Date, endDate: Date) {
-    if (startDate && endDate) {
-      const start = new Date(startDate);
-      const end = new Date(endDate);
-
-      return data.filter((item) => {
-        const itemDate = new Date(item.date);
-        return itemDate >= start && itemDate <= end;
-      });
-    } else {
-      return data;
-    }
-  }
-
   action(event: string) {
     console.log(event);
     if (event === 'DELET') this.getAllFinances();
@@ -114,7 +100,9 @@ export class FinanciaPhotographyComponent implements OnInit {
     return this.dataSource.reduce((total, el) => {
       // Extrair o valor e as parcelas
       const value =
-        typeof el.value === 'string' ? parseFloat(el.value) : el.value;
+        typeof el.parcela.installment_value === 'string'
+          ? parseFloat(el.parcela.installment_value)
+          : el.parcela.installment_value;
       // Adicionar ao total a divisão do valor pelo número de parcelas
       return total + value;
     }, 0); // Iniciar o total em 0

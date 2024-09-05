@@ -23,7 +23,7 @@ export class AccountComponent implements OnInit {
     'type_card',
     'credit_limit',
     'credit_due_date',
-    // 'options',
+    'options',
   ];
 
   dataSource: IAccount[] = [];
@@ -55,6 +55,26 @@ export class AccountComponent implements OnInit {
       if (result) {
         if (result.action === 'yes') this.getAlltags();
       }
+    });
+  }
+
+  popupDelete(account: IAccount) {
+    // const dialogRef = this.dialog.open(DetailAccountComponent, {
+    //   ...configModals,
+    // });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result) {
+    //     if (result.action === 'yes') this.getAlltags();
+    //   }
+    // });
+    this.deleteAccount(account);
+  }
+
+  deleteAccount(account: IAccount) {
+    this.accountsService.deleteAccount(account).subscribe({
+      next: (data) => {
+        this.getAlltags();
+      },
     });
   }
 }

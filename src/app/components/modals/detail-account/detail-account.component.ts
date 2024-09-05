@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AccountsService } from 'src/app/services/accounts.service';
+import { BodyJson } from 'src/app/services/http.service';
 
 export interface IDialogActions {
   action: 'yes' | 'no';
@@ -19,7 +21,8 @@ export class DetailAccountComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<IDialogActions>,
-    @Inject(MAT_DIALOG_DATA) public data: IData
+    @Inject(MAT_DIALOG_DATA) public data: IData,
+    private accountsService: AccountsService
   ) {}
 
   loading = false;
@@ -30,12 +33,18 @@ export class DetailAccountComponent implements OnInit {
     credit_limit: [0, [Validators.required]],
     is_debit: [false, [Validators.required]],
     is_credit: [false, [Validators.required]],
-    balance_debit: [0, [Validators.required]],
-    balance_credit: [0, [Validators.required]],
+    balance_debit: [0],
+    balance_credit: [0],
   });
 
   ngOnInit() {
     this.account_form.reset();
+    this.account_form.patchValue({
+      is_debit: false,
+      is_credit: false,
+      balance_debit: 0,
+      balance_credit: 0,
+    });
   }
 
   saveSubmitHandler() {
@@ -48,6 +57,20 @@ export class DetailAccountComponent implements OnInit {
 
     this.loading = true;
 
-    // this.createFinance();
+    this.postAccount();
+  }
+
+  postAccount() {
+    const body = {
+      ...this.account_form.value,
+    } as BodyJson;
+
+    this.accountsService.postAccount(body).subscribe();
+
+    this.chance('yes');
+  }
+
+  chance(chance: 'yes' | 'no'): void {
+    this.dialogRef.close({ action: chance, finance: this.account_form.value });
   }
 }

@@ -26,4 +26,8 @@ export class AccountsService {
   postAccount(body: BodyJson): Observable<IAccount> {
     return this.http.post<IAccount>(`core/create-account/`, body);
   }
+
+  deleteAccount(account: IAccount): Observable<IAccount> {
+    return this.http.delete<IAccount>(`core/delete-account/${account.id}/`);
+  }
 }
