@@ -1,0 +1,28 @@
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-shape: 12px;
+}
+
+form {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--primary-bg);
+
+  h1 {
+    color: var(--text-primary);
+  }
+
+  .rows {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .primary {
+    margin-top: 1rem;
+  }
+}

@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  base_url: 'https://api.iamgui.dev/',
+  base_url: 'http://5.252.54.146:3300/',
   version: '1.3.0',
   firebase: {
     apiKey: 'AIzaSyB7rAy4D1JSMPNeo9GeDkbUGxNKDCfU9Bs',

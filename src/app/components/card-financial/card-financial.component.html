@@ -14,28 +14,30 @@
       <div class="info">
         <h5 class="f-10">{{ financial.account_obj.name }}</h5>
         <h2 class="f-16">{{ financial.description }}</h2>
-        <!-- <h3 class="f-10 status" [ngClass]="financial.status">
-        {{ financial.status | convertStatus }}
-      </h3> -->
+        <h3 class="f-10 status" [ngClass]="status">
+          {{ status | convertStatus }}
+        </h3>
       </div>
     </div>
 
     <h5 class="f-10 date">
-      {{ financial.date | date : 'EE' }} {{ financial.date | date : 'd' }} de
-      {{ financial.date | date : 'MMM' }}
+      {{ financial.parcela.date | date : 'EE' }}
+      {{ financial.parcela.date | date : 'd' }} de
+      {{ financial.parcela.date | date : 'MMM' }}
     </h5>
   </div>
 
   <div class="price">
-    <!-- <h5 class="f-10">{{ financial.installments === 1 ? '' : 'parcelado' }}</h5> -->
-    <h3 class="f-12">
-      {{
-        financial.value / (financial.number_of_installments || 1) | convertMoney
-      }}
+    <h5 class="f-10">
+      {{ financial.number_of_installments === 1 ? '' : 'parcelado' }}
+    </h5>
+    <h3 class="f-12" [ngClass]="status">
+      {{ financial.parcela.installment_value | convertMoney }}
     </h3>
-    <!-- <h5 class="f-10" *ngIf="financial.installments > 1">
-      {{ financial.current_installment }} de {{ financial.installments }}x
-    </h5> -->
+    <h5 class="f-10" *ngIf="financial.number_of_installments > 1">
+      {{ financial.parcela.current_installment }} de
+      {{ financial.number_of_installments }}x
+    </h5>
   </div>
 
   <div class="options" [ngClass]="{ open: isSelect }">

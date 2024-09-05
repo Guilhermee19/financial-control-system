@@ -62,8 +62,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
           this.user = data;
           this.storage.myself = data;
 
-          console.log(this.user);
-          // if(localStorage.getItem('__DEV__')) this.openPopupBids()
           this.loading = false;
         },
         error: (error) => {

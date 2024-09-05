@@ -5,9 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ConvertStatusPipe implements PipeTransform {
   transform(value: unknown): unknown {
-    if (value === 'WAITING') return 'não pago';
-    else if (value === 'PAID_OUT') return 'pago';
-    else if (value === 'LATE') return 'atrasado';
+    if (value === 'WAITING') return '';
+    else if (value === 'PAY_TODAY') return 'pagar hoje!';
+    else if (value === 'PAID') return 'pago';
+    else if (value === 'SOLD') return 'atrasado';
     else return value;
   }
 }

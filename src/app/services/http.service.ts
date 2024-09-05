@@ -56,6 +56,10 @@ export class HttpService {
       errorMessage = error.error.detail;
     }
 
+    if (error?.status === 401) {
+      this.storage.logout();
+    }
+
     // this.notifier.notify('error', errorMessage);
     return throwError(() => error);
   };
