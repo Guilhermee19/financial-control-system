@@ -12,7 +12,9 @@
       ></div>
 
       <div class="info">
-        <h5 class="f-10">{{ financial.account_obj.name }}</h5>
+        <h5 class="f-10">
+          {{ financial.account_obj?.name || '' }}
+        </h5>
         <h2 class="f-16">{{ financial.description }}</h2>
         <h3 class="f-10 status" [ngClass]="status">
           {{ status | convertStatus }}

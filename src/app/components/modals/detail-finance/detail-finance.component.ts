@@ -6,6 +6,7 @@ import { IAccount } from 'src/app/models/accounts';
 import { ITag } from 'src/app/models/tag';
 import { AccountsService } from 'src/app/services/accounts.service';
 import { FinancesService } from 'src/app/services/finances.service';
+import { BodyJson } from 'src/app/services/http.service';
 import { TagService } from 'src/app/services/tag.service';
 
 export interface IDialogActions {
@@ -40,11 +41,11 @@ export class DetailFinanceComponent implements OnInit {
 
   finance_form = this.fb.group({
     tag: [0, [Validators.required]],
-    account: [0, [Validators.required]],
+    account: [],
     date: [new Date().toISOString().split('T')[0], Validators.required],
     description: ['', [Validators.required]],
     value: [[Validators.required]],
-    installments: [0, [Validators.required]],
+    installments: [0],
     card: [this.fb.group({})],
     payment_voucher: [''],
   });
@@ -54,7 +55,6 @@ export class DetailFinanceComponent implements OnInit {
 
     this.finance_form.patchValue({
       date: new Date().toISOString().split('T')[0],
-      installments: 0,
     });
     this.getAlltags();
   }
@@ -107,7 +107,7 @@ export class DetailFinanceComponent implements OnInit {
 
     const body = {
       tag: this.finance_form.value.tag || 0,
-      account: this.finance_form.value.account || 0,
+      account: this.finance_form.value.account,
       date: dataCompra.toISOString().split('T')[0],
       value: value || 1,
       is_cash: true,
@@ -116,10 +116,11 @@ export class DetailFinanceComponent implements OnInit {
       description: this.finance_form.value.description || '',
     };
 
-    this.financesService.postFinance(body).subscribe();
-    // }
-
-    this.chance('yes');
+    this.financesService.postFinance(body as unknown as BodyJson).subscribe({
+      next: () => {
+        this.chance('yes');
+      },
+    });
   }
 
   chance(chance: 'yes' | 'no'): void {
