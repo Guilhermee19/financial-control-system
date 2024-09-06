@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  base_url: 'http://5.252.54.146:3300/',
+  base_url: 'https://finance-api.iamgui.dev/',
   version: '1.3.0',
   firebase: {
     apiKey: 'AIzaSyB7rAy4D1JSMPNeo9GeDkbUGxNKDCfU9Bs',

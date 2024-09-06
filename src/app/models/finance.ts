@@ -32,7 +32,7 @@ export interface ITag {
 
 export interface IFinance {
   account: number;
-  account_obj: Account;
+  account_obj?: Account;
   created_at: string;
   created_by: number;
   date: string;
