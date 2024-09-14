@@ -53,6 +53,8 @@ export class StorageService {
       true,
       'Strict'
     );
+
+    this.router.navigate(['/home']);
   }
 
   logout() {

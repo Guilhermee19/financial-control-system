@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { getAuth } from '@firebase/auth';
-import { IUser } from 'src/app/models/user';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,8 +16,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     public storage: StorageService,
     private authService: AuthService,
-    public router: Router,
-    private route: ActivatedRoute
+    public router: Router
   ) {}
 
   loading = false;
@@ -32,10 +31,19 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit() {
+    if (this.loading) return;
+
+    if (this.login_form.invalid) {
+      this.login_form.markAllAsTouched();
+      return;
+    }
+    this.loading = true;
+
     this.authService.login(this.login_form.value).subscribe(
       (data) => {
-        this.storage.setToken(data.token, true);
-        this.router.navigate(['/home']);
+        console.log(data);
+        this.storage.setToken(data.token, false);
+        this.loading = false;
       },
       (error) => {
         this.loading = false;
