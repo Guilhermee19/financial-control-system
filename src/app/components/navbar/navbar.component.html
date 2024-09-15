@@ -1,5 +1,5 @@
 <mat-drawer-container autosize *ngIf="!loading">
-  <mat-drawer #drawer [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile">
+  <mat-drawer #drawer mode="side" opened>
     <div class="logo">
       <img *ngIf="user.profile_image" [src]="user.profile_image" alt="logo" />
       <avatar *ngIf="!user.profile_image" [name]="user.name" color="dark" bg="#fff"></avatar>
@@ -13,7 +13,7 @@
         <button [disableRipple]="true" mat-button class="s">&rlm;</button>
       </li>
     </ul>
-    <ul class="list" *ngIf="!loading" (click)="isMobile && drawerToggle()">
+    <ul class="list" *ngIf="!loading">
       <li *ngFor="let item of navbarPages">
         <a
           mat-button

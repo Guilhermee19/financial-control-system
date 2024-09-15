@@ -3,7 +3,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { NAVBAR_PAGES } from 'src/app/constants/navbar';
-import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { IUser } from 'src/app/models/user';
@@ -59,6 +58,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.loading = true;
       this.userService.getMe().subscribe({
         next: (data) => {
+          console.log(data);
+
           this.user = data;
           this.storage.myself = data;
 

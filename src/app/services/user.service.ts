@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpService } from './http.service';
+import { BodyJson, HttpService } from './http.service';
 import { StorageService } from './storage.service';
+import { IUser } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,12 @@ import { StorageService } from './storage.service';
 export class UserService {
   constructor(private http: HttpService, private storage: StorageService) {}
 
-  getMe(): Observable<any> {
+  getMe(): Observable<IUser> {
     // console.log(this.storage.token);
-    return this.http.get<any>('core/get-user/');
+    return this.http.get<IUser>('core/get-user/');
+  }
+
+  createUser(body: BodyJson): Observable<IUser> {
+    return this.http.post<IUser>('core/create-user/', body);
   }
 }

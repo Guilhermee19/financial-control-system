@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { getAuth } from '@firebase/auth';
-import { IUser } from 'src/app/models/user';
+import { Md5 } from 'md5-typescript';
+import { BodyJson } from 'src/app/services/http.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,8 +18,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     public storage: StorageService,
     private authService: AuthService,
-    public router: Router,
-    private route: ActivatedRoute
+    public router: Router
   ) {}
 
   loading = false;
@@ -32,10 +33,24 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit() {
-    this.authService.login(this.login_form.value).subscribe(
+    if (this.loading) return;
+
+    if (this.login_form.invalid) {
+      this.login_form.markAllAsTouched();
+      return;
+    }
+    this.loading = true;
+
+    const body = {
+      email: this.login_form.value.email,
+      password: Md5.init(this.login_form.value.password).toUpperCase(),
+    }
+
+    this.authService.login(body as unknown as BodyJson).subscribe(
       (data) => {
-        this.storage.setToken(data.token, true);
-        this.router.navigate(['/home']);
+        console.log(data);
+        this.storage.setToken(data.token, false);
+        this.loading = false;
       },
       (error) => {
         this.loading = false;
@@ -77,7 +92,7 @@ export class LoginComponent implements OnInit {
     this.authService.loginGoogle(response, 'Google').subscribe(
       (data) => {
         localStorage.setItem('token', data.token);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/finance']);
       },
       (error) => {
         this.loading = false;

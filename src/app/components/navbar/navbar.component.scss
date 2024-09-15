@@ -18,7 +18,7 @@ mat-drawer-container {
   width: 100%;
   height: 100%;
   top: 0;
-  left: 24px;
+  // left: 24px;
   background-color: transparent !important;
 
   mat-drawer {
@@ -32,13 +32,6 @@ mat-drawer-container {
     border-radius: 24px;
     transition: var(--ts);
     margin: 24px;
-
-    &.mat-drawer-opened {
-      overflow: visible;
-      width: max-content;
-      // height: 100%;
-      margin-left: 0;
-    }
 
     ::ng-deep.mat-drawer-inner-container {
       background-color: var(--secondary-bg);
@@ -97,14 +90,16 @@ mat-drawer-container {
 
     .list {
       height: calc(100% - 32px);
-      // height: 100%;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
       list-style-type: none;
-      // padding: 2rem 0.5rem 0.5rem;
 
       ::ng-deep li {
+        width: 35px;
+        display: flex;
+        aspect-ratio: 1/1;
+
         a,
         button {
           width: 100%;
@@ -122,29 +117,7 @@ mat-drawer-container {
             background-color: var(--text-white);
             color: var(--label);
           }
-
-          // .mdc-button__label {
-          //   display: flex;
-          //   align-items: center;
-          //   gap: 0.8rem;
-          //   background-color: var(--main-color);
-          //   color: var(--text-white);
-
-          //   i {
-          //     display: inline-flex;
-          //     align-items: center;
-          //     justify-content: center;
-          //     border-radius: 12px;
-          //     width: 32px;
-          //     height: 32px;
-          //     font-size: 0.8rem;
-          //   }
-          // }
         }
-
-        // & + li {
-        //   margin-top: 0.5rem;
-        // }
 
         &:last-of-type {
           margin-top: auto;
@@ -161,87 +134,67 @@ mat-drawer-container {
     }
   }
 
-  nav {
-    width: calc(100% - 1rem);
-    padding: 0.5rem 0.7rem;
-    margin: 0.5rem;
-    background-color: var(--secondary-bg);
-    border-radius: 12px;
-    box-shadow: 2px 2px 8px var(--shadow);
+  @include media('<=tablet') {
+    position: fixed;
+    width: 100%;
+    height: 55px;
+    top: auto;
+    bottom: 0;
+    left: 0;
 
-    .content {
-      width: 100%;
-      display: flex;
-      flex-wrap: inherit;
-      align-items: center;
-      justify-content: space-between;
+    mat-drawer {
+      width: calc(100% - 12px);
+      height: 60px;
+      overflow: visible;
+      height: max-content;
+      margin: 0 6px;
+      padding: 6px;
+      border-radius: 12px;
+      background-color: var(--white);
 
-      .menu {
-        display: flex;
+      ::ng-deep .mat-drawer-content {
+        margin: 0 !important;
+      }
+
+      ::ng-deep .mat-drawer-inner-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        flex-direction: row !important;
+        gap: 0.5rem;
+        justify-content: center;
         align-items: center;
-        gap: 1rem;
 
-        .quick-actions {
-          display: flex;
+        .logo {
+          display: none;
+        }
+
+        .line {
+          display: none;
+        }
+
+        .list {
+          flex-direction: row;
+          justify-content: center;
           align-items: center;
-        }
 
-        .notification {
-          position: relative;
-          .badge {
-            transition: var(--ts);
-            opacity: 0;
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background-color: var(--main-color);
-            &.show {
-              opacity: 1;
-            }
-            &::after {
-              content: '';
-              position: absolute;
-              top: -2px;
-              left: -2px;
-              width: 5px;
-              height: 5px;
-              border: 2px solid var(--main-color);
-              border-radius: 50%;
-              transform: scale(0.5);
-              opacity: 1;
-              animation: pulse-notification 1.5s infinite;
-            }
-          }
-        }
-        .profile {
-          min-width: 36px;
-          width: 36px;
-          height: 36px !important;
-          padding: 0;
-          border-radius: 10px;
-
-          .image {
-            min-width: 36px;
-            width: 36px;
-            height: 36px;
-            background-color: var(--main-color);
-            border-radius: 10px;
+          ::ng-deep li {
+            width: 35px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            // overflow: hidden;
-            i {
-              font-size: 1rem;
-              color: var(--primary-bg);
+            aspect-ratio: 1/1;
+
+            a,
+            button {
+              background-color: var(--text-white);
+              color: var(--label);
+
+              &.active {
+                background-color: var(--main-color);
+                color: var(--text-white);
+              }
             }
-            img {
-              width: 36px;
-              height: 36px;
-              object-fit: cover;
-              border-radius: 10px;
+
+            &.logout {
+              display: none;
             }
           }
         }
@@ -249,13 +202,6 @@ mat-drawer-container {
     }
   }
 }
-
-// ::ng-deep.mat-drawer-inner-container {
-//   background-color: var(--secondary-bg);
-//   padding: 0 !important;
-//   margin: 0 !important;
-//   overflow: visible !important;
-// }
 
 ::ng-deep .mat-mdc-menu-panel.notifications-menu {
   max-height: 600px;
@@ -266,8 +212,7 @@ mat-drawer-container {
   .mat-mdc-menu-content {
     background-color: var(--secondary-bg);
     padding: 0 !important;
-    margin: 0 !important;
-    overflow: visible;
+    margin: 0 auto !important;
 
     h2 {
       padding: 0.2rem 1rem 0.5rem;
@@ -324,4 +269,9 @@ app-button-action {
   width: calc(100% - 100px);
   margin-left: 100px;
   z-index: 60;
+
+  @include media('<=tablet') {
+    width: 100%;
+    margin-left: 0px;
+  }
 }
