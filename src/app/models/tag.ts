@@ -2,6 +2,7 @@ export interface ITag {
   id: number;
   bg_color: string;
   color: string;
-  nome: string;
-  porcent: string;
+  name: string;
+  percent: string;
+  type: 'ENTRY' | 'OUTPUT'
 }

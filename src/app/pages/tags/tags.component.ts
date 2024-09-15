@@ -21,7 +21,7 @@ export class TagsComponent implements OnInit {
   displayedColumns: string[] = [
     'icon',
     'name',
-    'porcent',
+    'percent',
     // 'options'
   ];
 

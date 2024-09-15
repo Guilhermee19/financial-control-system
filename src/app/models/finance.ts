@@ -1,3 +1,5 @@
+import { ITag } from "./tag";
+
 export interface Account {
   id: number;
   name: string;
@@ -20,14 +22,6 @@ export interface Parcela {
   is_paid: boolean;
   updated_at: string;
   updated_by: number;
-}
-
-export interface ITag {
-  id: number;
-  bg_color: string;
-  color: string;
-  nome: string;
-  porcent: string;
 }
 
 export interface IFinance {

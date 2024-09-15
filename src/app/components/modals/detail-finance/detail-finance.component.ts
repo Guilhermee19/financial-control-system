@@ -84,6 +84,11 @@ export class DetailFinanceComponent implements OnInit {
     });
   }
 
+  setTag(){
+    const filter = this.tags.find(el => el.id === this.finance_form.value.tag)
+    if(filter && filter.type === 'ENTRY') this.finance_form.get('description')?.patchValue(filter?.name || '')
+  }
+
   saveSubmitHandler() {
     if (this.loading) return;
 
@@ -119,6 +124,10 @@ export class DetailFinanceComponent implements OnInit {
     this.financesService.postFinance(body as unknown as BodyJson).subscribe({
       next: () => {
         this.chance('yes');
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
       },
     });
   }

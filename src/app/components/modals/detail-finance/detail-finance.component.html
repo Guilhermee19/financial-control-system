@@ -3,9 +3,9 @@
 
   <div class="card_input">
     <i icon="tag"></i>
-    <mat-select formControlName="tag" name="tag" placeholder="Tag">
+    <mat-select formControlName="tag" name="tag" placeholder="Tag" (selectionChange)="setTag()">
       <mat-option *ngFor="let tag of tags" [value]="tag.id">
-        {{ tag.nome }}
+        {{ tag.name }}
       </mat-option>
     </mat-select>
   </div>

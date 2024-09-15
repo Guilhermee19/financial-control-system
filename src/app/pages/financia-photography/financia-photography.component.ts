@@ -103,6 +103,9 @@ export class FinanciaPhotographyComponent implements OnInit {
         typeof el.parcela.installment_value === 'string'
           ? parseFloat(el.parcela.installment_value)
           : el.parcela.installment_value;
+
+      if(el.tag_obj.type === 'ENTRY') return total + 0;
+
       // Adicionar ao total a divisão do valor pelo número de parcelas
       return total + value;
     }, 0); // Iniciar o total em 0
