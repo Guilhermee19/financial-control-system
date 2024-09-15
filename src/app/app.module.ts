@@ -18,7 +18,6 @@ import { InputNumberDirective } from './directives/input-number.directive';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { InputFileDirective } from './directives/input-file.directive';
-import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ButtonActionComponent } from './components/button-action/button-action.component';
 import { SharedModule } from './components/shared/shared.module';
@@ -26,7 +25,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-import { DetailTagComponent } from './components/modals/detail-tag/detail-tag.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -35,10 +33,8 @@ registerLocaleData(localePt);
     InputFileDirective,
     NavbarComponent,
     InputNumberDirective,
-    HomeComponent,
     LoginComponent,
     ButtonActionComponent,
-    DetailTagComponent,
   ],
   imports: [
     BrowserModule,

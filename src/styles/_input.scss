@@ -21,6 +21,11 @@
     right: 16px;
     font-size: 16px;
     color: var(--label);
+
+    &.icon_password {
+      cursor: pointer;
+      z-index: 10;
+    }
   }
 
   input,
@@ -74,6 +79,22 @@
       // &:hover {
       //   background-color: red;
       // }
+    }
+  }
+
+  &.colors {
+    ngx-colors {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 12px;
+    }
+
+    input,
+    textarea,
+    select {
+      border-left: 30px solid transparent;
+      border-right: 0px;
     }
   }
 

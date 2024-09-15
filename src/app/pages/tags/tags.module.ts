@@ -7,9 +7,12 @@ import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from 'src/app/components/shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DetailTagComponent } from 'src/app/components/modals/detail-tag/detail-tag.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { NgxColorsModule } from 'ngx-colors';
 
 @NgModule({
-  declarations: [TagsComponent],
+  declarations: [TagsComponent, DetailTagComponent],
   imports: [
     CommonModule,
     TagsRoutingModule,
@@ -17,6 +20,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     SharedModule,
     MatTooltipModule,
     MatDialogModule,
+    MatRadioModule,
+    NgxColorsModule
   ],
 })
 export class TagsModule {}

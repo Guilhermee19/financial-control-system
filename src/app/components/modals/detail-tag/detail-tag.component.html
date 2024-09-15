@@ -1,1 +1,48 @@
-<p>detail-tag works!</p>
+<form (ngSubmit)="saveSubmitHandler()" [formGroup]="tag_form">
+  <h1> Tag </h1>
+
+  <div class="card_input">
+    <i icon="name"></i>
+    <input title="name" type="text" formControlName="name" placeholder="Nome" />
+  </div>
+
+  <div class="card_input colors">
+    <ngx-colors ngx-colors-trigger formControlName="bg_color"
+      (input)="logEvent($event, 'bg_color')"></ngx-colors>
+
+    <i icon="bg_color"></i>
+    <input title="bg_color" type="text" formControlName="bg_color" placeholder="Cor" />
+  </div>
+
+  <div class="card_input colors">
+    <ngx-colors ngx-colors-trigger formControlName="color"
+      (input)="logEvent($event, 'color')"></ngx-colors>
+
+    <i icon="color"></i>
+    <input title="color" type="text" readonly formControlName="color" placeholder="Cor do texto" />
+  </div>
+
+  <div class="card_input">
+    <i icon="percent"></i>
+    <input
+      title="percent"
+      type="text"
+      mask="separator.2"
+      [thousandSeparator]="'.'"
+      [decimalMarker]="','"
+      formControlName="percent"
+      placeholder="Percentual"
+    />
+  </div>
+
+  <div class="rows">
+    <mat-radio-group formControlName="type">
+      <mat-radio-button value="ENTRY"> Entrada </mat-radio-button>
+      <mat-radio-button value="OUTPUT"> Saída </mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <button type="submit" title="adicionar" mat-raised-button class="primary">
+    Adicionar
+  </button>
+</form>

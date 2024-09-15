@@ -54,7 +54,7 @@ export class StorageService {
       'Strict'
     );
 
-    this.router.navigate(['/home']);
+    this.router.navigate(['/finance']);
   }
 
   logout() {

@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { getAuth } from '@firebase/auth';
+import { Md5 } from 'md5-typescript';
+import { BodyJson } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-login',
@@ -39,7 +41,12 @@ export class LoginComponent implements OnInit {
     }
     this.loading = true;
 
-    this.authService.login(this.login_form.value).subscribe(
+    const body = {
+      email: this.login_form.value.email,
+      password: Md5.init(this.login_form.value.password).toUpperCase(),
+    }
+
+    this.authService.login(body as unknown as BodyJson).subscribe(
       (data) => {
         console.log(data);
         this.storage.setToken(data.token, false);
@@ -85,7 +92,7 @@ export class LoginComponent implements OnInit {
     this.authService.loginGoogle(response, 'Google').subscribe(
       (data) => {
         localStorage.setItem('token', data.token);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/finance']);
       },
       (error) => {
         this.loading = false;

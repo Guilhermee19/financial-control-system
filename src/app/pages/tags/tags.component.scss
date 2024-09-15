@@ -19,7 +19,7 @@ main {
     }
   }
 
-  .card-tablet table td {
+  .card-tablet table td :not(.no_results) {
     background-color: transparent;
 
     &:first-child {

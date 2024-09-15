@@ -1,0 +1,58 @@
+<main>
+  <app-theme-dark-light class="theme"></app-theme-dark-light>
+
+  <form (ngSubmit)="registerSubmit()" [formGroup]="register_form">
+    <h1>Cadatrar</h1>
+
+    <div class="card_input">
+      <i icon="name"></i>
+      <input
+        title="name"
+        type="text"
+        formControlName="name"
+        placeholder="Nome"
+      />
+    </div>
+
+    <div class="card_input">
+      <i icon="email"></i>
+      <input
+        title="email"
+        type="email"
+        formControlName="email"
+        placeholder="E-mail"
+      />
+    </div>
+
+    <div class="card_input">
+      <i class="icon_password" *ngIf="view_pass" icon="view" (click)="view_pass = !view_pass"></i>
+      <i class="icon_password" *ngIf="!view_pass" icon="not_view" (click)="view_pass = !view_pass"></i>
+      <input
+        title="password"
+        [type]="view_pass ? 'text' : 'password'"
+        formControlName="password"
+        placeholder="Senha"
+      />
+    </div>
+
+    <div class="card_input">
+      <i class="icon_password" *ngIf="view_conf" icon="view" (click)="view_conf = !view_conf"></i>
+      <i class="icon_password" *ngIf="!view_conf" icon="not_view" (click)="view_conf = !view_conf"></i>
+
+      <input
+        title="confirm_password"
+        [type]="view_conf ? 'text' : 'password'"
+        formControlName="confirm_password"
+        placeholder="Confirmar Senha"
+      />
+    </div>
+
+    <button type="submit" mat-raised-button class="primary">Entrar</button>
+  </form>
+
+  <div class="line"></div>
+
+  <h5 class="f-12">
+    Já uma conta? <a class="f-12" routerLink="/login"> Entrar </a>
+  </h5>
+</main>

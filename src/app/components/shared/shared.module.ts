@@ -13,12 +13,15 @@ import { IconDirective } from 'src/app/directives/icon.directive';
 import { ThemeDarkLightComponent } from './theme-dark-light/theme-dark-light.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { InitialLettersDirective } from 'src/app/directives/initial-letters.directive';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 const IMPORTS = [
   MatButtonModule,
   FormsModule,
   ReactiveFormsModule,
   MatInputModule,
+  NgxMaskDirective,
+  NgxMaskPipe,
 ];
 
 const DECLARATIONS = [
