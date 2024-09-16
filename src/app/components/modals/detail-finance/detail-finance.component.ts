@@ -50,6 +50,8 @@ export class DetailFinanceComponent implements OnInit {
     payment_voucher: [''],
   });
 
+  is_invoice = this.fb.control(false)
+
   ngOnInit() {
     this.finance_form.reset();
 
@@ -87,6 +89,10 @@ export class DetailFinanceComponent implements OnInit {
   setTag(){
     const filter = this.tags.find(el => el.id === this.finance_form.value.tag)
     if(filter && filter.type === 'ENTRY') this.finance_form.get('description')?.patchValue(filter?.name || '')
+  }
+
+  setInvoice(){
+    console.log(this.is_invoice.value);
   }
 
   saveSubmitHandler() {

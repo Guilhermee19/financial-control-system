@@ -42,8 +42,25 @@
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
           <div class="buttons end">
-            <i icon="edit"></i>
-            <i icon="delet"></i>
+            <button
+              type="button"
+              mat-icon-button
+              class="table edit"
+              matTooltip="Adicionar"
+              (click)="editTag(element)"
+            >
+              <i icon="edit" title="aticionar"></i>
+            </button>
+
+            <button
+              type="button"
+              mat-icon-button
+              class="table delet"
+              matTooltip="Adicionar"
+              (click)="popupDelete(element)"
+            >
+              <i icon="delet" title="aticionar"></i>
+            </button>
           </div>
         </td>
       </ng-container>

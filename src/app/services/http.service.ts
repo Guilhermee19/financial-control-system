@@ -4,7 +4,7 @@ import {
   HttpParams,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-// import { NotifierService } from 'angular-notifier';
+import { ToastrService } from 'ngx-toastr';
 import { catchError, retry, throwError } from 'rxjs';
 import { StorageService } from 'src/app/services/storage.service';
 import { environment } from 'src/environments/environment';
@@ -21,11 +21,12 @@ type ApplicationsTypes = 'json' | 'x-www-form-urlencoded';
 export class HttpService {
   constructor(
     private http: HttpClient,
-    private storage: StorageService // private notifier: NotifierService
+    private storage: StorageService, // private notifier: NotifierService
+    private toastr: ToastrService
   ) {}
 
   public base_url = environment.base_url;
-  private repeat = 1;
+  private repeat = 0;
 
   private getBodyType(body: BodyJson | HttpParams): ApplicationsTypes {
     return body instanceof HttpParams ? 'x-www-form-urlencoded' : 'json';
@@ -60,7 +61,7 @@ export class HttpService {
       this.storage.logout();
     }
 
-    // this.notifier.notify('error', errorMessage);
+    this.toastr.error(errorMessage);
     return throwError(() => error);
   };
 

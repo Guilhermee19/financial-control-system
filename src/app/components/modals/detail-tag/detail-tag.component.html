@@ -10,20 +10,20 @@
     <ngx-colors ngx-colors-trigger formControlName="bg_color"
       (input)="logEvent($event, 'bg_color')"></ngx-colors>
 
-    <i icon="bg_color"></i>
-    <input title="bg_color" type="text" formControlName="bg_color" placeholder="Cor" />
+    <i icon="palette"></i>
+    <input title="bg_color" type="text" readonly formControlName="bg_color" placeholder="Cor de fundo" />
   </div>
 
   <div class="card_input colors">
     <ngx-colors ngx-colors-trigger formControlName="color"
       (input)="logEvent($event, 'color')"></ngx-colors>
 
-    <i icon="color"></i>
+    <i icon="palette"></i>
     <input title="color" type="text" readonly formControlName="color" placeholder="Cor do texto" />
   </div>
 
-  <div class="card_input">
-    <i icon="percent"></i>
+  <!-- <div class="card_input">
+    <i icon="installments"></i>
     <input
       title="percent"
       type="text"
@@ -33,7 +33,7 @@
       formControlName="percent"
       placeholder="Percentual"
     />
-  </div>
+  </div> -->
 
   <div class="rows">
     <mat-radio-group formControlName="type">
@@ -43,6 +43,6 @@
   </div>
 
   <button type="submit" title="adicionar" mat-raised-button class="primary">
-    Adicionar
+    {{ text_button }}
   </button>
 </form>

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AccountsService } from 'src/app/services/accounts.service';
+import { ITag } from 'src/app/models/tag';
 import { BodyJson } from 'src/app/services/http.service';
 import { TagService } from 'src/app/services/tag.service';
 
@@ -10,7 +10,7 @@ export interface IDialogActions {
 }
 
 export interface IData {
-  action: 'yes' | 'no';
+  tag: ITag;
 }
 
 @Component({
@@ -30,18 +30,28 @@ export class DetailTagComponent implements OnInit {
 
   tag_form = this.fb.group({
     name: ['', [Validators.required]],
-    color: ['', [Validators.required]],
-    bg_color: ['', [Validators.required]],
-    percent: [0, [Validators.required]],
-    type: ['', [Validators.required]],
+    color: ['#b2ebf2', [Validators.required]],
+    bg_color: ['#00838f', [Validators.required]],
+    percent: [10, [Validators.required]],
+    type: ['ENTRY', [Validators.required]],
   });
 
-  ngOnInit() {
-    this.tag_form.reset();
+  text_button = 'Adicionar'
+
+  ngOnInit(){
+    if(this.data?.tag){
+      this.text_button = "Salvar"
+      this.tag_form.patchValue({
+        name: this.data.tag.name,
+        bg_color: this.data.tag.bg_color,
+        color: this.data.tag.color,
+        percent: Number(this.data.tag.percent),
+        type: this.data.tag.type,
+      })
+    }
   }
 
   logEvent(event: string, trigger: string) {
-
     this.tag_form.get(trigger)?.patchValue(event)
   }
 
@@ -55,10 +65,15 @@ export class DetailTagComponent implements OnInit {
 
     this.loading = true;
 
-    this.postAccount();
+    if(this.data?.tag){
+      this.patchTag()
+    }
+    else{
+      this.postTag();
+    }
   }
 
-  postAccount() {
+  postTag() {
     const body = {
       ...this.tag_form.value,
     } as BodyJson;
@@ -67,9 +82,29 @@ export class DetailTagComponent implements OnInit {
       next: (data) => {
         console.log(data);
         this.chance('yes');
+        this.loading = false;
       },
       error: (error) => {
         console.log(error);
+        this.loading = false;
+      }
+    });
+  }
+
+  patchTag() {
+    const body = {
+      ...this.tag_form.value,
+    } as BodyJson;
+
+    this.tagService.patchTag(this.data.tag.id, body).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.chance('yes');
+        this.loading = false;
+      },
+      error: (error) => {
+        console.log(error);
+        this.loading = false;
       }
     });
   }

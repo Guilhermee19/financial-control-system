@@ -20,6 +20,10 @@
   </div>
 
   <div class="card_input">
+    <mat-checkbox [formControl]="is_invoice" (change)="setInvoice()"> Fatura </mat-checkbox>
+  </div>
+
+  <div class="card_input">
     <i icon="date"></i>
     <input title="date" type="date" formControlName="date" placeholder="Data" />
   </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationPopupComponent } from 'src/app/components/modals/confirmation-popup/confirmation-popup.component';
 import { DetailTagComponent } from 'src/app/components/modals/detail-tag/detail-tag.component';
 import { configModals } from 'src/app/constants/utils';
 import { ITag } from 'src/app/models/tag';
@@ -22,7 +23,7 @@ export class TagsComponent implements OnInit {
     'icon',
     'name',
     'percent',
-    // 'options'
+    'options'
   ];
 
   dataSource: ITag[] = [];
@@ -54,6 +55,43 @@ export class TagsComponent implements OnInit {
       if (result) {
         if (result.action === 'yes') this.getAlltags();
       }
+    });
+  }
+
+  editTag(tag: ITag){
+    const dialogRef = this.dialog.open(DetailTagComponent, {
+      ...configModals,
+      data: { tag }
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (result.action === 'yes') this.getAlltags();
+      }
+    });
+  }
+
+  popupDelete(tag: ITag){
+    const dialogRef = this.dialog.open(ConfirmationPopupComponent, {
+      ...configModals,
+      data: {
+        title: `Deletar Tag`,
+        description: `Deseja mesmo apagar a tag ${tag.name} ?`,
+        btn_cancel: `Cancelar`,
+        btn_confirm: `Deletar`,
+       }
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (result.action === 'yes') this.deletTag(tag);
+      }
+    });
+  }
+
+  deletTag(tag: ITag){
+    this.tagService.deletTag(tag.id).subscribe({
+      next: (data) => {
+        this.getAlltags()
+      },
     });
   }
 }

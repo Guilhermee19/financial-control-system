@@ -2,6 +2,16 @@
   <h1>Conta</h1>
 
   <div class="card_input">
+    <i icon="bank"></i>
+    <mat-select formControlName="account" name="account" placeholder="Conta" (selectionChange)="setAccount()">
+      <mat-option *ngFor="let account of accounts" [value]="account.name">
+        {{ account.name }}
+      </mat-option>
+      <mat-option value="other"> Outro </mat-option>
+    </mat-select>
+  </div>
+
+  <div class="card_input" *ngIf="account_form.value.account === 'other'">
     <i icon="name"></i>
     <input title="name" type="text" formControlName="name" placeholder="Nome" />
   </div>
@@ -16,8 +26,19 @@
     />
   </div>
 
+  <!-- <div class="card_input">
+    <i icon="date"></i>
+    <input
+      title="date"
+      type="text"
+      formControlName="credit_due_date"
+      placeholder="Data da Fatura"
+      mask="00"
+    />
+  </div> -->
+
   <div class="card_input">
-    <i icon="credit_limit"></i>
+    <i icon="value"></i>
     <input
       title="credit_limit"
       type="text"

@@ -1,0 +1,14 @@
+<section id="confirmation-popup">
+  <h3 *ngIf="data.title">{{ data.title }}</h3>
+  <p *ngIf="data.description" [innerHTML]="data.description"></p>
+
+  <div class="buttons_content">
+    <button mat-flat-button *ngIf="data.btn_cancel" class="warn" (click)="chance('no')" >
+      {{ data.btn_cancel }}
+    </button>
+
+    <button mat-flat-button *ngIf="data.btn_confirm" class="primary" (click)="chance('yes')">
+      {{ data.btn_confirm }}
+    </button>
+  </div>
+</section>

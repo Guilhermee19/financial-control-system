@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DetailAccountComponent } from 'src/app/components/modals/detail-account/detail-account.component';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [AccountComponent, DetailAccountComponent],
@@ -23,6 +24,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     NgxMaskDirective,
     NgxMaskPipe,
     MatCheckboxModule,
+    MatSelectModule
   ],
 })
 export class AccountModule {}

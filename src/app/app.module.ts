@@ -25,6 +25,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { ToastrModule } from 'ngx-toastr';
+import { ConfirmationPopupComponent } from './components/modals/confirmation-popup/confirmation-popup.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -35,6 +37,7 @@ registerLocaleData(localePt);
     InputNumberDirective,
     LoginComponent,
     ButtonActionComponent,
+    ConfirmationPopupComponent,
   ],
   imports: [
     BrowserModule,
