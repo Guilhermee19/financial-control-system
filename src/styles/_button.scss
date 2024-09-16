@@ -5,6 +5,24 @@ a:-webkit-any-link {
 .mat-mdc-button-base {
   text-decoration: none;
 
+  .mat-mdc-icon-button {
+    &.primary {
+      background-color: transparent;
+      color: var(--text-white) !important;
+
+      .mdc-button__label {
+        color: var(--text-white);
+        loading {
+          background-color: transparent;
+        }
+
+        i {
+          color: var(--text-white);
+        }
+      }
+    }
+  }
+
   &.mdc-button,
   &.mat-raised-button {
     height: 45px !important;

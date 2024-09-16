@@ -84,6 +84,11 @@
       background-color: #fff;
       color: #433408;
 
+      &.no_results {
+        background-color: transparent;
+        color: var(--label);
+      }
+
       --br: 15px;
 
       &:first-child {

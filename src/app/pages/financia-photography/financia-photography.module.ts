@@ -12,6 +12,7 @@ import { DetailFinanceComponent } from 'src/app/components/modals/detail-finance
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { CardFinancialComponent } from 'src/app/components/card-financial/card-financial.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     FinanciaPhotographyComponent,
@@ -30,6 +31,7 @@ import { CardFinancialComponent } from 'src/app/components/card-financial/card-f
     ReactiveFormsModule,
     NgxMaskDirective,
     NgxMaskPipe,
+    MatCheckboxModule
   ],
 })
 export class FinanciaPhotographyModule {}

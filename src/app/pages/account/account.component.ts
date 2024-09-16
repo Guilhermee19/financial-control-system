@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationPopupComponent } from 'src/app/components/modals/confirmation-popup/confirmation-popup.component';
 import { DetailAccountComponent } from 'src/app/components/modals/detail-account/detail-account.component';
 import { configModals } from 'src/app/constants/utils';
 import { IAccount } from 'src/app/models/accounts';
@@ -59,15 +60,20 @@ export class AccountComponent implements OnInit {
   }
 
   popupDelete(account: IAccount) {
-    // const dialogRef = this.dialog.open(DetailAccountComponent, {
-    //   ...configModals,
-    // });
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    //     if (result.action === 'yes') this.getAlltags();
-    //   }
-    // });
-    this.deleteAccount(account);
+    const dialogRef = this.dialog.open(ConfirmationPopupComponent, {
+      ...configModals,
+      data: {
+        title: `Deletar Conta`,
+        description: `Deseja mesmo apagar a conta ${account.name} ?`,
+        btn_cancel: `Cancelar`,
+        btn_confirm: `Deletar`,
+       }
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (result.action === 'yes') this.deleteAccount(account);
+      }
+    });
   }
 
   deleteAccount(account: IAccount) {

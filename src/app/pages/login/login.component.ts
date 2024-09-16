@@ -52,22 +52,8 @@ export class LoginComponent implements OnInit {
         this.storage.setToken(data.token, false);
         this.loading = false;
       },
-      (error) => {
+      () => {
         this.loading = false;
-
-        if (error?.error?.non_field_errors != null) {
-          // this.notifier.show({
-          //   type: 'error',
-          //   message:
-          //     'Não é possível fazer login com as credenciais fornecidas.',
-          // });
-        } else {
-          // this.notifier.show({
-          //   type: 'error',
-          //   message:
-          //     'Não foi possível fazer login, por favor verifique as informações inseridas.',
-          // });
-        }
       }
     );
   }

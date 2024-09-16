@@ -20,8 +20,20 @@ main {
     }
   }
 
-  .primary {
-    background-color: var(--btn-bg);
-    color: white;
+  .card-tablet table td span {
+    justify-content: flex-start !important;
+
+    &.mobile {
+      display: none;
+    }
+
+    @include media('<=570px') {
+      &.web {
+        display: none;
+      }
+      &.mobile {
+        display: flex;
+      }
+    }
   }
 }
