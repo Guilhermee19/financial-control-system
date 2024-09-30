@@ -1,0 +1,26 @@
+<div class="calendar_body">
+  <header class="calendar_header">
+    <div class="calendar_date">
+      <h1> {{ month_name }} </h1>
+      <h1> {{ month_year }} </h1>
+    </div>
+
+    <div class="calender_options">
+      <i icon="angle_left"></i>
+      <i icon="angle_right"></i>
+    </div>
+  </header>
+
+  <div class="label_weeks">
+    <span class="name_week" *ngFor="let name of name_week"> {{ name }} </span>
+  </div>
+
+  <section class="calendar_days">
+    <div class="calendar_week" *ngFor="let week of weeks">
+      <div class="calendar_day" *ngFor="let day of week" (click)="selectDay(day)"
+        [ngClass]="{other: day.month !== month}">
+        <span class="label_day"> {{ day.day }} </span>
+      </div>
+    </div>
+  </section>
+</div>

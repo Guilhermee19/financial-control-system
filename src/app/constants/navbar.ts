@@ -6,12 +6,12 @@ export const NAVBAR_PAGES: {
   link: string;
   roles: TypeProfile[];
 }[] = [
-  // {
-  //   label: 'Dashboard',
-  //   icon: 'dashboard',
-  //   link: '/',
-  //   roles: ['Admin', 'Desenvolvedor'],
-  // },
+  {
+    label: 'Dashboard',
+    icon: 'dashboard',
+    link: '/dashboard',
+    roles: ['Admin', 'Desenvolvedor'],
+  },
   {
     label: 'Finanças',
     icon: 'finance',
