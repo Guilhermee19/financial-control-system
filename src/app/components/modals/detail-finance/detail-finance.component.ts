@@ -3,11 +3,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { STATUS } from 'src/app/constants/finance';
 import { IAccount } from 'src/app/models/accounts';
-import { ITag } from 'src/app/models/tag';
+import { ICategory } from 'src/app/models/category';
 import { AccountsService } from 'src/app/services/accounts.service';
+import { CategoryService } from 'src/app/services/category.service';
 import { FinancesService } from 'src/app/services/finances.service';
 import { BodyJson } from 'src/app/services/http.service';
-import { TagService } from 'src/app/services/tag.service';
 
 export interface IDialogActions {
   action: 'yes' | 'no';
@@ -28,19 +28,20 @@ export class DetailFinanceComponent implements OnInit {
     private financesService: FinancesService,
     public dialogRef: MatDialogRef<IDialogActions>,
     @Inject(MAT_DIALOG_DATA) public data: IData,
-    private tagService: TagService,
-    private accountsService: AccountsService
+    private accountsService: AccountsService,
+    private categoryService: CategoryService
   ) {}
 
   loading = false;
+  phase = 0;
 
   // tags = TAGS;
-  tags: ITag[] = [];
+  categories: ICategory[] = [];
   accounts: IAccount[] = [];
   status = STATUS;
 
   finance_form = this.fb.group({
-    tag: [0, [Validators.required]],
+    category: [],
     account: [],
     date: [new Date().toISOString().split('T')[0], Validators.required],
     description: ['', [Validators.required]],
@@ -48,9 +49,18 @@ export class DetailFinanceComponent implements OnInit {
     installments: [0],
     card: [this.fb.group({})],
     payment_voucher: [''],
+    recurrence: [''],
+    type: [''],
+    screen: ['receita']
   });
 
   is_invoice = this.fb.control(false)
+
+  recurrences = [
+    {name: 'WEEKLY', label: 'semanal'},
+    {name: 'MONTHLY', label: 'mensal'},
+    {name: 'ANNUAL', label: 'anual'},
+  ];
 
   ngOnInit() {
     this.finance_form.reset();
@@ -64,9 +74,9 @@ export class DetailFinanceComponent implements OnInit {
   getAlltags() {
     this.loading = true;
 
-    this.tagService.getAlltags().subscribe({
+    this.categoryService.getAllCategories().subscribe({
       next: (data) => {
-        this.tags = data.results;
+        this.categories = data.results;
         this.getAllAccounts();
       },
       error: () => {
@@ -87,15 +97,13 @@ export class DetailFinanceComponent implements OnInit {
   }
 
   setTag(){
-    const filter = this.tags.find(el => el.id === this.finance_form.value.tag)
-    if(filter && filter.type === 'ENTRY') this.finance_form.get('description')?.patchValue(filter?.name || '')
-  }
-
-  setInvoice(){
-    console.log(this.is_invoice.value);
+    const filter = this.categories.find(el => el.id === (this.finance_form.value.category || 0))
+    // if(filter) this.finance_form.get('description')?.patchValue(filter?.name || '')
   }
 
   saveSubmitHandler() {
+    console.log(this.finance_form.value);
+
     if (this.loading) return;
 
     if (this.finance_form.invalid) {
@@ -117,14 +125,14 @@ export class DetailFinanceComponent implements OnInit {
     );
 
     const body = {
-      tag: this.finance_form.value.tag || 0,
+      category: this.finance_form.value.category,
       account: this.finance_form.value.account,
       date: dataCompra.toISOString().split('T')[0],
       value: value || 1,
-      is_cash: true,
-      is_installments: false,
       number_of_installments: installments,
       description: this.finance_form.value.description || '',
+      recurrence: this.setRecurrence(this.finance_form.value.recurrence || this.finance_form.value.type),
+      type: this.setType(this.finance_form.value.screen)
     };
 
     this.financesService.postFinance(body as unknown as BodyJson).subscribe({
@@ -136,6 +144,24 @@ export class DetailFinanceComponent implements OnInit {
         this.loading = false;
       },
     });
+  }
+
+  setRecurrence(option: string | undefined | null){
+    if(!option) return 'SINGLE';
+
+    if(['único', 'SINGLE'].includes(option)) return 'SINGLE';
+    else if(['semanal', 'WEEKLY'].includes(option)) return 'WEEKLY';
+    else if(['mensal', 'MONTHLY'].includes(option)) return 'MONTHLY';
+    else if(['anual', 'ANNUAL'].includes(option)) return 'ANNUAL';
+    else if(['parcelada', 'INSTALLMENTS'].includes(option)) return 'INSTALLMENTS';
+    else return 'SINGLE';
+  }
+
+  setType(option: string | undefined | null){
+    if(option === 'receita') return 'INCOME';
+    else if(option === 'despesa') return 'EXPENDITURE';
+    else if(option === 'transferência') return 'TRANSFER';
+    else return 'INCOME';
   }
 
   chance(chance: 'yes' | 'no'): void {

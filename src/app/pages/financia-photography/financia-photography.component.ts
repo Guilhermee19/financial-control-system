@@ -43,12 +43,20 @@ export class FinanciaPhotographyComponent implements OnInit {
 
     this.financesService.getAllFinances(params).subscribe({
       next: (data) => {
-        this.backupFinancias = data.results;
+        this.backupFinancias = this.sortOrder(data.results);
 
         // this.changeMonth('today');
         this.dataSource = this.backupFinancias;
         this.loading = false;
       },
+    });
+  }
+
+  sortOrder(array: IFinance[]){
+    return array.sort((a:IFinance, b:IFinance) => {
+      const dateA = new Date(a.installment?.date).getTime();
+      const dateB = new Date(b.installment?.date).getTime();
+      return dateA - dateB;  // Ordena em ordem crescente
     });
   }
 
@@ -100,11 +108,11 @@ export class FinanciaPhotographyComponent implements OnInit {
     return this.dataSource.reduce((total, el) => {
       // Extrair o valor e as parcelas
       const value =
-        typeof el.parcela.installment_value === 'string'
-          ? parseFloat(el.parcela.installment_value)
-          : el.parcela.installment_value;
+        typeof el.installment.installment_value === 'string'
+          ? parseFloat(el.installment.installment_value)
+          : el.installment.installment_value;
 
-      if(el.tag_obj.type === 'ENTRY') return total + 0;
+      if(el.type === 'EXPENDITURE') return total + 0;
 
       // Adicionar ao total a divisão do valor pelo número de parcelas
       return total + value;

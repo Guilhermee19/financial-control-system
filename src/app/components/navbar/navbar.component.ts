@@ -58,8 +58,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.loading = true;
       this.userService.getMe().subscribe({
         next: (data) => {
-          console.log(data);
-
           this.user = data;
           this.storage.myself = data;
 

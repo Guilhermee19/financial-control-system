@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { IFinance } from 'src/app/models/finance';
 import { FinancesService } from 'src/app/services/finances.service';
+import { ConfirmationPopupComponent } from '../modals/confirmation-popup/confirmation-popup.component';
+import { configModals } from 'src/app/constants/utils';
 
 @Component({
   selector: 'app-card-financial',
@@ -11,7 +14,10 @@ export class CardFinancialComponent {
   @Input() financial!: IFinance;
   @Output() event = new EventEmitter<string>();
 
-  constructor(private financesService: FinancesService) {}
+  constructor(
+    private financesService: FinancesService,
+    private dialog: MatDialog
+  ) {}
 
   isSelect = false;
 
@@ -22,9 +28,43 @@ export class CardFinancialComponent {
   deletItem() {
     if (!this.financial?.id) return;
 
-    this.financesService.deletFinance(this.financial.id).subscribe({
-      next: (data) => {
-        // this.getAllFinances(this.current_month);
+    if(this.financial.recurrence === 'SINGLE'){
+      this.popupDelete(this.financial)
+    }
+    else if(this.financial.recurrence === 'WEEKLY'){
+      this.popupDelete(this.financial)
+    }
+    else if(this.financial.recurrence === 'MONTHLY'){
+      this.popupDelete(this.financial)
+    }
+    else if(this.financial.recurrence === 'ANNUAL'){
+      this.popupDelete(this.financial)
+    }
+    else if(this.financial.recurrence === 'INSTALLMENTS'){
+      this.popupDelete(this.financial)
+    }
+  }
+
+  popupDelete(finance: IFinance){
+    const dialogRef = this.dialog.open(ConfirmationPopupComponent, {
+      ...configModals,
+      data: {
+        title: `Deletar Tag`,
+        description: `Deseja mesmo apagar ${finance.description} ?`,
+        btn_cancel: `Cancelar`,
+        btn_confirm: `Deletar`,
+       }
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (result.action === 'yes') this.deletFinance(this.financial)
+      }
+    });
+  }
+
+  deletFinance(finance: IFinance){
+    this.financesService.deletFinance(finance.id).subscribe({
+      next: () => {
         this.event.emit('DELET');
       },
     });
@@ -32,7 +72,7 @@ export class CardFinancialComponent {
 
   get status() {
     const hoje = new Date();
-    const dataInput = new Date(this.financial.parcela.date + 'T12:00:00'); // Data sem ajuste de hora
+    const dataInput = new Date(this.financial.installment.date + 'T12:00:00'); // Data sem ajuste de hora
 
     // Pegue as informações de ano, mês e dia
     const hojeAno = hoje.getFullYear();
@@ -44,7 +84,7 @@ export class CardFinancialComponent {
     const dataDia = dataInput.getDate();
 
     // Se a variável is_paid for true, retorna 'PAID'
-    if (this.financial.parcela.is_paid) {
+    if (this.financial.installment.is_paid) {
       return 'PAID';
     }
 

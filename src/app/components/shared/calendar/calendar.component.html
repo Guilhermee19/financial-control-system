@@ -1,13 +1,14 @@
 <div class="calendar_body">
   <header class="calendar_header">
     <div class="calendar_date">
-      <h1> {{ month_name }} </h1>
-      <h1> {{ month_year }} </h1>
+      <h1> {{ months[month].label }} </h1>
+      <h1> {{ year }} </h1>
     </div>
 
     <div class="calender_options">
-      <i icon="angle_left"></i>
-      <i icon="angle_right"></i>
+      <i icon="calendar" (click)="changeMonth('today')"></i>
+      <i icon="angle_left" (click)="changeMonth('back')"></i>
+      <i icon="angle_right" (click)="changeMonth('next')"></i>
     </div>
   </header>
 
@@ -18,8 +19,13 @@
   <section class="calendar_days">
     <div class="calendar_week" *ngFor="let week of weeks">
       <div class="calendar_day" *ngFor="let day of week" (click)="selectDay(day)"
-        [ngClass]="{other: day.month !== month}">
-        <span class="label_day"> {{ day.day }} </span>
+        [ngClass]="{other: day.month !== (month +1), today: checkToday(day)}">
+        <span class="label_day seletor"> {{ day.day }} </span>
+        <div class="calendar_item">
+          <div class="data_item" *ngFor="let data of day.data" [style.backgroundColor]="data.color">
+            <!-- {{ data.label }} -->
+          </div>
+        </div>
       </div>
     </div>
   </section>

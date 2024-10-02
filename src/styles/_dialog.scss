@@ -1,0 +1,33 @@
+.dialog_custom {
+  padding: 2rem 1rem;
+  background-color: var(--primary-bg);
+  border-radius: var(--br) !important;
+  box-shadow: var(
+    --mdc-dialog-container-elevation,
+    0px 11px 15px -7px rgba(0, 0, 0, 0.2),
+    0px 24px 38px 3px rgba(0, 0, 0, 0.14),
+    0px 9px 46px 8px rgba(0, 0, 0, 0.12)
+  );
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: transparent !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: var(--br) !important;
+}
+
+.icon_close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  padding: 0.1rem;
+  color: var(--label);
+}

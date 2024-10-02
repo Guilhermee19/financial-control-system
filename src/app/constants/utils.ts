@@ -1,3 +1,5 @@
+import { MatDialogConfig } from "@angular/material/dialog";
+
 export const MONTHS = [
   { label: 'Janeiro', month: 1 },
   { label: 'Fevereiro', month: 2 },
@@ -9,11 +11,12 @@ export const MONTHS = [
   { label: 'Agosto', month: 8 },
   { label: 'Setembro', month: 9 },
   { label: 'Outubro', month: 10 },
-  { label: 'Setembro', month: 11 },
+  { label: 'Novembro', month: 11 },
   { label: 'Dezembro', month: 12 },
 ];
 
-export const configModals = {
+export const configModals: MatDialogConfig = {
   width: '90%',
   maxWidth: '500px',
+  panelClass: 'dialog_custom'
 };

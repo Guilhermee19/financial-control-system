@@ -1,7 +1,25 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MONTHS } from 'src/app/constants/utils';
 
-interface Day{
-  day: number, month: number, week: string
+export interface CalendarData {
+  date: string; // 'YYYY-MM-DD' format
+  label: string;
+  color: string;
+}
+interface Day {
+  day: number;
+  month: number;
+  week: string;
+  data: CalendarData[]; // Adicionar o array de dados
+}
+
+export interface EventCalandar {
+  date:{
+    day: number | undefined;
+    month: number;
+    year: number;
+  }
+  action: 'next' | 'back' | 'today' | 'click'
 }
 
 @Component({
@@ -10,22 +28,28 @@ interface Day{
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-  @Input() month: number = new Date().getMonth()+1;
+  @Input() month: number = new Date().getMonth();
   @Input() year: number = new Date().getFullYear();
+  @Input() data: CalendarData[] = [];
+  @Output() changeCalendar = new EventEmitter<EventCalandar>();
 
-  month_name = 'Setembro';
-  month_year = 2024;
+  months = MONTHS;
 
-  name_week = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
-  weeks = this.getWeeksOfMonth(this.year, this.month);
+  name_week = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
+  weeks: Day[][] = [];
 
-  today: Day = this.getCurrentDay()
+  today: Day = this.getCurrentDay();
 
-  ngOnInit(){
-    console.log(this.weeks);
+  ngOnInit() {
+    this.setCalendar()
   }
 
-  getCurrentDay(): { day: number, month: number, week: string } {
+  setCalendar(){
+    this.weeks = this.getWeeksOfMonth(this.year, this.month+1);
+    this.assignDataToDays();
+  }
+
+  getCurrentDay(): Day {
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     const today = new Date();
@@ -36,38 +60,40 @@ export class CalendarComponent implements OnInit {
     return {
       day,
       month,
-      week
+      week,
+      data: []
     };
+  }
+
+  checkToday(day: Day){
+    return day.day === this.today.day && day.month === this.today.month
   }
 
   getWeeksOfMonth(year: number, month: number): Day[][] {
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-    // Obter o primeiro dia do mês
     const firstDay = new Date(year, month - 1, 1);
-    // Obter o último dia do mês
     const lastDay = new Date(year, month, 0);
     const daysInMonth = lastDay.getDate();
 
-    const weeks: { day: number, month: number, week: string }[][] = [];
-    let currentWeek: { day: number, month: number, week: string }[] = [];
+    const weeks: Day[][] = [];
+    let currentWeek: Day[] = [];
 
-    // Preencher os dias da semana antes do primeiro dia do mês
-    const firstDayOfWeek = firstDay.getDay(); // 0 = Domingo, 6 = Sábado
+    const firstDayOfWeek = firstDay.getDay();
     if (firstDayOfWeek !== 0) {
-      const previousMonthLastDay = new Date(year, month - 1, 0).getDate(); // Último dia do mês anterior
+      const previousMonthLastDay = new Date(year, month - 1, 0).getDate();
       const previousMonth = month - 1 === 0 ? 12 : month - 1;
       for (let i = firstDayOfWeek - 1; i >= 0; i--) {
         const day = previousMonthLastDay - i;
         currentWeek.push({
           day,
           month: previousMonth,
-          week: daysOfWeek[currentWeek.length]
+          week: daysOfWeek[currentWeek.length],
+          data: []
         });
       }
     }
 
-    // Preencher os dias do mês atual
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(year, month - 1, day);
       const dayOfWeek = date.getDay();
@@ -75,12 +101,11 @@ export class CalendarComponent implements OnInit {
       currentWeek.push({
         day,
         month,
-        week: daysOfWeek[dayOfWeek]
+        week: daysOfWeek[dayOfWeek],
+        data: []
       });
 
-      // Se for sábado ou o último dia do mês, finalize a semana
       if (dayOfWeek === 6 || day === daysInMonth) {
-        // Preencher dias da semana seguinte se a última semana estiver incompleta
         if (day === daysInMonth && dayOfWeek !== 6) {
           let nextMonthDay = 1;
           const nextMonth = month + 1 === 13 ? 1 : month + 1;
@@ -88,11 +113,11 @@ export class CalendarComponent implements OnInit {
             currentWeek.push({
               day: nextMonthDay++,
               month: nextMonth,
-              week: daysOfWeek[i]
+              week: daysOfWeek[i],
+              data: []
             });
           }
         }
-
         weeks.push(currentWeek);
         currentWeek = [];
       }
@@ -101,7 +126,57 @@ export class CalendarComponent implements OnInit {
     return weeks;
   }
 
-  selectDay(day: Day){
+  assignDataToDays(): void {
+    this.data.forEach((calendarItem) => {
+      const itemDate = new Date(calendarItem.date + 'T12:00:00');
+
+      this.weeks.forEach((week) => {
+        week.forEach((day) => {
+          if (day.day === itemDate.getDate() && day.month === itemDate.getMonth() + 1) {
+            day.data.push(calendarItem); // Adiciona os itens da data ao dia correspondente
+          }
+        });
+      });
+    });
+  }
+
+  selectDay(day: Day) {
     console.log(day);
+  }
+
+  changeMonth(action: 'next' | 'back' | 'today' | 'click') {
+    if (action === 'back') {
+      if (this.month > 0) {
+        this.month--;
+      } else {
+        this.month = 11;
+        this.year--;
+      }
+    }
+    if (action === 'next') {
+      if (this.month < 11) {
+        this.month++;
+      } else {
+        this.month = 0;
+        this.year++;
+      }
+    }
+    if(action === 'today'){
+      this.month = new Date().getMonth();
+      this.year = new Date().getFullYear();
+    }
+
+    setTimeout(() => {
+      this.changeCalendar.emit({
+        date:{
+          day: undefined,
+          month: this.month,
+          year: this.year,
+        },
+        action
+      });
+    }, 10);
+
+    this.setCalendar()
   }
 }

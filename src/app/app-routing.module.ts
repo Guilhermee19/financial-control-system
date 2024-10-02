@@ -28,11 +28,6 @@ const routes: Routes = [
           import('./pages/category/category.module').then((m) => m.CategoryModule),
       },
       {
-        path: 'tags',
-        loadChildren: () =>
-          import('./pages/tags/tags.module').then((m) => m.TagsModule),
-      },
-      {
         path: 'accounts',
         loadChildren: () =>
           import('./pages/account/account.module').then((m) => m.AccountModule),
