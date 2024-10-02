@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
           return {
             date: el.installment.date,
             label: el.description,
-            color: el.category_obj?.bg_color || '#64c6e8'
+            color: el.category_obj?.color || '#64c6e8'
           }
         });
 
