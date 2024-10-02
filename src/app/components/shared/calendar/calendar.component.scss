@@ -1,0 +1,119 @@
+.calendar_body {
+  --calendar-date-text: var(--text-primary);
+
+  width: 100%;
+  height: 100%;
+  max-height: max-content;
+  // border: 1px solid;
+  // border-radius: 3px;
+
+  .calendar_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    .calendar_date {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      h1 {
+        color: var(--calendar-date-text);
+      }
+    }
+
+    .calender_options {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      i {
+        width: 35px;
+        padding: 5px;
+        color: var(--calendar-date-text);
+        background-color: var(--input-bg);
+        cursor: pointer;
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+      }
+    }
+  }
+
+  .label_weeks {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin: 0;
+
+    span {
+      text-align: center;
+      margin: 0;
+      color: var(--label);
+    }
+  }
+
+  .calendar_days {
+    width: 100%;
+    height: calc(100% - 43px - 24px);
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0.5rem;
+
+    .calendar_week {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+
+      .calendar_day {
+        background-color: var(--input-bg);
+        border-radius: var(--br);
+        padding: 0.5rem 0.7rem;
+        flex: 1;
+        transition: all 0.2s;
+
+        .label_day {
+          color: var(--label);
+          font-weight: 600;
+          line-height: 1;
+        }
+
+        .calendar_item {
+          height: calc(100% - 30px);
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-end;
+          flex-wrap: wrap;
+          gap: 10px;
+
+          .data_item {
+            width: max-content;
+            font-size: 12px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+          }
+        }
+
+        &.other {
+          opacity: 0.5;
+        }
+
+        &.today {
+          background-color: var(--main-color);
+
+          .label_day {
+            color: var(--white);
+          }
+        }
+      }
+    }
+  }
+}

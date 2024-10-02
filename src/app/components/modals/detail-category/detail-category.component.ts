@@ -1,37 +1,37 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ITag } from 'src/app/models/tag';
+import { ICategory } from 'src/app/models/category';
+import { CategoryService } from 'src/app/services/category.service';
 import { BodyJson } from 'src/app/services/http.service';
-import { TagService } from 'src/app/services/tag.service';
 
 export interface IDialogActions {
   action: 'yes' | 'no';
 }
 
 export interface IData {
-  tag: ITag;
+  category: ICategory;
 }
 
 @Component({
-  selector: 'app-detail-tag',
-  templateUrl: './detail-tag.component.html',
-  styleUrls: ['./detail-tag.component.scss']
+  selector: 'app-detail-category',
+  templateUrl: './detail-category.component.html',
+  styleUrls: ['./detail-category.component.scss']
 })
-export class DetailTagComponent implements OnInit {
+export class DetailCategoryComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<IDialogActions>,
     @Inject(MAT_DIALOG_DATA) public data: IData,
-    private tagService: TagService
+    private categoryService: CategoryService
   ) {}
 
   loading = false;
 
-  tag_form = this.fb.group({
+  category_form = this.fb.group({
     name: ['', [Validators.required]],
-    color: ['#b2ebf2', [Validators.required]],
-    bg_color: ['#00838f', [Validators.required]],
+    color: ['#00838f', [Validators.required]],
+    bg_color: ['#b2ebf2', [Validators.required]],
     percent: [10, [Validators.required]],
     type: ['ENTRY', [Validators.required]],
   });
@@ -39,33 +39,32 @@ export class DetailTagComponent implements OnInit {
   text_button = 'Adicionar'
 
   ngOnInit(){
-    if(this.data?.tag){
+    if(this.data?.category){
       this.text_button = "Salvar"
-      this.tag_form.patchValue({
-        name: this.data.tag.name,
-        bg_color: this.data.tag.bg_color,
-        color: this.data.tag.color,
-        percent: Number(this.data.tag.percent),
-        type: this.data.tag.type,
+      this.category_form.patchValue({
+        name: this.data.category.name,
+        bg_color: this.data.category.bg_color,
+        color: this.data.category.color,
+        percent: Number(this.data.category.percent),
       })
     }
   }
 
   logEvent(event: string, trigger: string) {
-    this.tag_form.get(trigger)?.patchValue(event)
+    this.category_form.get(trigger)?.patchValue(event)
   }
 
   saveSubmitHandler() {
     if (this.loading) return;
 
-    if (this.tag_form.invalid) {
-      this.tag_form.markAllAsTouched();
+    if (this.category_form.invalid) {
+      this.category_form.markAllAsTouched();
       return;
     }
 
     this.loading = true;
 
-    if(this.data?.tag){
+    if(this.data?.category){
       this.patchTag()
     }
     else{
@@ -75,10 +74,10 @@ export class DetailTagComponent implements OnInit {
 
   postTag() {
     const body = {
-      ...this.tag_form.value,
+      ...this.category_form.value,
     } as BodyJson;
 
-    this.tagService.postTag(body).subscribe({
+    this.categoryService.postCategory(body).subscribe({
       next: (data) => {
         console.log(data);
         this.chance('yes');
@@ -93,10 +92,10 @@ export class DetailTagComponent implements OnInit {
 
   patchTag() {
     const body = {
-      ...this.tag_form.value,
+      ...this.category_form.value,
     } as BodyJson;
 
-    this.tagService.patchTag(this.data.tag.id, body).subscribe({
+    this.categoryService.patchCategory(this.data.category.id, body).subscribe({
       next: (data) => {
         console.log(data);
         this.chance('yes');
@@ -110,6 +109,6 @@ export class DetailTagComponent implements OnInit {
   }
 
   chance(chance: 'yes' | 'no'): void {
-    this.dialogRef.close({ action: chance, finance: this.tag_form.value });
+    this.dialogRef.close({ action: chance, finance: this.category_form.value });
   }
 }

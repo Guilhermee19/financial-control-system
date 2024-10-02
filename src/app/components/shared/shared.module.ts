@@ -15,6 +15,7 @@ import { AvatarComponent } from './avatar/avatar.component';
 import { InitialLettersDirective } from 'src/app/directives/initial-letters.directive';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const IMPORTS = [
   MatButtonModule,
@@ -33,12 +34,13 @@ const DECLARATIONS = [
   IconDirective,
   ThemeDarkLightComponent,
   AvatarComponent,
-  InitialLettersDirective
+  InitialLettersDirective,
+  CalendarComponent
 ];
 
 @NgModule({
   imports: [...IMPORTS, CommonModule, MatDialogModule, MatTooltipModule, ToastrModule.forRoot()],
-  declarations: [...DECLARATIONS],
+  declarations: [...DECLARATIONS, CalendarComponent],
   exports: [...IMPORTS, ...DECLARATIONS],
 })
 export class SharedModule {}

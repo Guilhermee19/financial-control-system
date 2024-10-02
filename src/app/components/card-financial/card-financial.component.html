@@ -1,13 +1,13 @@
 <section
-  [style.backgroundColor]="financial.tag_obj.bg_color"
+  [style.backgroundColor]="financial.category_obj?.bg_color || '#64c6e8'"
   (click)="isSelect = !isSelect"
 >
   <div class="left">
     <div class="row">
-      <div
+      <div *ngIf="financial.category_obj"
         class="tag"
-        [style.backgroundColor]="financial.tag_obj.color"
-        [initialLetters]="financial.tag_obj.name"
+        [style.backgroundColor]="financial.category_obj.color"
+        [initialLetters]="financial.category_obj.name"
         [length]="2"
       ></div>
 
@@ -23,9 +23,9 @@
     </div>
 
     <h5 class="f-10 date">
-      {{ financial.parcela.date | date : 'EE' }}
-      {{ financial.parcela.date | date : 'd' }} de
-      {{ financial.parcela.date | date : 'MMM' }}
+      {{ financial.installment.date | date : 'EE' }}
+      {{ financial.installment.date | date : 'd' }} de
+      {{ financial.installment.date | date : 'MMM' }}
     </h5>
   </div>
 
@@ -34,10 +34,13 @@
       {{ financial.number_of_installments === 1 ? '' : 'parcelado' }}
     </h5>
     <h3 class="f-12" [ngClass]="status">
-      {{ financial.parcela.installment_value | convertMoney }}
+      <i *ngIf="financial.type === 'TRANSFER' " icon="arrow_down_arrow_up"></i>
+      <i *ngIf="financial.type === 'EXPENDITURE' " icon="arrow_up"></i>
+      <i *ngIf="financial.type === 'INCOME' " icon="arrow_down"></i>
+      {{ financial.installment.installment_value | convertMoney }}
     </h3>
     <h5 class="f-10" *ngIf="financial.number_of_installments > 1">
-      {{ financial.parcela.current_installment }} de
+      {{ financial.installment.current_installment }} de
       {{ financial.number_of_installments }}x
     </h5>
   </div>

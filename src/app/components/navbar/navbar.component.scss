@@ -29,7 +29,7 @@ mat-drawer-container {
     background-color: var(--main-color);
     box-shadow: 2px 2px 8px var(--shadow);
     border: 0px solid transparent;
-    border-radius: 24px;
+    border-radius: 50px;
     transition: var(--ts);
     margin: 24px;
 
@@ -102,16 +102,15 @@ mat-drawer-container {
 
         a,
         button {
-          width: 100%;
-          height: max-content !important;
-          min-width: max-content;
-          min-height: max-content;
+          width: 35px;
+          min-width: 35px;
+          height: 35px !important;
           display: flex;
           justify-content: flex-start;
           box-shadow: none;
           background-color: var(--main-color);
           color: var(--text-white);
-          padding: 10px;
+          padding: 0;
 
           &.active {
             background-color: var(--text-white);

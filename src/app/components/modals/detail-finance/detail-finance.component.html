@@ -1,78 +1,112 @@
 <form (ngSubmit)="saveSubmitHandler()" [formGroup]="finance_form">
-  <h1>Finança</h1>
+  <i icon="close" class="icon_close"></i>
 
-  <div class="card_input">
-    <i icon="tag"></i>
-    <mat-select formControlName="tag" name="tag" placeholder="Tag" (selectionChange)="setTag()">
-      <mat-option *ngFor="let tag of tags" [value]="tag.id">
-        {{ tag.name }}
-      </mat-option>
-    </mat-select>
-  </div>
+  <section *ngIf="phase === 0" class="phase_one">
+    <h1> O que deseja adicionar ? </h1>
 
-  <div class="card_input">
-    <i icon="account"></i>
-    <mat-select formControlName="account" name="account" placeholder="Conta">
-      <mat-option *ngFor="let account of accounts" [value]="account.id">
-        {{ account.name }}
-      </mat-option>
-    </mat-select>
-  </div>
+    <mat-chip-listbox formControlName="screen">
+      <mat-chip-option selected>receita</mat-chip-option>
+      <mat-chip-option color="warn" >despesa</mat-chip-option>
+      <mat-chip-option color="accent" >transferência</mat-chip-option>
+    </mat-chip-listbox>
 
-  <div class="card_input">
-    <mat-checkbox [formControl]="is_invoice" (change)="setInvoice()"> Fatura </mat-checkbox>
-  </div>
+    <button type="button" title="adicionar" mat-raised-button class="primary" (click)="phase = 1">
+      Proximo
+    </button>
+  </section>
 
-  <div class="card_input">
-    <i icon="date"></i>
-    <input title="date" type="date" formControlName="date" placeholder="Data" />
-  </div>
+  <section *ngIf="phase === 1">
+    <h1> {{ finance_form.value.screen || 'receita' }} </h1>
 
-  <div class="card_input">
-    <i icon="description"></i>
-    <input
-      title="description"
-      type="text"
-      formControlName="description"
-      placeholder="Descrição"
-    />
-  </div>
+    <div class="card_input">
+      <i icon="value"></i>
+      <input
+        title="value"
+        type="text"
+        mask="separator.2"
+        [thousandSeparator]="'.'"
+        [decimalMarker]="','"
+        prefix="R$ "
+        formControlName="value"
+        placeholder="R$ 0,00"
+      />
+    </div>
 
-  <div class="card_input">
-    <i icon="value"></i>
-    <input
-      title="value"
-      type="text"
-      mask="separator.2"
-      [thousandSeparator]="'.'"
-      [decimalMarker]="','"
-      prefix="R$ "
-      formControlName="value"
-      placeholder="R$ 0,00"
-    />
-  </div>
+    <div class="card_input">
+      <i icon="description"></i>
+      <input
+        title="description"
+        type="text"
+        formControlName="description"
+        placeholder="Descrição"
+      />
+    </div>
 
-  <div class="card_input">
-    <i icon="installments"></i>
-    <input
-      title="installments"
-      type="number"
-      formControlName="installments"
-      placeholder="Parcelas"
-    />
-  </div>
+    <div class="card_input">
+      <i icon="category"></i>
+      <mat-select formControlName="category" name="category" placeholder="Categoria" (selectionChange)="setTag()">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </div>
 
-  <!-- <div class="card_input">
-    <i icon="card"></i>
-    <input
-      title="card"
-      type="text"
-      formControlName="card"
-      placeholder="Cartão/Conta"
-    />
-  </div> -->
+    <div class="card_input">
+      <i icon="account"></i>
+      <mat-select formControlName="account" name="account" placeholder="Conta">
+        <mat-option *ngFor="let account of accounts" [value]="account.id">
+          {{ account.name }}
+        </mat-option>
+      </mat-select>
+    </div>
 
-  <button type="submit" title="adicionar" mat-raised-button class="primary">
-    Adicionar
-  </button>
+
+    <div class="card_input">
+      <i icon="date"></i>
+      <input title="date" type="date" formControlName="date" placeholder="Data" />
+    </div>
+
+    <div class="line"></div>
+
+    <mat-chip-listbox formControlName="type">
+      <mat-chip-option selected>único</mat-chip-option>
+      <mat-chip-option>recorrente</mat-chip-option>
+      <mat-chip-option>parcelada</mat-chip-option>
+    </mat-chip-listbox>
+
+    <div class="card_input" *ngIf="finance_form.value.type === 'recorrente'">
+      <i icon="arrows_rotate"></i>
+      <mat-select formControlName="recurrence" name="recurrence" placeholder="Recorrência">
+        <mat-option *ngFor="let item of recurrences" [value]="item.name">
+          {{ item.label }}
+        </mat-option>
+      </mat-select>
+    </div>
+
+
+
+    <div class="card_input" *ngIf="finance_form.value.type === 'parcelada'">
+      <i icon="installments"></i>
+      <input
+        title="installments"
+        type="number"
+        formControlName="installments"
+        placeholder="Parcelas"
+      />
+    </div>
+
+    <!-- <div class="card_input">
+      <i icon="card"></i>
+      <input
+        title="card"
+        type="text"
+        formControlName="card"
+        placeholder="Cartão/Conta"
+      />
+    </div> -->
+
+    <button type="submit" title="adicionar" mat-raised-button class="primary">
+      Adicionar
+    </button>
+  </section>
 </form>

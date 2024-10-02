@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { CardFinancialComponent } from 'src/app/components/card-financial/card-financial.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatChipsModule} from '@angular/material/chips';
 @NgModule({
   declarations: [
     FinanciaPhotographyComponent,
@@ -31,7 +32,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     ReactiveFormsModule,
     NgxMaskDirective,
     NgxMaskPipe,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatChipsModule
   ],
 })
 export class FinanciaPhotographyModule {}

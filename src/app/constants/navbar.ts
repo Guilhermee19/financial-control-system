@@ -6,12 +6,12 @@ export const NAVBAR_PAGES: {
   link: string;
   roles: TypeProfile[];
 }[] = [
-  // {
-  //   label: 'Dashboard',
-  //   icon: 'dashboard',
-  //   link: '/',
-  //   roles: ['Admin', 'Desenvolvedor'],
-  // },
+  {
+    label: 'Dashboard',
+    icon: 'dashboard',
+    link: '/dashboard',
+    roles: ['Admin', 'Desenvolvedor'],
+  },
   {
     label: 'Finanças',
     icon: 'finance',
@@ -19,9 +19,9 @@ export const NAVBAR_PAGES: {
     roles: ['Admin', 'Desenvolvedor'],
   },
   {
-    label: 'Tag',
-    icon: 'tag',
-    link: '/tags',
+    label: 'Categoria',
+    icon: 'category',
+    link: '/category',
     roles: ['Admin', 'Desenvolvedor'],
   },
   {
@@ -30,12 +30,6 @@ export const NAVBAR_PAGES: {
     link: '/accounts',
     roles: ['Admin', 'Desenvolvedor'],
   },
-  // {
-  //   label: 'Categoria',
-  //   icon: 'category',
-  //   link: '/category',
-  //   roles: ['Admin', 'Desenvolvedor'],
-  // },
   // {
   //   label: 'Cartão',
   //   icon: 'cards',

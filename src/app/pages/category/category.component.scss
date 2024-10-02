@@ -20,8 +20,28 @@ main {
     }
   }
 
-  .primary {
-    background-color: var(--btn-bg);
+  .card-tablet table td {
+    &:not(.no_results) {
+      background-color: transparent;
+    }
+
+    &:first-child {
+      padding-left: 6px;
+    }
+  }
+
+  .card-tag {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    aspect-ratio: 1/1;
+    border-radius: 12px;
+    box-shadow: 0 0 8px var(--shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 600;
     color: white;
   }
 }

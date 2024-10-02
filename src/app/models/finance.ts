@@ -1,4 +1,4 @@
-import { ITag } from "./tag";
+import { ICategory } from "./category";
 
 export interface Account {
   id: number;
@@ -11,7 +11,7 @@ export interface Account {
   is_credit: boolean;
 }
 
-export interface Parcela {
+export interface Installment {
   created_at: string;
   created_by: number;
   current_installment: number;
@@ -32,13 +32,13 @@ export interface IFinance {
   date: string;
   description: string;
   id: number;
-  is_cash: boolean;
-  is_installments: boolean;
   number_of_installments: number;
-  parcela: Parcela;
-  tag: number;
-  tag_obj: ITag;
+  installment: Installment;
+  category: number;
+  category_obj?: ICategory;
   updated_at: string;
   updated_by: number;
   value: number;
+  type: 'INCOME' | 'EXPENDITURE' | 'TRANSFER'
+  recurrence: 'SINGLE' | 'WEEKLY' | 'MONTHLY' | 'ANNUAL' | 'INSTALLMENTS'
 }
