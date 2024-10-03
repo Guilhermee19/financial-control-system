@@ -34,9 +34,9 @@
       {{ financial.number_of_installments === 1 ? '' : 'parcelado' }}
     </h5>
     <h3 class="f-12" [ngClass]="status">
-      <i *ngIf="financial.type === 'TRANSFER' " icon="arrow_down_arrow_up"></i>
-      <i *ngIf="financial.type === 'EXPENDITURE' " icon="arrow_up"></i>
-      <i *ngIf="financial.type === 'INCOME' " icon="arrow_down"></i>
+      <i id="TRANSFER" *ngIf="financial.type === 'TRANSFER' " icon="arrow_down_arrow_up"></i>
+      <i id="EXPENDITURE" *ngIf="financial.type === 'EXPENDITURE' " icon="arrow_up"></i>
+      <i id="INCOME" *ngIf="financial.type === 'INCOME' " icon="arrow_down"></i>
       {{ financial.installment.installment_value | convertMoney }}
     </h3>
     <h5 class="f-10" *ngIf="financial.number_of_installments > 1">

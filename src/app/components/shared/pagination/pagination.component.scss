@@ -4,19 +4,24 @@
   align-items: center;
   gap: 10px;
   width: max-content;
+  margin: 0.5rem 0 0 auto;
+
   .arrow {
-    color: var(--text-primary);
+    color: var(--primary-bg);
     transition: var(--ts);
     cursor: auto;
+
     &.active {
       opacity: 1;
-      color: var(--primary-color);
+      color: var(--text-primary);
       cursor: pointer;
+
       &:hover {
         color: var(--text-primary);
       }
     }
   }
+
   .page {
     color: var(--text-primary);
     font-size: 13px;

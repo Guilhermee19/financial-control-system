@@ -11,8 +11,8 @@ import { ICategory } from '../models/category';
 export class CategoryService {
   constructor(private http: HttpService) {}
 
-  getAllCategories(): Observable<IPagedReq<ICategory>> {
-    const query = new HttpParams();
+  getAllCategories(page = 1): Observable<IPagedReq<ICategory>> {
+    const query = new HttpParams().set('page', page);
     return this.http.get<IPagedReq<ICategory>>('core/all-categories/', query);
   }
 
