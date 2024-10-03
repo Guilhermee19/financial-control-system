@@ -43,9 +43,9 @@
       </ng-container>
 
       <ng-container matColumnDef="credit_due_date">
-        <th mat-header-cell *matHeaderCellDef>Vencimento da Fatura</th>
+        <th mat-header-cell *matHeaderCellDef> <span class="web">Vencimento da Fatura</span> </th>
         <td mat-cell *matCellDef="let element">
-          {{ element.credit_due_date | date : 'dd/MM' }}
+          {{ element.credit_due_date | date : 'dd/MMM' }}
         </td>
       </ng-container>
 

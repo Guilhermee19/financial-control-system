@@ -1,7 +1,13 @@
+@import 'src/styles/media';
+
 main {
   width: var(--width-screen);
   margin: 0 auto;
   padding: 1rem 0.1rem 0.2rem;
+
+  @include media('<=tablet') {
+    padding-bottom: 80px;
+  }
 
   header {
     width: 100%;
@@ -55,6 +61,29 @@ main {
           }
           font-weight: 500;
           margin: 0;
+        }
+      }
+    }
+
+    @include media('<=tablet') {
+      flex-direction: column;
+
+      .card {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .info-day,
+        .info-month {
+          margin: 0;
+        }
+
+        .info-month {
+          h1 {
+            text-align: right;
+          }
         }
       }
     }

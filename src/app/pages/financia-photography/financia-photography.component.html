@@ -43,14 +43,14 @@
         (event)="action($event)"
       ></app-card-financial>
       <div class="empyty" *ngFor="let obj of [].constructor(5)"></div>
-      <pagination
-        (pageChange)="backOrNextPage($event)"
-        [back]="prev"
-        [next]="next"
-        [current]="current_page"
-        [total]="count_page"
-      ></pagination>
     </div>
 
+    <pagination
+      (pageChange)="backOrNextPage($event)"
+      [back]="prev"
+      [next]="next"
+      [current]="current_page"
+      [total]="count_page"
+    ></pagination>
   </section>
 </main>
