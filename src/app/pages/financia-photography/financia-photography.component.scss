@@ -87,7 +87,14 @@ main {
 
       .empyty {
         content: '';
+        @include media('<=750px') {
+          display: none;
+        }
       }
+    }
+
+    pagination {
+      margin-left: auto;
     }
   }
 }

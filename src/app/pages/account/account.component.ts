@@ -21,7 +21,7 @@ export class AccountComponent implements OnInit {
 
   displayedColumns: string[] = [
     'name',
-    'type_card',
+    // 'type_card',
     'credit_limit',
     'credit_due_date',
     'options',

@@ -22,7 +22,7 @@ export class CategoryComponent implements OnInit {
   displayedColumns: string[] = [
     'icon',
     'name',
-    'percent',
+    // 'percent',
     'options'
   ];
 
