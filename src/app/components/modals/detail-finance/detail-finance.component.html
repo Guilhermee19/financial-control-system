@@ -1,5 +1,5 @@
 <form (ngSubmit)="saveSubmitHandler()" [formGroup]="finance_form">
-  <i icon="close" class="icon_close"></i>
+  <i icon="close" class="icon_close" (click)="chance('no')"></i>
 
   <section *ngIf="phase === 0" class="phase_one">
     <h1> O que deseja adicionar ? </h1>
