@@ -39,6 +39,8 @@ export class DetailCategoryComponent implements OnInit {
   text_button = 'Adicionar'
 
   ngOnInit(){
+    console.log(this.data);
+
     if(this.data?.category){
       this.text_button = "Salvar"
       this.category_form.patchValue({

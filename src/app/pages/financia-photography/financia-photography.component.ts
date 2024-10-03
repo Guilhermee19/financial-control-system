@@ -29,28 +29,46 @@ export class FinanciaPhotographyComponent implements OnInit {
 
   total = 0;
 
+  current_page = 1;
+  count_page = 1;
+  users_total_count = 0;
+  prev = false;
+  next = false;
+
   ngOnInit() {
-    this.getAllFinances();
+    this.getAllFinances(1);
   }
 
-  getAllFinances() {
+  getAllFinances(page: number) {
     this.loading = true;
 
     const params = {
+      page,
       year: this.current_year,
       month: this.months[this.current_month].month,
     };
 
     this.financesService.getAllFinances(params).subscribe({
       next: (data) => {
-        this.backupFinancias = this.sortOrder(data.results);
-
-        // this.changeMonth('today');
+        // this.backupFinancias = this.sortOrder(data.results);
+        this.backupFinancias = data.results;
         this.dataSource = this.backupFinancias;
+
+        this.next = data.next != null;
+        this.prev = data.previous != null;
+        this.count_page = Math.ceil(data.count / 10);
+
         this.loading = false;
       },
     });
   }
+
+    // Pagination
+    backOrNextPage(event: any) {
+      this.loading = true;
+      this.current_page = event;
+      this.getAllFinances(this.current_page);
+    }
 
   sortOrder(array: IFinance[]){
     return array.sort((a:IFinance, b:IFinance) => {
@@ -66,7 +84,7 @@ export class FinanciaPhotographyComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        if (result.action === 'yes') this.getAllFinances();
+        if (result.action === 'yes') this.getAllFinances(1);
       }
     });
   }
@@ -89,7 +107,7 @@ export class FinanciaPhotographyComponent implements OnInit {
       }
     }
 
-    this.getAllFinances();
+    this.getAllFinances(1);
   }
 
   setMonthBoundaries(date: Date) {
@@ -101,7 +119,7 @@ export class FinanciaPhotographyComponent implements OnInit {
 
   action(event: string) {
     console.log(event);
-    if (event === 'DELET') this.getAllFinances();
+    if (event === 'DELET') this.getAllFinances(1);
   }
 
   get totalForTheMonth() {

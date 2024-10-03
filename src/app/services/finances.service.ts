@@ -3,12 +3,7 @@ import { BodyJson, HttpService } from './http.service';
 import { Observable } from 'rxjs';
 import { IFinance } from '../models/finance';
 import { HttpParams } from '@angular/common/http';
-import { IPagedReq } from '../models/utils';
-
-interface IFilter {
-  year: number;
-  month: number;
-}
+import { IFilter, IPagedReq } from '../models/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -17,13 +12,24 @@ export class FinancesService {
   constructor(private http: HttpService) {}
 
   getAllFinances(params: IFilter): Observable<IPagedReq<IFinance>> {
-    let query = new HttpParams();
+    let query = new HttpParams()
     if (params.year && params.month) {
       const startDate = new Date(params.year, params.month - 1, 1); // mês começa em 0, por isso `month - 1`
       const endDate = new Date(params.year, params.month, 0); // passando 0 como dia retorna o último dia do mês anterior
 
       query = query.set('start_date', startDate.toISOString().split('T')[0]);
       query = query.set('end_date', endDate.toISOString().split('T')[0]);
+    }
+
+    if (params.page) {
+      query = query.set('page', params.page);
+    }
+
+    if (params.return_all) {
+      query = query.set('return_all', params.return_all);
+    }
+    else{
+      query = query.set('page_size', 12);
     }
 
     return this.http.get<IPagedReq<IFinance>>('core/all-finances/', query);

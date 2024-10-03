@@ -28,23 +28,36 @@ export class CategoryComponent implements OnInit {
 
   dataSource: ICategory[] = [];
 
+  current_page = 1;
+  count_page = 1;
+  users_total_count = 0;
+  prev = false;
+  next = false;
+
   ngOnInit() {
-    this.getAlltags();
+    this.getAlltags(1);
   }
 
-  getAlltags() {
+  getAlltags(page: number) {
     this.loading = true;
 
-    this.categoryService.getAllCategories().subscribe({
+    this.categoryService.getAllCategories(page).subscribe({
       next: (data) => {
-        // this.backupFinancias = data.results;
-        // console.log(this.backupFinancias);
-
-        // this.changeMonth('today');
         this.dataSource = data.results;
+
+        this.next = data.next != null;
+        this.prev = data.previous != null;
+        this.count_page = Math.ceil(data.count / 10);
         this.loading = false;
       },
     });
+  }
+
+  // Pagination
+  backOrNextPage(event: any) {
+    this.loading = true;
+    this.current_page = event;
+    this.getAlltags(this.current_page);
   }
 
   craateCategory() {
@@ -53,19 +66,19 @@ export class CategoryComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        if (result.action === 'yes') this.getAlltags();
+        if (result.action === 'yes') this.getAlltags(1);
       }
     });
   }
 
-  editTag(tag: ICategory){
+  editCategory(category: ICategory){
     const dialogRef = this.dialog.open(DetailCategoryComponent, {
       ...configModals,
-      data: { tag }
+      data: { category }
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        if (result.action === 'yes') this.getAlltags();
+        if (result.action === 'yes') this.getAlltags(this.current_page);
       }
     });
   }
@@ -90,7 +103,7 @@ export class CategoryComponent implements OnInit {
   deletTag(tag: ICategory){
     this.categoryService.deletCategory(tag.id).subscribe({
       next: (data) => {
-        this.getAlltags()
+        this.getAlltags(1)
       },
     });
   }

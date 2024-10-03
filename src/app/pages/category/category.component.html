@@ -47,7 +47,7 @@
               mat-icon-button
               class="table edit"
               matTooltip="Adicionar"
-              (click)="editTag(element)"
+              (click)="editCategory(element)"
             >
               <i icon="edit" title="aticionar"></i>
             </button>
@@ -78,6 +78,14 @@
         </td>
       </tr>
     </table>
+
+    <pagination
+      (pageChange)="backOrNextPage($event)"
+      [back]="prev"
+      [next]="next"
+      [current]="current_page"
+      [total]="count_page"
+    ></pagination>
   </section>
 
   <!-- <page-loading *ngIf="loading"></page-loading> -->

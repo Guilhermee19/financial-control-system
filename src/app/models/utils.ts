@@ -4,3 +4,10 @@ export interface IPagedReq<T> {
   next: string;
   previous: string;
 }
+
+export interface IFilter {
+  return_all?: boolean;
+  page?: number;
+  year: number;
+  month: number;
+}

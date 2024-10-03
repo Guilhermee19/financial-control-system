@@ -42,13 +42,14 @@ export class DashboardComponent implements OnInit {
     this.loading = true;
 
     const params = {
+      return_all: true,
       year: this.current_year,
       month: this.months[this.current_month].month,
     };
 
-    this.financesService.getAllFinances(params).subscribe({
+    this.dashboardService.getAllFinances(params).subscribe({
       next: (data) => {
-        this.finances = this.sortOrder(data.results).map(el => {
+        this.finances = this.sortOrder(data).map(el => {
           return {
             date: el.installment.date,
             label: el.description,

@@ -97,7 +97,15 @@ section {
       }
 
       i {
-        color: rgb(57, 166, 37) !important;
+        &#TRANSFER {
+          color: rgb(37, 52, 166) !important;
+        }
+        &#EXPENDITURE {
+          color: rgb(166, 37, 37) !important;
+        }
+        &#INCOME {
+          color: rgb(57, 166, 37) !important;
+        }
       }
     }
   }
