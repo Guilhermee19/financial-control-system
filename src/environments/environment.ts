@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   base_url: 'http://127.0.0.1:8000/',
-  version: '1.0.0',
+  version: '1.1.0',
   firebase: {
     apiKey: 'AIzaSyB7rAy4D1JSMPNeo9GeDkbUGxNKDCfU9Bs',
     authDomain: 'financial-control-system-882ab.firebaseapp.com',
