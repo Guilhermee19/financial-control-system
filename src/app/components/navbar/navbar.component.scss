@@ -18,8 +18,17 @@ mat-drawer-container {
   width: 100%;
   height: 100%;
   top: 0;
-  // left: 24px;
   background-color: transparent !important;
+
+  @include media('<=tablet') {
+    z-index: 90;
+    background: var(--primary-bg);
+    background: linear-gradient(
+      3deg,
+      var(--primary-bg) 30%,
+      rgba(108, 255, 250, 0) 80%
+    );
+  }
 
   mat-drawer {
     width: max-content;
@@ -136,7 +145,7 @@ mat-drawer-container {
   @include media('<=tablet') {
     position: fixed;
     width: 100%;
-    height: 55px;
+    height: 60px;
     top: auto;
     bottom: 0;
     left: 0;
@@ -146,7 +155,7 @@ mat-drawer-container {
       height: 60px;
       overflow: visible;
       height: max-content;
-      margin: 0 6px;
+      margin: 6px;
       padding: 6px;
       border-radius: 12px;
       background-color: var(--white);
@@ -272,5 +281,6 @@ app-button-action {
   @include media('<=tablet') {
     width: 100%;
     margin-left: 0px;
+    padding-bottom: 80px;
   }
 }
