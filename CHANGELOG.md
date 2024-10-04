@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/Guilhermee19/financial-control-system/compare/v1.1.0...v1.2.0) (2024-10-04)
+
+
+### Features
+
+* popup detail day calendar ([d12e7d0](https://github.com/Guilhermee19/financial-control-system/commit/d12e7d072651a2d89cdf618f8940355b51b1bb92))
+
+
+### Bug Fixes
+
+* button close popup finance ([1bc6aa7](https://github.com/Guilhermee19/financial-control-system/commit/1bc6aa71d6cb314c240d06685a392866809ca423))
+
 ## [1.1.0](https://github.com/Guilhermee19/financial-control-system/compare/v1.0.0...v1.1.0) (2024-10-03)
 
 
