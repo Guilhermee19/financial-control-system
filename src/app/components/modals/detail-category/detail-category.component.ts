@@ -2,12 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ICategory } from 'src/app/models/category';
+import { IDialogActions } from 'src/app/models/utils';
 import { CategoryService } from 'src/app/services/category.service';
 import { BodyJson } from 'src/app/services/http.service';
-
-export interface IDialogActions {
-  action: 'yes' | 'no';
-}
 
 export interface IData {
   category: ICategory;

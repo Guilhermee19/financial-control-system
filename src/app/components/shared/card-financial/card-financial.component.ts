@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IFinance } from 'src/app/models/finance';
 import { FinancesService } from 'src/app/services/finances.service';
-import { ConfirmationPopupComponent } from '../modals/confirmation-popup/confirmation-popup.component';
+import { ConfirmationPopupComponent } from '../../modals/confirmation-popup/confirmation-popup.component';
 import { configModals } from 'src/app/constants/utils';
 
 @Component({
@@ -12,6 +12,7 @@ import { configModals } from 'src/app/constants/utils';
 })
 export class CardFinancialComponent {
   @Input() financial!: IFinance;
+  @Input() options = true;
   @Output() event = new EventEmitter<string>();
 
   constructor(

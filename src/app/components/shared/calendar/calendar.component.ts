@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MONTHS } from 'src/app/constants/utils';
 
 export interface CalendarData {
+  id: number;
   date: string; // 'YYYY-MM-DD' format
   label: string;
   color: string;
@@ -18,7 +19,9 @@ export interface EventCalandar {
     day: number | undefined;
     month: number;
     year: number;
+    week?: string
   }
+  data?: CalendarData[],
   action: 'next' | 'back' | 'today' | 'click'
 }
 
@@ -142,6 +145,17 @@ export class CalendarComponent implements OnInit {
 
   selectDay(day: Day) {
     console.log(day);
+
+    this.changeCalendar.emit({
+      date:{
+        day: day.day,
+        month: day.month,
+        year: this.year,
+        week: day.week
+      },
+      data: day.data,
+      action: 'click'
+    });
   }
 
   changeMonth(action: 'next' | 'back' | 'today' | 'click') {
