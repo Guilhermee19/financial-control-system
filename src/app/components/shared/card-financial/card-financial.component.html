@@ -1,5 +1,5 @@
 <section
-  [style.backgroundColor]="financial.category_obj?.bg_color || '#64c6e8'"
+  [style.backgroundColor]="financial.category_obj?.bg_color || 'var(--secund-bg)'"
   (click)="isSelect = !isSelect"
 >
   <div class="left">
@@ -33,7 +33,7 @@
     <h5 class="f-10">
       {{ financial.number_of_installments === 1 ? '' : 'parcelado' }}
     </h5>
-    <h3 class="f-12" [ngClass]="status">
+    <h3 class="f-14" [ngClass]="status">
       <i id="TRANSFER" *ngIf="financial.type === 'TRANSFER' " icon="arrow_down_arrow_up"></i>
       <i id="EXPENDITURE" *ngIf="financial.type === 'EXPENDITURE' " icon="arrow_up"></i>
       <i id="INCOME" *ngIf="financial.type === 'INCOME' " icon="arrow_down"></i>
@@ -45,7 +45,7 @@
     </h5>
   </div>
 
-  <div class="options" [ngClass]="{ open: isSelect }">
+  <div class="options" [ngClass]="{ open: isSelect }" *ngIf="options">
     <div class="row-icons">
       <a mat-icon-button (click)="modeEdit()"> <i icon="edit"> </i></a>
       <a mat-icon-button (click)="deletItem()"> <i icon="delet"> </i></a>

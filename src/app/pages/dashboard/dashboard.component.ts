@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PreviewDashboardComponent } from 'src/app/components/modals/preview-dashboard/preview-dashboard.component';
 import { CalendarData, EventCalandar } from 'src/app/components/shared/calendar/calendar.component';
-import { MONTHS } from 'src/app/constants/utils';
+import { configModals, MONTHS } from 'src/app/constants/utils';
 import { IDashbaord } from 'src/app/models/dashboard';
 import { IFinance } from 'src/app/models/finance';
 import { DashboardService } from 'src/app/services/dashboard.service';
-import { FinancesService } from 'src/app/services/finances.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,13 +14,14 @@ import { FinancesService } from 'src/app/services/finances.service';
 })
 export class DashboardComponent implements OnInit {
   constructor(
-    private financesService: FinancesService,
     private dashboardService: DashboardService,
+    private dialog: MatDialog
   ) {}
 
   loading = false;
 
-  finances: CalendarData[] = [];
+  finances_compact : CalendarData[] = [];
+  finances: IFinance[] = [];
 
   months = MONTHS;
 
@@ -49,8 +51,11 @@ export class DashboardComponent implements OnInit {
 
     this.dashboardService.getAllFinances(params).subscribe({
       next: (data) => {
-        this.finances = this.sortOrder(data).map(el => {
+        this.finances = this.sortOrder(data);
+
+        this.finances_compact = this.finances.map(el => {
           return {
+            id: el.installment.id,
             date: el.installment.date,
             label: el.description,
             color: el.category_obj?.color || '#64c6e8'
@@ -72,6 +77,26 @@ export class DashboardComponent implements OnInit {
       this.getDashboard();
       this.getAllFinances();
     }
+    if(event.action === 'click'){
+      if(!event.data || event.data.length <= 0) return;
+
+      const ids = event.data.map(item => item.id);
+
+      const finances = this.finances.filter(el => ids.includes(el.installment.id));
+
+      this.openPreview(event, finances)
+    }
+  }
+
+  openPreview(event: EventCalandar, finances: IFinance[]) {
+    this.dialog.open(PreviewDashboardComponent, {
+      ...configModals,
+      data: {
+        finances,
+        date: event.date
+      }
+    });
+
   }
 
   getDashboard(){

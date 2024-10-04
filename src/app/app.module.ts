@@ -27,6 +27,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopupComponent } from './components/modals/confirmation-popup/confirmation-popup.component';
+import { PreviewDashboardComponent } from './components/modals/preview-dashboard/preview-dashboard.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -38,6 +39,7 @@ registerLocaleData(localePt);
     LoginComponent,
     ButtonActionComponent,
     ConfirmationPopupComponent,
+    PreviewDashboardComponent,
   ],
   imports: [
     BrowserModule,

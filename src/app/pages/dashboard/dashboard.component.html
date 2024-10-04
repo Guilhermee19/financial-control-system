@@ -31,7 +31,7 @@
 
   <section class="calendar" *ngIf="!loading">
     <app-calendar
-      [data]="finances"
+      [data]="finances_compact"
       [month]="current_month"
       [year]="current_year"
       (changeCalendar)="setCalendar($event)"

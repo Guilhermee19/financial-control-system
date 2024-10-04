@@ -1,9 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-
-export interface IDialogActions {
-  action: 'yes' | 'no';
-}
+import { IDialogActions } from 'src/app/models/utils';
 
 export interface IData {
   title: string,

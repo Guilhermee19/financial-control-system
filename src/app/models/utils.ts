@@ -11,3 +11,7 @@ export interface IFilter {
   year: number;
   month: number;
 }
+
+export interface IDialogActions {
+  action: 'yes' | 'no';
+}

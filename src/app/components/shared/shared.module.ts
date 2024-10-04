@@ -16,6 +16,8 @@ import { InitialLettersDirective } from 'src/app/directives/initial-letters.dire
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 import { CalendarComponent } from './calendar/calendar.component';
+import { CardFinancialComponent } from './card-financial/card-financial.component';
+import { ConvertStatusPipe } from 'src/app/pipes/convert-status.pipe';
 
 const IMPORTS = [
   MatButtonModule,
@@ -31,16 +33,18 @@ const DECLARATIONS = [
   PageLoadingComponent,
   PaginationComponent,
   ConvertMoneyPipe,
+  ConvertStatusPipe,
   IconDirective,
   ThemeDarkLightComponent,
   AvatarComponent,
   InitialLettersDirective,
-  CalendarComponent
+  CalendarComponent,
+  CardFinancialComponent,
 ];
 
 @NgModule({
   imports: [...IMPORTS, CommonModule, MatDialogModule, MatTooltipModule, ToastrModule.forRoot()],
-  declarations: [...DECLARATIONS, CalendarComponent],
+  declarations: [...DECLARATIONS],
   exports: [...IMPORTS, ...DECLARATIONS],
 })
 export class SharedModule {}
