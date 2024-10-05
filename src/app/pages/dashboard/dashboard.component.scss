@@ -96,6 +96,10 @@ main {
         width: 100%;
         height: 65vh;
       }
+
+      @include media('<=tablet') {
+        width: 100%;
+      }
     }
   }
 }
