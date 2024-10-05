@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
       (data) => {
         console.log(data);
         this.storage.setToken(data.token, false);
-        this.loading = false;
       },
       () => {
         this.loading = false;

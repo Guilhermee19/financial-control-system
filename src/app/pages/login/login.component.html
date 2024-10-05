@@ -24,7 +24,10 @@
       />
     </div>
 
-    <button type="submit" mat-raised-button class="primary">Entrar</button>
+    <button type="submit" mat-raised-button class="primary" [ngClass]="{loading: loading}">
+      <loading />
+      <span class="text"> Entrar </span>
+    </button>
 
     <button
       type="button"

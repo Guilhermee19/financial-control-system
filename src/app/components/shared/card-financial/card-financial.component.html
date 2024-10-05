@@ -1,21 +1,21 @@
 <section
-  [style.backgroundColor]="financial.category_obj?.bg_color || 'var(--secund-bg)'"
-  (click)="isSelect = !isSelect"
+  [style.backgroundColor]="finance.category_obj?.bg_color || 'var(--secund-bg)'"
+  (click)="openDetail()"
 >
   <div class="left">
     <div class="row">
-      <div *ngIf="financial.category_obj"
+      <div *ngIf="finance.category_obj"
         class="tag"
-        [style.backgroundColor]="financial.category_obj.color"
-        [initialLetters]="financial.category_obj.name"
+        [style.backgroundColor]="finance.category_obj.color"
+        [initialLetters]="finance.category_obj.name"
         [length]="2"
       ></div>
 
       <div class="info">
         <h5 class="f-10">
-          {{ financial.account_obj?.name || '' }}
+          {{ finance.account_obj?.name || '' }}
         </h5>
-        <h2 class="f-16">{{ financial.description }}</h2>
+        <h2 class="f-16">{{ finance.description }}</h2>
         <h3 class="f-10 status" [ngClass]="status">
           {{ status | convertStatus }}
         </h3>
@@ -23,32 +23,25 @@
     </div>
 
     <h5 class="f-10 date">
-      {{ financial.installment.date | date : 'EE' }}
-      {{ financial.installment.date | date : 'd' }} de
-      {{ financial.installment.date | date : 'MMM' }}
+      {{ finance.installment.date | date : 'EE' }}
+      {{ finance.installment.date | date : 'd' }} de
+      {{ finance.installment.date | date : 'MMM' }}
     </h5>
   </div>
 
   <div class="price">
     <h5 class="f-10">
-      {{ financial.number_of_installments === 1 ? '' : 'parcelado' }}
+      {{ finance.number_of_installments === 1 ? '' : 'parcelado' }}
     </h5>
     <h3 class="f-14" [ngClass]="status">
-      <i id="TRANSFER" *ngIf="financial.type === 'TRANSFER' " icon="arrow_down_arrow_up"></i>
-      <i id="EXPENDITURE" *ngIf="financial.type === 'EXPENDITURE' " icon="arrow_up"></i>
-      <i id="INCOME" *ngIf="financial.type === 'INCOME' " icon="arrow_down"></i>
-      {{ financial.installment.installment_value | convertMoney }}
+      <i id="TRANSFER" *ngIf="finance.type === 'TRANSFER' " icon="arrow_down_arrow_up"></i>
+      <i id="EXPENDITURE" *ngIf="finance.type === 'EXPENDITURE' " icon="arrow_up"></i>
+      <i id="INCOME" *ngIf="finance.type === 'INCOME' " icon="arrow_down"></i>
+      {{ finance.installment.installment_value | convertMoney }}
     </h3>
-    <h5 class="f-10" *ngIf="financial.number_of_installments > 1">
-      {{ financial.installment.current_installment }} de
-      {{ financial.number_of_installments }}x
+    <h5 class="f-10" *ngIf="finance.number_of_installments > 1">
+      {{ finance.installment.current_installment }} de
+      {{ finance.number_of_installments }}x
     </h5>
-  </div>
-
-  <div class="options" [ngClass]="{ open: isSelect }" *ngIf="options">
-    <div class="row-icons">
-      <a mat-icon-button (click)="modeEdit()"> <i icon="edit"> </i></a>
-      <a mat-icon-button (click)="deletItem()"> <i icon="delet"> </i></a>
-    </div>
   </div>
 </section>

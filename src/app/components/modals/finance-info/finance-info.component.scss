@@ -1,0 +1,86 @@
+section {
+  width: 100%;
+  padding: 1rem 0;
+
+  header {
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+
+    h1 {
+      margin: 0;
+    }
+
+    h3.status {
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+
+      &.SOLD {
+        color: rgb(216, 48, 48);
+      }
+      &.PAY_TODAY {
+        color: rgb(10, 117, 160);
+      }
+      &.PAID {
+        color: rgb(57, 166, 37);
+      }
+    }
+  }
+
+  .finance-info {
+    .info {
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+
+      label {
+        min-width: max-content;
+        opacity: 0.7;
+        font-weight: 400;
+        line-height: 1;
+        color: var(--text-primary);
+      }
+
+      .space {
+        width: 100%;
+        border-style: dashed;
+        border-width: thin;
+        margin: 0 0.5rem 4px;
+        border-color: var(--text-primary);
+        opacity: 0.5;
+      }
+
+      h3 {
+        min-width: max-content;
+        color: var(--text-primary);
+        line-height: 1;
+
+        i {
+          &#TRANSFER {
+            color: rgb(37, 52, 166) !important;
+          }
+          &#EXPENDITURE {
+            color: rgb(166, 37, 37) !important;
+          }
+          &#INCOME {
+            color: rgb(57, 166, 37) !important;
+          }
+        }
+      }
+
+      & + .info {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  .buttons {
+    margin-top: 3rem;
+  }
+}

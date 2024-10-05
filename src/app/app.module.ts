@@ -28,6 +28,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopupComponent } from './components/modals/confirmation-popup/confirmation-popup.component';
 import { PreviewDashboardComponent } from './components/modals/preview-dashboard/preview-dashboard.component';
+import { FinanceInfoComponent } from './components/modals/finance-info/finance-info.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -40,6 +41,7 @@ registerLocaleData(localePt);
     ButtonActionComponent,
     ConfirmationPopupComponent,
     PreviewDashboardComponent,
+    FinanceInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,7 @@ registerLocaleData(localePt);
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    ToastrModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000',

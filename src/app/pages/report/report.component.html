@@ -1,0 +1,35 @@
+<main>
+  <header>
+    <h1> Relatórios </h1>
+  </header>
+
+  <section>
+    <div class="card">
+      <div class="info-day">
+        <h1 class="f-16"> Recebimentos do Dia </h1>
+        <p class="f-24 input"> {{ dashboard.total_day_income | convertMoney }} </p>
+      </div>
+
+      <div class="info-month">
+        <h1 class="f-12"> Previsão do Mês </h1>
+        <p class="f-18 input"> {{ dashboard.total_month_income | convertMoney }} </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="info-day">
+        <h1 class="f-16"> Pagamento do Dia </h1>
+        <p class="f-24 output"> {{ dashboard.total_day_expenditure | convertMoney }} </p>
+      </div>
+
+      <div class="info-month">
+        <h1 class="f-12"> Previsão do Mês </h1>
+        <p class="f-18 output"> {{ dashboard.total_month_expenditure | convertMoney }} </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="calendar" *ngIf="!loading">
+
+  </section>
+</main>

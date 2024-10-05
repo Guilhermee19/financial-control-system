@@ -1,5 +1,9 @@
 <main>
   <header>
+    <h1> Finanças </h1>
+  </header>
+
+  <div class="filter_date">
     <a mat-icon-button (click)="changeMonth('back')">
       <i icon="angle_left"></i>
     </a>
@@ -14,7 +18,7 @@
     <a mat-icon-button (click)="changeMonth('next')">
       <i icon="angle_right"></i>
     </a>
-  </header>
+  </div>
 
   <div class="buttons">
     <button
@@ -38,8 +42,8 @@
   <section *ngIf="!loading">
     <div class="finances">
       <app-card-financial
-        *ngFor="let financial of dataSource"
-        [financial]="financial"
+        *ngFor="let finance of dataSource"
+        [finance]="finance"
         (event)="action($event)"
       ></app-card-financial>
       <div class="empyty" *ngFor="let obj of [].constructor(5)"></div>
