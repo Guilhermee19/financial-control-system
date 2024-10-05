@@ -27,8 +27,8 @@
   --text-black: #474747;
 
   // ? Scrollbar
-  --scroll-track: var(--secondary-bg);
-  --scroll-thumb: var(--primary-color);
+  --scroll-track: var(--input-bg);
+  --scroll-thumb: var(--label);
 
   // ? size width
   --width-screen: 95%;
@@ -67,18 +67,4 @@
 
   --text-white: #ffffff;
   --text-black: #474747;
-
-  // ? Scrollbar
-  --scroll-track: var(--secondary-bg);
-  --scroll-thumb: var(--primary-color);
-
-  // ? size width
-  --width-screen: 95%;
-  --max-width: 1440px;
-
-  // ? avatar
-  --avatar-dark-color: #000000;
-  --avatar-light-color: #ffffff;
-  --avatar-br: 50%;
-  --avatar-ratio: 1/1;
 }

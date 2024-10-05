@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { STATUS } from 'src/app/constants/finance';
 import { IAccount } from 'src/app/models/accounts';
 import { ICategory } from 'src/app/models/category';
+import { IFinance } from 'src/app/models/finance';
 import { IDialogActions } from 'src/app/models/utils';
 import { AccountsService } from 'src/app/services/accounts.service';
 import { CategoryService } from 'src/app/services/category.service';
@@ -11,7 +12,7 @@ import { FinancesService } from 'src/app/services/finances.service';
 import { BodyJson } from 'src/app/services/http.service';
 
 export interface IData {
-  action: 'yes' | 'no';
+  finance: IFinance;
 }
 
 @Component({

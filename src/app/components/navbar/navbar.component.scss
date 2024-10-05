@@ -22,25 +22,20 @@ mat-drawer-container {
 
   @include media('<=tablet') {
     z-index: 90;
-    background: var(--primary-bg);
-    background: linear-gradient(
-      3deg,
-      var(--primary-bg) 30%,
-      rgba(108, 255, 250, 0) 80%
-    );
+    box-shadow: 0 0 16px rgba(25, 25, 25, 0.25);
   }
 
   mat-drawer {
-    width: max-content;
-    height: calc(100% - 40px);
+    width: 60px;
+    height: 100%;
     overflow: visible;
     padding: 12px;
     background-color: var(--main-color);
     box-shadow: 2px 2px 8px var(--shadow);
     border: 0px solid transparent;
-    border-radius: 50px;
+    border-radius: 0;
     transition: var(--ts);
-    margin: 24px;
+    margin: 0;
 
     ::ng-deep.mat-drawer-inner-container {
       background-color: var(--secondary-bg);
@@ -120,6 +115,7 @@ mat-drawer-container {
           background-color: var(--main-color);
           color: var(--text-white);
           padding: 0;
+          border: 0px solid;
 
           &.active {
             background-color: var(--text-white);
@@ -151,14 +147,15 @@ mat-drawer-container {
     left: 0;
 
     mat-drawer {
-      width: calc(100% - 12px);
+      width: 100%;
       height: 60px;
       overflow: visible;
-      height: max-content;
-      margin: 6px;
+      // height: max-content;
+      margin: 0;
       padding: 6px;
-      border-radius: 12px;
-      background-color: var(--white);
+      // border-radius: 12px;
+      background-color: var(--primary-bg);
+      box-shadow: 0 -10px 16px rgba(25, 25, 25, 0.5) !important;
 
       ::ng-deep .mat-drawer-content {
         margin: 0 !important;
@@ -192,7 +189,8 @@ mat-drawer-container {
 
             a,
             button {
-              background-color: var(--text-white);
+              background-color: var(--primary-bg);
+              // background-color: var(--text-white);
               color: var(--label);
 
               &.active {
@@ -274,8 +272,8 @@ app-button-action {
 
 .scrren {
   position: relative;
-  width: calc(100% - 100px);
-  margin-left: 100px;
+  width: calc(100% - 60px);
+  margin-left: 60px;
   z-index: 60;
 
   @include media('<=tablet') {
