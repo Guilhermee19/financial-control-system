@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/Guilhermee19/financial-control-system/compare/v1.4.0...v2.0.0) (2024-10-05)
+
+
+### Features
+
+* popup para detalhe do financeiro | pagamento da installment | novo design do menu | identidade e nome do projeto ([35d03be](https://github.com/Guilhermee19/financial-control-system/commit/35d03be1670acb6c6242555407ee0d1e1b571899))
+
 ## [1.4.0](https://github.com/Guilhermee19/financial-control-system/compare/v1.3.0...v1.4.0) (2024-10-04)
 
 ## [1.3.0](https://github.com/Guilhermee19/financial-control-system/compare/v1.2.0...v1.3.0) (2024-10-04)
