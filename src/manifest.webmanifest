@@ -1,8 +1,8 @@
 {
-  "name": "FCS",
-  "short_name": "fcs-web",
-  "theme_color": "#6e6af5",
-  "background_color": "#fafafa",
+  "name": "CheckMoney",
+  "short_name": "CheckMoney",
+  "theme_color": "#0071ff",
+  "background_color": "#323741",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
