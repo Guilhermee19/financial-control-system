@@ -11,11 +11,14 @@ export class UserService {
   constructor(private http: HttpService, private storage: StorageService) {}
 
   getMe(): Observable<IUser> {
-    // console.log(this.storage.token);
     return this.http.get<IUser>('core/get-user/');
   }
 
   createUser(body: BodyJson): Observable<IUser> {
     return this.http.post<IUser>('core/create-user/', body);
+  }
+
+  updateUser(body: BodyJson): Observable<IUser> {
+    return this.http.patch<IUser>('core/update-user/', body);
   }
 }

@@ -95,7 +95,7 @@
       (click)="paymentInstallment()"
     >
       <i icon="check"></i>
-      Pagar
+      {{ data.finance.type === 'INCOME' ? 'Rebecido': ( data.finance.type === 'EXPENDITURE' ?  'Pago'  : '' ) }}
     </button>
   </div>
 </section>

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/Guilhermee19/financial-control-system/compare/v2.0.1...v2.0.2) (2024-10-06)
+
+
+### Features
+
+* perfil editar informaç~eos usuário ([08abde4](https://github.com/Guilhermee19/financial-control-system/commit/08abde4880a9eb26a63c2d4c952f413345ab4e88))
+
 ### [2.0.1](https://github.com/Guilhermee19/financial-control-system/compare/v2.0.0...v2.0.1) (2024-10-05)
 
 
