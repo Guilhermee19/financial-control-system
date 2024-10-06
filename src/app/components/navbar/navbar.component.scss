@@ -59,6 +59,7 @@ mat-drawer-container {
       margin: 0 auto;
       transition: var(--ts);
       overflow: hidden;
+      cursor: pointer;
 
       img {
         width: max-content;

@@ -1,1 +1,65 @@
-<p>profile works!</p>
+<main>
+  <header>
+    <h1> Perfil </h1>
+  </header>
+
+  <form (ngSubmit)="profileSubmit()" [formGroup]="profile_form">
+    <figure>
+      <div class="card_image_logo">
+        <img
+          *ngIf="profile_form.value.profile_image"
+          alt="Imagem de perfil do usuário ao editar"
+          [src]="profile_form.value.profile_image"
+        >
+
+        <avatar
+          *ngIf="!profile_form.value.profile_image"
+          [name]="profile_form.value.name || ''"
+          color="light"
+          bg="#68B15F"
+          class="f-20"
+        />
+
+        <div class="f-14 card_edit_image" (click)="fileImage.click()">
+          Alterar Imagem
+        </div>
+
+        <input
+          type="file"
+          #fileImage
+          style="display: none"
+          accept="image/*"
+          (change)="onFileChanged($event)"
+        />
+      </div>
+
+      <!-- <img *ngIf="profile_form.value.profile_image" [src]="profile_form.value.profile_image" alt="">
+      <label class="f-14"> Add imagem </label> -->
+    </figure>
+
+    <div class="card_input">
+      <i icon="name"></i>
+      <input
+        title="name"
+        type="text"
+        formControlName="name"
+        placeholder="Nome"
+      />
+    </div>
+
+    <div class="card_input">
+      <i icon="email"></i>
+      <input
+        title="email"
+        type="email"
+        formControlName="email"
+        placeholder="E-mail"
+      />
+    </div>
+
+
+    <button type="submit" title="adicionar" mat-raised-button class="primary">
+      Atualizar
+    </button>
+  </form>
+</main>
