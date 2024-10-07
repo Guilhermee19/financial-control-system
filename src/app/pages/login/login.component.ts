@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.storage.logout();
+    // this.storage.logout();
+    console.log('--');
   }
 
   loginSubmit() {

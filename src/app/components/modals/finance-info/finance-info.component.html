@@ -9,7 +9,7 @@
     </h3>
   </header>
 
-  <div class="finance-info">
+  <form class="finance-info" [formGroup]="finance_form">
     <div class="info">
       <label class="f-14"> Valor de {{ data.finance.type | convertStatus }}: </label>
       <span class="space"></span>
@@ -62,7 +62,36 @@
       </h3>
     </div>
 
-  </div>
+    <br><br>
+
+    <div class="info" *ngIf="data.finance.installment.installment_image">
+      <label class="f-14"> Comprovante: </label>
+      <span class="space"></span>
+      <a href="" target="_blank"> Abrir </a>
+    </div>
+
+    <div class="card_input">
+      <i icon="receipt"></i>
+      <input
+        title="receipt"
+        type="text"
+        readonly
+        formControlName="receipt"
+        placeholder="Adicionar comprovante"
+        (click)="fileImage.click()"
+      />
+
+      <input
+        type="file"
+        #fileImage
+        style="display: none"
+        accept="image/*"
+        (change)="onFileChanged($event)"
+      />
+
+    </div>
+
+  </form>
 
   <div class="buttons center">
     <!-- <button
