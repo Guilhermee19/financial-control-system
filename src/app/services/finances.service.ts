@@ -49,6 +49,10 @@ export class FinancesService {
     return this.http.patch<IFinance>(`core/pay-installment/`, body);
   }
 
+  uploadInstallmentImage(body: BodyJson): Observable<IFinance> {
+    return this.http.patch<IFinance>(`core/upload-installment-image/`, body);
+  }
+
   deletFinance(id: number): Observable<IFinance> {
     return this.http.delete<IFinance>(`core/delete-finance/${id}/`);
   }

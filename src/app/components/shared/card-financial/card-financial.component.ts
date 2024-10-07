@@ -5,6 +5,7 @@ import { FinancesService } from 'src/app/services/finances.service';
 import { ConfirmationPopupComponent } from '../../modals/confirmation-popup/confirmation-popup.component';
 import { configModals } from 'src/app/constants/utils';
 import { FinanceInfoComponent } from '../../modals/finance-info/finance-info.component';
+import { DetailFinanceComponent } from '../../modals/detail-finance/detail-finance.component';
 
 @Component({
   selector: 'app-card-financial',
@@ -41,6 +42,25 @@ export class CardFinancialComponent {
           console.log(result);
           this.event.emit('PAY');
         }
+        else if (result.action === 'edit'){
+          this.editFinance();
+        }
+      }
+    });
+  }
+
+  editFinance() {
+    console.log('EDITAR');
+
+    const dialogRef = this.dialog.open(DetailFinanceComponent, {
+      ...configModals,
+      data: {
+        finance: this.finance
+      }
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (result.action === 'yes') this.event.emit('EDIT');
       }
     });
   }
