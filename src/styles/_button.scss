@@ -119,6 +119,10 @@ a:-webkit-any-link {
       font-size: 1rem;
       border-color: transparent;
       transition: var(--ts);
+      box-shadow: none;
+      min-width: max-content;
+      padding: 10px;
+
       &:hover {
         opacity: 0.7;
       }

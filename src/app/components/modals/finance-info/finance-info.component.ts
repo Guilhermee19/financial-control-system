@@ -38,6 +38,7 @@ export class FinanceInfoComponent implements OnInit {
 
   editFinance(){
     console.log(this.data.finance);
+    this.chance('edit')
   }
 
   deletFinance(){
@@ -61,6 +62,21 @@ export class FinanceInfoComponent implements OnInit {
     })
   }
 
+  uploadInstallmentImage(){
+    const body = {
+      installment_id: this.data.finance.installment.id,
+      installment_image: this.finance_form.value.base64 || ''
+    }
+
+    this.financesService.uploadInstallmentImage(body).subscribe({
+      next: (data) => {
+        console.log(data);
+
+        this.chance('yes')
+      }
+    })
+  }
+
   async onFileChanged(event: any) {
     if (event.target.files && event.target.files[0]) {
       const target = event.target.files;
@@ -75,6 +91,10 @@ export class FinanceInfoComponent implements OnInit {
         if (res.index > res.array.length - 1) {
           this.finance_form.get('receipt')?.patchValue(target[0].name);
           this.finance_form.get('base64')?.patchValue(this.compressed_image[0]);
+
+          if(this.data.finance.installment.is_paid){
+            this.uploadInstallmentImage();
+          }
 
           this.compressed_image = [];
         }
@@ -132,7 +152,7 @@ export class FinanceInfoComponent implements OnInit {
   }
 
 
-  chance(chance: 'yes' | 'no'): void {
+  chance(chance: 'yes' | 'no' | 'edit'): void {
     this.dialogRef.close({ action: chance });
   }
 }

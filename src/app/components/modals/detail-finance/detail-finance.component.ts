@@ -39,17 +39,18 @@ export class DetailFinanceComponent implements OnInit {
   status = STATUS;
 
   finance_form = this.fb.group({
-    category: [],
-    account: [],
+    category: [0],
+    account: [0],
     date: [new Date().toISOString().split('T')[0], Validators.required],
     description: ['', [Validators.required]],
-    value: [[Validators.required]],
+    value: [0, [Validators.required]],
     installments: [0],
     card: [this.fb.group({})],
     payment_voucher: [''],
     recurrence: [''],
     type: [''],
-    screen: ['receita']
+    screen: ['receita'],
+    edit_all: [false]
   });
 
   is_invoice = this.fb.control(false)
@@ -62,6 +63,23 @@ export class DetailFinanceComponent implements OnInit {
 
   ngOnInit() {
     this.finance_form.reset();
+
+    if(this.data.finance){
+      console.log('EDITAR');
+
+      this.phase = 1;
+
+      this.finance_form.patchValue({
+        screen: this.data.finance.type === 'INCOME' ? 'receita' : 'despesa',
+        value: this.data.finance.installment.installment_value,
+        description: this.data.finance.description,
+        category: this.data.finance.category,
+        account: this.data.finance.account,
+        date: this.data.finance.installment.date,
+        recurrence: this.data.finance.recurrence,
+        installments: this.data.finance.number_of_installments,
+      });
+    }
 
     this.finance_form.patchValue({
       date: new Date().toISOString().split('T')[0],
@@ -111,7 +129,13 @@ export class DetailFinanceComponent implements OnInit {
 
     this.loading = true;
 
-    this.createFinance();
+    if(!this.data.finance.id){
+      this.createFinance();
+    }
+    else{
+      this.patchFinance()
+    }
+
   }
 
   createFinance() {
@@ -143,6 +167,45 @@ export class DetailFinanceComponent implements OnInit {
       },
     });
   }
+
+  patchFinance() {
+    const value = this.finance_form.get('value')?.value || 0;
+    const installments = this.finance_form.get('installments')?.value || 1;
+
+    // Pegando e formatando a data da compra
+    const dataCompra = new Date(
+      this.finance_form.value.date + 'T12:00:00' || 0
+    );
+
+    const body: any = {
+      description: this.finance_form.value.description || '',
+      date: dataCompra.toISOString().split('T')[0], // Incluindo a data
+      account: this.finance_form.value.account,
+      category: this.finance_form.value.category,
+      edit_all_installments: this.finance_form.value.edit_all || false,
+      number_of_installments: installments,
+      finance_id: this.data.finance.id
+    };
+
+    if (!this.finance_form.value.edit_all) {
+      body.installment_id = this.data.finance.installment.id;
+      body.installment_value = value;
+    } else {
+      body.value = value || 1;
+    }
+
+    // Chama o serviço de edição da Finance
+    this.financesService.patchFinance(this.data.finance.id, body as BodyJson).subscribe({
+      next: () => {
+        this.chance('yes');
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      }
+    });
+  }
+
 
   setRecurrence(option: string | undefined | null){
     if(!option) return 'SINGLE';

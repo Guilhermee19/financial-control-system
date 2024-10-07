@@ -119,7 +119,7 @@ export class FinanciaPhotographyComponent implements OnInit {
 
   action(event: string) {
     console.log(event);
-    if (['PAY', 'DELET'].includes(event)) this.getAllFinances(1);
+    if (['PAY', 'DELET', 'EDIT'].includes(event)) this.getAllFinances(1);
   }
 
   get totalForTheMonth() {
