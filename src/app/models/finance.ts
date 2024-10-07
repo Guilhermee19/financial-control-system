@@ -18,6 +18,7 @@ export interface Installment {
   date: string;
   finance: number;
   id: number;
+  installment_image: string
   installment_value: number;
   is_paid: boolean;
   updated_at: string;

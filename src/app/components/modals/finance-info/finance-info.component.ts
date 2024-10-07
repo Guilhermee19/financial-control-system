@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { EMPTY, expand, map } from 'rxjs';
 import { IFinance } from 'src/app/models/finance';
 import { IDialogActions } from 'src/app/models/utils';
-import { AccountsService } from 'src/app/services/accounts.service';
-import { CategoryService } from 'src/app/services/category.service';
+import { CompressorService } from 'src/app/services/compressor.service';
 import { FinancesService } from 'src/app/services/finances.service';
 
 export interface IData {
@@ -22,10 +22,15 @@ export class FinanceInfoComponent implements OnInit {
     private financesService: FinancesService,
     public dialogRef: MatDialogRef<IDialogActions>,
     @Inject(MAT_DIALOG_DATA) public data: IData,
-    private accountsService: AccountsService,
-    private categoryService: CategoryService
+    private compressor: CompressorService,
   ) {}
 
+  finance_form = this.fb.group({
+    receipt: [''],
+    base64: ['']
+  });
+
+  compressed_image = [];
 
   ngOnInit() {
     console.log(this.data.finance);
@@ -43,7 +48,8 @@ export class FinanceInfoComponent implements OnInit {
     console.log(this.data.finance);
 
     const body = {
-      installment_id: this.data.finance.installment.id
+      installment_id: this.data.finance.installment.id,
+      installment_image: this.finance_form.value.base64 || ''
     }
 
     this.financesService.payInstallment(body).subscribe({
@@ -54,6 +60,40 @@ export class FinanceInfoComponent implements OnInit {
       }
     })
   }
+
+  async onFileChanged(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const target = event.target.files;
+      const compress = this.recursiveCompress(target[0], 0, target).pipe(
+        expand((res: any) => {
+          return res.index > res.array.length - 1
+            ? EMPTY
+            : this.recursiveCompress(target[res.index], res.index, target);
+        })
+      );
+      compress.subscribe((res: any) => {
+        if (res.index > res.array.length - 1) {
+          this.finance_form.get('receipt')?.patchValue(target[0].name);
+          this.finance_form.get('base64')?.patchValue(this.compressed_image[0]);
+
+          this.compressed_image = [];
+        }
+      });
+    }
+  }
+
+  recursiveCompress = (image: File, index: number, array: string[]) => {
+    return this.compressor.compress(image).pipe(
+      map((response) => {
+        this.compressed_image.push(response as never);
+        return {
+          data: response,
+          index: index + 1,
+          array,
+        };
+      })
+    );
+  };
 
   get status() {
     const hoje = new Date();
