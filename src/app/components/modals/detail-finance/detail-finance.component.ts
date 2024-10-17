@@ -12,7 +12,7 @@ import { FinancesService } from 'src/app/services/finances.service';
 import { BodyJson } from 'src/app/services/http.service';
 
 export interface IData {
-  finance: IFinance;
+  finance?: IFinance;
 }
 
 @Component({
@@ -64,7 +64,7 @@ export class DetailFinanceComponent implements OnInit {
   ngOnInit() {
     this.finance_form.reset();
 
-    if(this.data.finance){
+    if(this.data?.finance){
       console.log('EDITAR');
 
       this.phase = 1;
@@ -129,7 +129,7 @@ export class DetailFinanceComponent implements OnInit {
 
     this.loading = true;
 
-    if(!this.data.finance.id){
+    if(!this.data.finance?.id){
       this.createFinance();
     }
     else{
@@ -169,6 +169,8 @@ export class DetailFinanceComponent implements OnInit {
   }
 
   patchFinance() {
+    if(!this.data.finance?.id) return;
+
     const value = this.finance_form.get('value')?.value || 0;
     const installments = this.finance_form.get('installments')?.value || 1;
 
@@ -184,18 +186,18 @@ export class DetailFinanceComponent implements OnInit {
       category: this.finance_form.value.category,
       edit_all_installments: this.finance_form.value.edit_all || false,
       number_of_installments: installments,
-      finance_id: this.data.finance.id
+      finance_id: this.data.finance?.id
     };
 
     if (!this.finance_form.value.edit_all) {
-      body.installment_id = this.data.finance.installment.id;
+      body.installment_id = this.data.finance?.installment.id;
       body.installment_value = value;
     } else {
       body.value = value || 1;
     }
 
     // Chama o serviço de edição da Finance
-    this.financesService.patchFinance(this.data.finance.id, body as BodyJson).subscribe({
+    this.financesService.patchFinance(this.data.finance?.id, body as BodyJson).subscribe({
       next: () => {
         this.chance('yes');
         this.loading = false;
