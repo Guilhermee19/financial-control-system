@@ -129,7 +129,7 @@ export class DetailFinanceComponent implements OnInit {
 
     this.loading = true;
 
-    if(!this.data.finance?.id){
+    if(!this.data?.finance?.id){
       this.createFinance();
     }
     else{
