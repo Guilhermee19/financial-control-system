@@ -14,6 +14,7 @@ import { SharedModule } from 'src/app/components/shared/shared.module';
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
+    // NgApexchartsModule
   ]
 })
 export class DashboardModule { }

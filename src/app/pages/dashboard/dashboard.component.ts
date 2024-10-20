@@ -35,6 +35,35 @@ export class DashboardComponent implements OnInit {
     total_month_expenditure: 0,
   } as IDashbaord;
 
+  // graphic_summary = {
+  //   ...VERTICAL_BAR,
+  //   yaxis: {
+  //     min: 0,
+  //     max: 0,
+  //     axisBorder: {
+  //       show: false,
+  //     },
+  //     axisTicks: {
+  //       show: false,
+  //     },
+  //     labels: {
+  //       show: true,
+  //       formatter: (val: number) => {
+  //         return `${val}h`;
+  //       },
+  //     },
+  //   },
+  //   dataLabels: {
+  //     ...VERTICAL_BAR.dataLabels,
+  //     formatter: (val: number) => {
+  //       return `${val}h`;
+  //     },
+  //   },
+  //   colors: ['#f5c738'],
+  //   xaxis: {} as ApexXAxis,
+  //   series: [] as ApexAxisChartSeries,
+  // };
+
   ngOnInit() {
     this.getDashboard();
     this.getAllFinances();
