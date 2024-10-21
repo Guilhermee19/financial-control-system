@@ -169,7 +169,7 @@ export class DetailFinanceComponent implements OnInit {
   }
 
   patchFinance() {
-    if(!this.data.finance?.id) return;
+    if(!this.data?.finance?.id) return;
 
     const value = this.finance_form.get('value')?.value || 0;
     const installments = this.finance_form.get('installments')?.value || 1;
