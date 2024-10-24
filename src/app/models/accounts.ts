@@ -1,14 +1,13 @@
+import { ICard } from "./card";
+
 export interface IAccount {
   id: number;
+  cards: ICard[];
   created_at: string;
   updated_at: string;
   name: string;
-  balance_debit: string;
-  balance_credit: string;
-  credit_limit: string;
-  credit_due_date: string;
-  is_debit: boolean;
-  is_credit: boolean;
+  balance: string;
   created_by: number;
   updated_by: number;
+  user: number;
 }

@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { STATUS } from 'src/app/constants/finance';
 import { IAccount } from 'src/app/models/accounts';
 import { ICategory } from 'src/app/models/category';
-import { IFinance } from 'src/app/models/finance';
+import { ITransaction } from 'src/app/models/finance';
 import { IDialogActions } from 'src/app/models/utils';
 import { AccountsService } from 'src/app/services/accounts.service';
 import { CategoryService } from 'src/app/services/category.service';
@@ -12,7 +12,7 @@ import { FinancesService } from 'src/app/services/finances.service';
 import { BodyJson } from 'src/app/services/http.service';
 
 export interface IData {
-  finance?: IFinance;
+  finance?: ITransaction;
 }
 
 @Component({
@@ -73,9 +73,9 @@ export class DetailFinanceComponent implements OnInit {
         screen: this.data.finance.type === 'INCOME' ? 'receita' : 'despesa',
         value: this.data.finance.installment.installment_value,
         description: this.data.finance.description,
-        category: this.data.finance.category,
-        account: this.data.finance.account,
-        date: this.data.finance.installment.date,
+        category: this.data.finance.installment.category,
+        account: this.data.finance.installment.account,
+        date: this.data.finance.installment.due_date,
         recurrence: this.data.finance.recurrence,
         installments: this.data.finance.number_of_installments,
       });
@@ -169,7 +169,7 @@ export class DetailFinanceComponent implements OnInit {
   }
 
   patchFinance() {
-    if(!this.data.finance?.id) return;
+    if(!this.data?.finance?.id) return;
 
     const value = this.finance_form.get('value')?.value || 0;
     const installments = this.finance_form.get('installments')?.value || 1;

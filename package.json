@@ -34,6 +34,7 @@
     "apexcharts": "^3.54.0",
     "firebase": "^10.13.0",
     "md5-typescript": "^1.0.5",
+    "ng-apexcharts": "^1.8.0",
     "ngx-colors": "^3.6.0",
     "ngx-cookie-service": "^16.1.0",
     "ngx-mask": "^16.4.1",

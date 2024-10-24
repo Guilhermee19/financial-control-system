@@ -3,7 +3,7 @@ import { HttpService } from './http.service';
 import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { IDashbaord } from '../models/dashboard';
-import { IFinance } from '../models/finance';
+import { ITransaction } from '../models/finance';
 import { IFilter } from '../models/utils';
 
 @Injectable({
@@ -25,7 +25,7 @@ export class DashboardService {
     return this.http.get<IDashbaord>('core/get-dashboard/', query);
   }
 
-  getAllFinances(params: IFilter): Observable<IFinance[]> {
+  getAllFinances(params: IFilter): Observable<ITransaction[]> {
     let query = new HttpParams()
     if (params.year && params.month) {
       const startDate = new Date(params.year, params.month - 1, 1); // mês começa em 0, por isso `month - 1`
@@ -41,6 +41,6 @@ export class DashboardService {
       query = query.set('page_size', 12);
     }
 
-    return this.http.get<IFinance[]>('core/all-finances/', query);
+    return this.http.get<ITransaction[]>('core/all-transaction/', query);
   }
 }

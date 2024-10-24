@@ -1,19 +1,19 @@
 <section
-  [style.backgroundColor]="finance.category_obj?.bg_color || 'var(--secund-bg)'"
+  [style.backgroundColor]="finance.installment.category_obj?.bg_color || 'var(--secund-bg)'"
   (click)="openDetail()"
 >
   <div class="left">
     <div class="row">
-      <div *ngIf="finance.category_obj"
+      <div *ngIf="finance.installment.category_obj"
         class="tag"
-        [style.backgroundColor]="finance.category_obj.color"
-        [initialLetters]="finance.category_obj.name"
+        [style.backgroundColor]="finance.installment.category_obj.color"
+        [initialLetters]="finance.installment.category_obj.name"
         [length]="2"
       ></div>
 
       <div class="info">
         <h5 class="f-10">
-          {{ finance.account_obj?.name || '' }}
+          {{ finance.installment.account_obj?.name || '' }}
         </h5>
         <h2 class="f-16">{{ finance.description }}</h2>
         <h3 class="f-10 status" [ngClass]="status">
@@ -23,9 +23,9 @@
     </div>
 
     <h5 class="f-10 date">
-      {{ finance.installment.date | date : 'EE' }}
-      {{ finance.installment.date | date : 'd' }} de
-      {{ finance.installment.date | date : 'MMM' }}
+      {{ finance.installment.due_date | date : 'EE' }}
+      {{ finance.installment.due_date | date : 'd' }} de
+      {{ finance.installment.due_date | date : 'MMM' }}
     </h5>
   </div>
 

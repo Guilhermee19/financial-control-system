@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { IFinance } from 'src/app/models/finance';
+import { ITransaction } from 'src/app/models/finance';
 import { FinancesService } from 'src/app/services/finances.service';
 import { ConfirmationPopupComponent } from '../../modals/confirmation-popup/confirmation-popup.component';
 import { configModals } from 'src/app/constants/utils';
@@ -13,7 +13,7 @@ import { DetailFinanceComponent } from '../../modals/detail-finance/detail-finan
   styleUrls: ['./card-financial.component.scss'],
 })
 export class CardFinancialComponent {
-  @Input() finance!: IFinance;
+  @Input() finance!: ITransaction;
   @Input() options = true;
   @Output() event = new EventEmitter<string>();
 
@@ -85,7 +85,7 @@ export class CardFinancialComponent {
     }
   }
 
-  popupDelete(finance: IFinance){
+  popupDelete(finance: ITransaction){
     const dialogRef = this.dialog.open(ConfirmationPopupComponent, {
       ...configModals,
       data: {
@@ -102,7 +102,7 @@ export class CardFinancialComponent {
     });
   }
 
-  deletFinance(finance: IFinance){
+  deletFinance(finance: ITransaction){
     this.financesService.deletFinance(finance.id).subscribe({
       next: () => {
         this.event.emit('DELET');
@@ -112,7 +112,7 @@ export class CardFinancialComponent {
 
   get status() {
     const hoje = new Date();
-    const dataInput = new Date(this.finance.installment.date + 'T12:00:00'); // Data sem ajuste de hora
+    const dataInput = new Date(this.finance.installment.due_date + 'T12:00:00'); // Data sem ajuste de hora
 
     // Pegue as informações de ano, mês e dia
     const hojeAno = hoje.getFullYear();

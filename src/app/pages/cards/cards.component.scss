@@ -1,0 +1,40 @@
+@import 'src/styles/media';
+
+main {
+  width: var(--width-screen);
+  margin: 0 auto;
+  padding: 1rem 0.1rem 0.2rem;
+
+  header {
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+
+    h1 {
+      margin: 0;
+    }
+  }
+
+  .card-tablet table th span,
+  .card-tablet table td span {
+    justify-content: flex-start !important;
+
+    &.mobile {
+      display: none;
+    }
+
+    @include media('<=570px') {
+      &.web {
+        display: none;
+      }
+      &.mobile {
+        display: flex;
+      }
+    }
+  }
+}

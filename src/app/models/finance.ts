@@ -15,19 +15,22 @@ export interface Installment {
   created_at: string;
   created_by: number;
   current_installment: number;
-  date: string;
-  finance: number;
+  total_installments: number;
+  due_date: string;
+  transaction: number;
   id: number;
   installment_image: string
   installment_value: number;
   is_paid: boolean;
   updated_at: string;
   updated_by: number;
-}
-
-export interface IFinance {
   account: number;
   account_obj?: Account;
+  category: number;
+  category_obj?: ICategory;
+}
+
+export interface ITransaction {
   created_at: string;
   created_by: number;
   date: string;
@@ -35,8 +38,6 @@ export interface IFinance {
   id: number;
   number_of_installments: number;
   installment: Installment;
-  category: number;
-  category_obj?: ICategory;
   updated_at: string;
   updated_by: number;
   value: number;
