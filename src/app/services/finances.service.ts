@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BodyJson, HttpService } from './http.service';
 import { Observable } from 'rxjs';
-import { IFinance } from '../models/finance';
+import { ITransaction } from '../models/finance';
 import { HttpParams } from '@angular/common/http';
 import { IFilter, IPagedReq } from '../models/utils';
 
@@ -11,7 +11,7 @@ import { IFilter, IPagedReq } from '../models/utils';
 export class FinancesService {
   constructor(private http: HttpService) {}
 
-  getAllFinances(params: IFilter): Observable<IPagedReq<IFinance>> {
+  getAllFinances(params: IFilter): Observable<IPagedReq<ITransaction>> {
     let query = new HttpParams()
     if (params.year && params.month) {
       const startDate = new Date(params.year, params.month - 1, 1); // mês começa em 0, por isso `month - 1`
@@ -32,28 +32,28 @@ export class FinancesService {
       query = query.set('page_size', 12);
     }
 
-    return this.http.get<IPagedReq<IFinance>>('core/all-finances/', query);
+    return this.http.get<IPagedReq<ITransaction>>('core/all-transaction/', query);
   }
 
-  postFinance(body: BodyJson): Observable<IFinance> {
+  postFinance(body: BodyJson): Observable<ITransaction> {
     console.log(body);
 
-    return this.http.post<IFinance>(`core/create-finance/`, body);
+    return this.http.post<ITransaction>(`core/create-transaction/`, body);
   }
 
-  patchFinance(id: number, body: BodyJson): Observable<IFinance> {
-    return this.http.patch<IFinance>(`core/edit-finance/${id}/`, body);
+  patchFinance(id: number, body: BodyJson): Observable<ITransaction> {
+    return this.http.patch<ITransaction>(`core/edit-transaction/${id}/`, body);
   }
 
-  payInstallment(body: BodyJson): Observable<IFinance> {
-    return this.http.patch<IFinance>(`core/pay-installment/`, body);
+  payInstallment(body: BodyJson): Observable<ITransaction> {
+    return this.http.patch<ITransaction>(`core/pay-installment/`, body);
   }
 
-  uploadInstallmentImage(body: BodyJson): Observable<IFinance> {
-    return this.http.patch<IFinance>(`core/upload-installment-image/`, body);
+  uploadInstallmentImage(body: BodyJson): Observable<ITransaction> {
+    return this.http.patch<ITransaction>(`core/upload-installment-image/`, body);
   }
 
-  deletFinance(id: number): Observable<IFinance> {
-    return this.http.delete<IFinance>(`core/delete-finance/${id}/`);
+  deletFinance(id: number): Observable<ITransaction> {
+    return this.http.delete<ITransaction>(`core/delete-transaction/${id}/`);
   }
 }

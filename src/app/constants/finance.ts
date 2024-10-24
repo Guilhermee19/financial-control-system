@@ -1,6 +1,6 @@
-import { IFinance } from '../models/finance';
+import { ITransaction } from '../models/finance';
 
-export const FINANCE: IFinance[] = [];
+export const FINANCE: ITransaction[] = [];
 
 export const TAGS = [
   {

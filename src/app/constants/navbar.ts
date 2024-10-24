@@ -31,17 +31,17 @@ export const NAVBAR_PAGES: {
     roles: ['Admin', 'Desenvolvedor'],
   },
   {
+    label: 'Cartão',
+    icon: 'cards',
+    link: '/cards',
+    roles: ['Admin', 'Desenvolvedor'],
+  },
+  {
     label: 'Relatórios',
     icon: 'report',
     link: '/report',
     roles: ['Admin', 'Desenvolvedor'],
   },
-  // {
-  //   label: 'Cartão',
-  //   icon: 'cards',
-  //   link: '/cards',
-  //   roles: ['Admin', 'Desenvolvedor'],
-  // },
   {
     label: 'Configuração',
     icon: 'config',

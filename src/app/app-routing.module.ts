@@ -40,6 +40,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/account/account.module').then((m) => m.AccountModule),
       },
+      { path: 'cards', loadChildren: () => import('./pages/cards/cards.module').then(m => m.CardsModule) },
       {
         path: 'report',
         loadChildren: () =>

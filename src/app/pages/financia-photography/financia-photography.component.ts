@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DetailFinanceComponent } from 'src/app/components/modals/detail-finance/detail-finance.component';
 import { MONTHS } from 'src/app/constants/utils';
-import { IFinance } from 'src/app/models/finance';
+import { ITransaction } from 'src/app/models/finance';
 import { FinancesService } from 'src/app/services/finances.service';
 
 @Component({
@@ -19,8 +19,8 @@ export class FinanciaPhotographyComponent implements OnInit {
 
   loading = false;
 
-  dataSource: IFinance[] = [];
-  backupFinancias: IFinance[] = [];
+  dataSource: ITransaction[] = [];
+  backupFinancias: ITransaction[] = [];
 
   months = MONTHS;
 
@@ -70,10 +70,10 @@ export class FinanciaPhotographyComponent implements OnInit {
       this.getAllFinances(this.current_page);
     }
 
-  sortOrder(array: IFinance[]){
-    return array.sort((a:IFinance, b:IFinance) => {
-      const dateA = new Date(a.installment?.date).getTime();
-      const dateB = new Date(b.installment?.date).getTime();
+  sortOrder(array: ITransaction[]){
+    return array.sort((a:ITransaction, b:ITransaction) => {
+      const dateA = new Date(a.installment?.due_date).getTime();
+      const dateB = new Date(b.installment?.due_date).getTime();
       return dateA - dateB;  // Ordena em ordem crescente
     });
   }

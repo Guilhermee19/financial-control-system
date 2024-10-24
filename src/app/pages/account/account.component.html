@@ -2,7 +2,7 @@
   <header>
     <h1>Contas</h1>
 
-    <button
+    <!-- <button
       type="button"
       mat-icon-button
       class="primary"
@@ -10,7 +10,7 @@
       (click)="craateAccount()"
     >
       <i icon="plus" title="aticionar"></i>
-    </button>
+    </button> -->
   </header>
 
   <section class="card-tablet">
@@ -20,7 +20,7 @@
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="type_card">
+      <!-- <ng-container matColumnDef="type_card">
         <th mat-header-cell *matHeaderCellDef>Tipo</th>
         <td mat-cell *matCellDef="let element">
           <span class="web">
@@ -33,19 +33,19 @@
             {{ element.is_credit ? 'C' : '' }}
           </span>
         </td>
-      </ng-container>
+      </ng-container> -->
 
       <ng-container matColumnDef="credit_limit">
-        <th mat-header-cell *matHeaderCellDef>Limite do Cartão</th>
+        <th mat-header-cell *matHeaderCellDef>Saldo</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.credit_limit | convertMoney }}
+          {{ element.balance | convertMoney }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="credit_due_date">
-        <th mat-header-cell *matHeaderCellDef> <span class="web">Vencimento da Fatura</span> </th>
+        <th mat-header-cell *matHeaderCellDef> <span class="web">Cartões</span> </th>
         <td mat-cell *matCellDef="let element">
-          {{ element.credit_due_date | date : 'dd/MMM' }}
+          {{ element.cards.length }}
         </td>
       </ng-container>
 

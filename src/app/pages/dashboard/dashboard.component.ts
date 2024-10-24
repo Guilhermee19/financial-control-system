@@ -1,10 +1,11 @@
+import { Installment } from './../../models/finance';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PreviewDashboardComponent } from 'src/app/components/modals/preview-dashboard/preview-dashboard.component';
 import { CalendarData, EventCalandar } from 'src/app/components/shared/calendar/calendar.component';
 import { configModals, MONTHS } from 'src/app/constants/utils';
 import { IDashbaord } from 'src/app/models/dashboard';
-import { IFinance } from 'src/app/models/finance';
+import { ITransaction } from 'src/app/models/finance';
 import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class DashboardComponent implements OnInit {
   loading = false;
 
   finances_compact : CalendarData[] = [];
-  finances: IFinance[] = [];
+  finances: ITransaction[] = [];
 
   months = MONTHS;
 
@@ -85,9 +86,9 @@ export class DashboardComponent implements OnInit {
         this.finances_compact = this.finances.map(el => {
           return {
             id: el.installment.id,
-            date: el.installment.date,
+            date: el.installment.due_date,
             label: el.description,
-            color: el.category_obj?.color || '#64c6e8'
+            color: el.installment?.category_obj?.color || '#64c6e8'
           }
         });
 
@@ -117,7 +118,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  openPreview(event: EventCalandar, finances: IFinance[]) {
+  openPreview(event: EventCalandar, finances: ITransaction[]) {
     this.dialog.open(PreviewDashboardComponent, {
       ...configModals,
       data: {
@@ -141,10 +142,10 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  sortOrder(array: IFinance[]){
-    return array.sort((a:IFinance, b:IFinance) => {
-      const dateA = new Date(a.installment?.date).getTime();
-      const dateB = new Date(b.installment?.date).getTime();
+  sortOrder(array: ITransaction[]){
+    return array.sort((a:ITransaction, b:ITransaction) => {
+      const dateA = new Date(a.installment?.due_date).getTime();
+      const dateB = new Date(b.installment?.due_date).getTime();
       return dateA - dateB;  // Ordena em ordem crescente
     });
   }

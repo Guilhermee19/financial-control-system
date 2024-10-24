@@ -1,11 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MONTHS } from 'src/app/constants/utils';
-import { IFinance } from 'src/app/models/finance';
+import { ITransaction } from 'src/app/models/finance';
 import { IDialogActions } from 'src/app/models/utils';
 
 export interface IData {
-  finances: IFinance[];
+  finances: ITransaction[];
   date: {
     day: number | undefined;
     month: number;

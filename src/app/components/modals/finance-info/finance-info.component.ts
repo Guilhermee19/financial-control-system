@@ -2,13 +2,13 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { EMPTY, expand, map } from 'rxjs';
-import { IFinance } from 'src/app/models/finance';
+import { ITransaction } from 'src/app/models/finance';
 import { IDialogActions } from 'src/app/models/utils';
 import { CompressorService } from 'src/app/services/compressor.service';
 import { FinancesService } from 'src/app/services/finances.service';
 
 export interface IData {
-  finance: IFinance;
+  finance: ITransaction;
 }
 
 @Component({
@@ -117,7 +117,7 @@ export class FinanceInfoComponent implements OnInit {
 
   get status() {
     const hoje = new Date();
-    const dataInput = new Date(this.data.finance.installment.date + 'T12:00:00'); // Data sem ajuste de hora
+    const dataInput = new Date(this.data.finance.installment.due_date + 'T12:00:00'); // Data sem ajuste de hora
 
     // Pegue as informações de ano, mês e dia
     const hojeAno = hoje.getFullYear();

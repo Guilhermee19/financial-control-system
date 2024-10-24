@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { CalendarData } from 'src/app/components/shared/calendar/calendar.component';
 import { MONTHS } from 'src/app/constants/utils';
 import { IDashbaord } from 'src/app/models/dashboard';
-import { IFinance } from 'src/app/models/finance';
+import { ITransaction } from 'src/app/models/finance';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -23,7 +23,7 @@ export class ReportComponent {
   loading = false;
 
   finances_compact : CalendarData[] = [];
-  finances: IFinance[] = [];
+  finances: ITransaction[] = [];
 
   months = MONTHS;
 
@@ -74,4 +74,8 @@ export class ReportComponent {
     ] as ApexAxisChartSeries,
   };
 
+  // ngOnInit() {
+  //   this.getDashboard();
+  //   this.getAllFinances();
+  // }
 }
