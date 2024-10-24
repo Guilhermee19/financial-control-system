@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.1](https://github.com/Guilhermee19/financial-control-system/compare/v4.0.0...v4.0.1) (2024-10-24)
+
+## [4.0.0](https://github.com/Guilhermee19/financial-control-system/compare/v3.0.0...v4.0.0) (2024-10-24)
+
+
+### Features
+
+* ajustes ([5b63092](https://github.com/Guilhermee19/financial-control-system/commit/5b63092b61a3f9cda953c1a37808ca46083e30c1))
+* lib ng-apexcharts ([5a85321](https://github.com/Guilhermee19/financial-control-system/commit/5a85321dac036af195716942abf83a7ed9e41cc3))
+* tipagem e alteração de fluxo das variaveis do financeiro e parcelas | tela cartão ([53025f1](https://github.com/Guilhermee19/financial-control-system/commit/53025f146aaedbd10042b61d9d462deb7f8b17cf))
+
+
+### Bug Fixes
+
+* correção no cadastro de um fincance ([378ca52](https://github.com/Guilhermee19/financial-control-system/commit/378ca5236cd28f2f88237b446e5c8e90cc6923e9))
+* tratamento popup ([bac1847](https://github.com/Guilhermee19/financial-control-system/commit/bac18470f2d76e67061566a7101aafa9e9023f73))
+
 ## [3.0.0](https://github.com/Guilhermee19/financial-control-system/compare/v2.0.2...v3.0.0) (2024-10-07)
 
 
