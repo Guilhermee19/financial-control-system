@@ -68,8 +68,12 @@ export class ReportComponent {
     series:
     [
       {
-        data:[44, 55, 13, 43, 22],
+        data:[20, 12, 13, 5, 22],
         name: 'Entrada'
+      },
+      {
+        data:[44, 55, 2, 12, 35],
+        name: 'Saida'
       }
     ] as ApexAxisChartSeries,
   };
