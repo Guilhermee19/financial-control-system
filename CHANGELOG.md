@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.1](https://github.com/Guilhermee19/financial-control-system/compare/v5.0.0...v5.0.1) (2024-10-26)
+
+
+### Bug Fixes
+
+* update angular-devkit/core ([44d2310](https://github.com/Guilhermee19/financial-control-system/commit/44d23100f8d6d171bb5593f5dec8800be021e137))
+
 ## [5.0.0](https://github.com/Guilhermee19/financial-control-system/compare/v4.0.1...v5.0.0) (2024-10-26)
 
 
