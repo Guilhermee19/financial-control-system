@@ -16,7 +16,7 @@
     <input title="name" type="text" formControlName="name" placeholder="Nome" />
   </div>
 
-  <div class="card_input">
+  <!-- <div class="card_input">
     <i icon="date"></i>
     <input
       title="date"
@@ -24,7 +24,7 @@
       formControlName="credit_due_date"
       placeholder="Data"
     />
-  </div>
+  </div> -->
 
   <!-- <div class="card_input">
     <i icon="date"></i>
@@ -37,7 +37,7 @@
     />
   </div> -->
 
-  <div class="card_input">
+  <!-- <div class="card_input">
     <i icon="value"></i>
     <input
       title="credit_limit"
@@ -49,9 +49,9 @@
       formControlName="credit_limit"
       placeholder="Limite do cartão"
     />
-  </div>
+  </div> -->
 
-  <div class="rows">
+  <!-- <div class="rows">
     <div class="card_input">
       <mat-checkbox formControlName="is_debit">Débito</mat-checkbox>
     </div>
@@ -59,9 +59,17 @@
     <div class="card_input">
       <mat-checkbox formControlName="is_credit">Crédito</mat-checkbox>
     </div>
-  </div>
+  </div> -->
+
+ <div class="buttons center">
+  <!-- <button type="submit" title="adicionar" mat-raised-button class="warn"
+  [disabled]="!account_form.value.account">
+    Adicionar Cartão
+  </button> -->
 
   <button type="submit" title="adicionar" mat-raised-button class="primary">
     Adicionar
   </button>
+ </div>
+
 </form>
