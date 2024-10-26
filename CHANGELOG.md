@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.2](https://github.com/Guilhermee19/financial-control-system/compare/v5.0.1...v5.0.2) (2024-10-26)
+
+
+### Features
+
+* update angular eslint ([642b2a8](https://github.com/Guilhermee19/financial-control-system/commit/642b2a8f90bec4e1f0d67aa48aa76048dddaf8e5))
+
+
+### Bug Fixes
+
+* update lib ([c482185](https://github.com/Guilhermee19/financial-control-system/commit/c482185e6727f168b3a938085bfde94dfc1e59f2))
+
 ### [5.0.1](https://github.com/Guilhermee19/financial-control-system/compare/v5.0.0...v5.0.1) (2024-10-26)
 
 
