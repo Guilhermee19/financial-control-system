@@ -89,7 +89,7 @@ main {
     }
 
     &.calendar {
-      width: 60%;
+      width: 100%;
       margin-top: 1rem;
 
       app-calendar {
@@ -97,9 +97,9 @@ main {
         height: 65vh;
       }
 
-      @include media('<=tablet') {
-        width: 100%;
-      }
+      // @include media('<=tablet') {
+      //   width: 100%;
+      // }
     }
   }
 }

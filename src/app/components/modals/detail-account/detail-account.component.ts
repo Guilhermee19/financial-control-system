@@ -28,12 +28,12 @@ export class DetailAccountComponent implements OnInit {
   account_form = this.fb.group({
     account: [''],
     name: ['', [Validators.required]],
-    credit_due_date: [Validators.required],
-    credit_limit: [0, [Validators.required]],
-    is_debit: [false, [Validators.required]],
-    is_credit: [false, [Validators.required]],
-    balance_debit: [0],
-    balance_credit: [0],
+    // credit_due_date: [Validators.required],
+    // credit_limit: [0, [Validators.required]],
+    // is_debit: [false, [Validators.required]],
+    // is_credit: [false, [Validators.required]],
+    // balance_debit: [0],
+    // balance_credit: [0],
   });
 
   accounts = ACCOUNTS
@@ -41,12 +41,12 @@ export class DetailAccountComponent implements OnInit {
 
   ngOnInit() {
     this.account_form.reset();
-    this.account_form.patchValue({
-      is_debit: false,
-      is_credit: false,
-      balance_debit: 0,
-      balance_credit: 0,
-    });
+    // this.account_form.patchValue({
+    //   is_debit: false,
+    //   is_credit: false,
+    //   balance_debit: 0,
+    //   balance_credit: 0,
+    // });
   }
 
   setAccount() {
