@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/Guilhermee19/financial-control-system/compare/v4.0.1...v5.0.0) (2024-10-26)
+
+
+### Features
+
+* ajuste graficos ([5da63c6](https://github.com/Guilhermee19/financial-control-system/commit/5da63c6a19d45fabc4bf1f9976963d7e908c0500))
+* ajuste no cadastro de conta e tela dashboard ([f8f8468](https://github.com/Guilhermee19/financial-control-system/commit/f8f84686c5a75758f748838268cc5b14df1818b7))
+* gitignore ([ce895cf](https://github.com/Guilhermee19/financial-control-system/commit/ce895cf77218994f9fbd5a4d5c5064253f413a23))
+* version ng-apexchats ([f1220af](https://github.com/Guilhermee19/financial-control-system/commit/f1220afea34ac97a21b7ec79c7608856426441a7))
+
+
+### Bug Fixes
+
+* build ([d872def](https://github.com/Guilhermee19/financial-control-system/commit/d872def455d6b96b910accafb1a7f3afa5c740ef))
+
 ### [4.0.1](https://github.com/Guilhermee19/financial-control-system/compare/v4.0.0...v4.0.1) (2024-10-24)
 
 ## [4.0.0](https://github.com/Guilhermee19/financial-control-system/compare/v3.0.0...v4.0.0) (2024-10-24)
