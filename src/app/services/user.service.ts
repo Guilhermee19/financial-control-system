@@ -21,4 +21,8 @@ export class UserService {
   updateUser(body: BodyJson): Observable<IUser> {
     return this.http.patch<IUser>('core/update-user/', body);
   }
+
+  getNotification(): Observable<string[]> {
+    return this.http.get<string[]>('core/notifications/');
+  }
 }

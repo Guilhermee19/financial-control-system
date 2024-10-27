@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   base_url: 'http://127.0.0.1:8000/',
+  socket_url: 'ws://127.0.0.1:8080/',
   version: '5.0.2',
   firebase: {
     apiKey: 'AIzaSyB7rAy4D1JSMPNeo9GeDkbUGxNKDCfU9Bs',

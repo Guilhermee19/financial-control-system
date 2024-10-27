@@ -39,6 +39,11 @@
 
 <app-theme-dark-light></app-theme-dark-light>
 
+<button mat-icon-button title="notification" class="notification">
+  <span class="notification_numer" *ngIf="notification > 0"> {{ notification }} </span>
+  <i icon="bell"></i>
+</button>
+
 <div id="canvas"></div>
 
 <div class="scrren" *ngIf="!loading">

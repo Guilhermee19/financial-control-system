@@ -18,10 +18,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CardFinancialComponent } from './card-financial/card-financial.component';
 import { ConvertStatusPipe } from 'src/app/pipes/convert-status.pipe';
+import {MatBadgeModule} from '@angular/material/badge';
 
 const IMPORTS = [
   MatButtonModule,
   FormsModule,
+  MatBadgeModule,
   ReactiveFormsModule,
   MatInputModule,
   NgxMaskDirective,
