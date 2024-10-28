@@ -34,7 +34,6 @@ export class CardsComponent implements OnInit {
     this.cardService.getAllCard(1).subscribe({
       next: (data) => {
         // this.backupFinancias = data.results;
-        // console.log(this.backupFinancias);
 
         // this.changeMonth('today');
         this.dataSource = data.results;

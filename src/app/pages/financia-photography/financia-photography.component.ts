@@ -118,7 +118,6 @@ export class FinanciaPhotographyComponent implements OnInit {
   }
 
   action(event: string) {
-    console.log(event);
     if (['PAY', 'DELET', 'EDIT'].includes(event)) this.getAllFinances(1);
   }
 

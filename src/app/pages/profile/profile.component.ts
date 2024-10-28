@@ -44,11 +44,7 @@ export class ProfileComponent implements OnInit{
   profileSubmit(){
     this.loading = true;
 
-    console.log(this.profile_form.value);
-
     const value = this.profile_form.getRawValue();
-
-    console.log(value);
 
     const user: any = {
       name: value.name,
@@ -58,8 +54,6 @@ export class ProfileComponent implements OnInit{
     if (value.profile_image) {
       user.profile_image = value.profile_image;
     }
-
-    console.log(user);
 
     this.userService.updateUser(user as BodyJson).subscribe({
       next: () => {

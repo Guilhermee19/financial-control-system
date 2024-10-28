@@ -36,7 +36,6 @@ export class DetailCategoryComponent implements OnInit {
   text_button = 'Adicionar'
 
   ngOnInit(){
-    console.log(this.data);
 
     if(this.data?.category){
       this.text_button = "Salvar"
@@ -78,12 +77,11 @@ export class DetailCategoryComponent implements OnInit {
 
     this.categoryService.postCategory(body).subscribe({
       next: (data) => {
-        console.log(data);
         this.chance('yes');
         this.loading = false;
       },
       error: (error) => {
-        console.log(error);
+        console.error(error);
         this.loading = false;
       }
     });
@@ -96,12 +94,11 @@ export class DetailCategoryComponent implements OnInit {
 
     this.categoryService.patchCategory(this.data.category.id, body).subscribe({
       next: (data) => {
-        console.log(data);
         this.chance('yes');
         this.loading = false;
       },
       error: (error) => {
-        console.log(error);
+        console.error(error);
         this.loading = false;
       }
     });

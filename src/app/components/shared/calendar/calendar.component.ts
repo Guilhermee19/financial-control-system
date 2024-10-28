@@ -144,8 +144,6 @@ export class CalendarComponent implements OnInit {
   }
 
   selectDay(day: Day) {
-    console.log(day);
-
     this.changeCalendar.emit({
       date:{
         day: day.day,

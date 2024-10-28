@@ -73,7 +73,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   getNotification(){
     this.userService.getNotification().subscribe({
       next: (data) =>{
-        console.log(data);
         this.notification = data.length;
       }
     })

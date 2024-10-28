@@ -24,10 +24,6 @@ export class CardFinancialComponent {
 
   isSelect = false;
 
-  modeEdit() {
-    console.log(this.finance);
-  }
-
   openDetail() {
     const dialogInfo = this.dialog.open(FinanceInfoComponent, {
       ...configModals,
@@ -40,7 +36,6 @@ export class CardFinancialComponent {
     dialogInfo.afterClosed().subscribe((result) => {
       if (result) {
         if (result.action === 'yes'){
-          console.log(result);
           this.event.emit('PAY');
         }
         else if (result.action === 'edit'){
@@ -51,9 +46,6 @@ export class CardFinancialComponent {
   }
 
   editFinance() {
-    console.log('EDITAR');
-    console.log(this.finance);
-
     const dialogEdit = this.dialog.open(DetailFinanceComponent, {
       ...configModals,
       data: {

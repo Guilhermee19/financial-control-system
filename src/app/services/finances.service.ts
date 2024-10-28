@@ -36,8 +36,6 @@ export class FinancesService {
   }
 
   postFinance(body: BodyJson): Observable<ITransaction> {
-    console.log(body);
-
     return this.http.post<ITransaction>(`core/create-transaction/`, body);
   }
 

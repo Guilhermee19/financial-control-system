@@ -98,8 +98,6 @@ export class DashboardComponent implements OnInit {
   }
 
   setCalendar(event: EventCalandar){
-    console.log(event);
-
     if(['next', 'back', 'today'].includes(event.action)){
       this.current_month = event.date.month;
       this.current_year = event.date.year;

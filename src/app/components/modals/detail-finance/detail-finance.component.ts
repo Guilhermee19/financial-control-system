@@ -65,7 +65,6 @@ export class DetailFinanceComponent implements OnInit {
     this.transaction_form.reset();
 
     if(this.data?.finance){
-      console.log('EDITAR');
 
       this.transaction_form.patchValue({
         screen: this.data.finance.type === 'INCOME' ? 'receita' : 'despesa',
@@ -77,8 +76,6 @@ export class DetailFinanceComponent implements OnInit {
         recurrence: this.data.finance.recurrence,
         installments: this.data.finance.number_of_installments,
       });
-
-      console.log(this.data.finance);
 
       this.phase = 1;
     }
@@ -122,8 +119,6 @@ export class DetailFinanceComponent implements OnInit {
   }
 
   saveSubmitHandler() {
-    console.log(this.transaction_form.value);
-
     if (this.loading) return;
 
     if (this.transaction_form.invalid) {

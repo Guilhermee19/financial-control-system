@@ -39,7 +39,6 @@ export class AccountComponent implements OnInit {
     this.accountsService.getAccounts(1).subscribe({
       next: (data) => {
         // this.backupFinancias = data.results;
-        // console.log(this.backupFinancias);
 
         // this.changeMonth('today');
         this.dataSource = data.results;

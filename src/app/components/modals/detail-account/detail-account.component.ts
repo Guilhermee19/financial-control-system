@@ -98,7 +98,7 @@ export class DetailAccountComponent implements OnInit {
         this.chance('yes');
       },
       error: (error) => {
-        console.log(error);
+        console.error(error);
       }
     });
   }

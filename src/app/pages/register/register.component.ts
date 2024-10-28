@@ -52,7 +52,6 @@ export class RegisterComponent  {
 
     this.userService.createUser(user as unknown as BodyJson).subscribe(
       (data) => {
-        console.log(data);
         this.loading = false;
         this.loginUser(user);
       },
