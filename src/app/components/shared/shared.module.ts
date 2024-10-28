@@ -19,15 +19,23 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { CardFinancialComponent } from './card-financial/card-financial.component';
 import { ConvertStatusPipe } from 'src/app/pipes/convert-status.pipe';
 import {MatBadgeModule} from '@angular/material/badge';
+import { DetailFinanceComponent } from '../modals/detail-finance/detail-finance.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const IMPORTS = [
+  CommonModule,
   MatButtonModule,
   FormsModule,
   MatBadgeModule,
   ReactiveFormsModule,
   MatInputModule,
+  MatSelectModule,
   NgxMaskDirective,
   NgxMaskPipe,
+  MatChipsModule,
+  MatCheckboxModule
 ];
 
 const DECLARATIONS = [
@@ -42,6 +50,7 @@ const DECLARATIONS = [
   InitialLettersDirective,
   CalendarComponent,
   CardFinancialComponent,
+  DetailFinanceComponent,
 ];
 
 @NgModule({

@@ -67,8 +67,6 @@ export class DetailFinanceComponent implements OnInit {
     if(this.data?.finance){
       console.log('EDITAR');
 
-      this.phase = 1;
-
       this.transaction_form.patchValue({
         screen: this.data.finance.type === 'INCOME' ? 'receita' : 'despesa',
         value: this.data.finance.installment.installment_value,
@@ -79,11 +77,17 @@ export class DetailFinanceComponent implements OnInit {
         recurrence: this.data.finance.recurrence,
         installments: this.data.finance.number_of_installments,
       });
+
+      console.log(this.data.finance);
+
+      this.phase = 1;
+    }
+    else{
+      this.transaction_form.patchValue({
+        date: new Date().toISOString().split('T')[0],
+      });
     }
 
-    this.transaction_form.patchValue({
-      date: new Date().toISOString().split('T')[0],
-    });
     this.getAlltags();
   }
 

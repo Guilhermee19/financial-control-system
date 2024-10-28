@@ -9,5 +9,4 @@ export interface IAccount {
   balance: string;
   created_by: number;
   updated_by: number;
-  user: number;
 }
