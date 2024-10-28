@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   notification = 0;
 
   ngOnInit(): void {
-    this.connectSocket()
+    // this.connectSocket()
     this.getMe();
 
     this.storage.watchUser().subscribe({
