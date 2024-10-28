@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.1.1](https://github.com/Guilhermee19/financial-control-system/compare/v5.1.0...v5.1.1) (2024-10-28)
+
+
+### Bug Fixes
+
+* websocket ([d924cf1](https://github.com/Guilhermee19/financial-control-system/commit/d924cf153d15f0f687e6b23e6cdf7bb766a722ce))
+
 ## [5.1.0](https://github.com/Guilhermee19/financial-control-system/compare/v5.0.3...v5.1.0) (2024-10-28)
 
 
