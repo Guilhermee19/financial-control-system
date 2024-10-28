@@ -24,22 +24,18 @@ export class CardFinancialComponent {
 
   isSelect = false;
 
-  modeEdit() {
-    console.log(this.finance);
-  }
-
   openDetail() {
-    const dialogRef = this.dialog.open(FinanceInfoComponent, {
+    const dialogInfo = this.dialog.open(FinanceInfoComponent, {
       ...configModals,
       panelClass: 'dialog_custom_sm',
       data: {
-        finance: this.finance
+        finance: this.finance,
+        options: this.options
       }
     });
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogInfo.afterClosed().subscribe((result) => {
       if (result) {
         if (result.action === 'yes'){
-          console.log(result);
           this.event.emit('PAY');
         }
         else if (result.action === 'edit'){
@@ -50,15 +46,13 @@ export class CardFinancialComponent {
   }
 
   editFinance() {
-    console.log('EDITAR');
-
-    const dialogRef = this.dialog.open(DetailFinanceComponent, {
+    const dialogEdit = this.dialog.open(DetailFinanceComponent, {
       ...configModals,
       data: {
         finance: this.finance
       }
     });
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogEdit.afterClosed().subscribe((result) => {
       if (result) {
         if (result.action === 'yes') this.event.emit('EDIT');
       }
@@ -86,7 +80,7 @@ export class CardFinancialComponent {
   }
 
   popupDelete(finance: ITransaction){
-    const dialogRef = this.dialog.open(ConfirmationPopupComponent, {
+    const dialogDelet = this.dialog.open(ConfirmationPopupComponent, {
       ...configModals,
       data: {
         title: `Deletar Tag`,
@@ -95,7 +89,7 @@ export class CardFinancialComponent {
         btn_confirm: `Deletar`,
        }
     });
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogDelet.afterClosed().subscribe((result) => {
       if (result) {
         if (result.action === 'yes') this.deletFinance(this.finance)
       }

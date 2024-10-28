@@ -1,7 +1,8 @@
 export const environment = {
   production: true,
   base_url: 'https://finance-api.iamgui.dev/',
-  version: '5.0.2',
+  socket_url: 'ws://5.252.54.146:8000/',
+  version: '5.1.0',
   firebase: {
     apiKey: 'AIzaSyB7rAy4D1JSMPNeo9GeDkbUGxNKDCfU9Bs',
     authDomain: 'financial-control-system-882ab.firebaseapp.com',

@@ -38,7 +38,7 @@ export class DetailFinanceComponent implements OnInit {
   accounts: IAccount[] = [];
   status = STATUS;
 
-  finance_form = this.fb.group({
+  transaction_form = this.fb.group({
     category: [0],
     account: [0],
     date: [new Date().toISOString().split('T')[0], Validators.required],
@@ -62,14 +62,11 @@ export class DetailFinanceComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.finance_form.reset();
+    this.transaction_form.reset();
 
     if(this.data?.finance){
-      console.log('EDITAR');
 
-      this.phase = 1;
-
-      this.finance_form.patchValue({
+      this.transaction_form.patchValue({
         screen: this.data.finance.type === 'INCOME' ? 'receita' : 'despesa',
         value: this.data.finance.installment.installment_value,
         description: this.data.finance.description,
@@ -79,11 +76,15 @@ export class DetailFinanceComponent implements OnInit {
         recurrence: this.data.finance.recurrence,
         installments: this.data.finance.number_of_installments,
       });
+
+      this.phase = 1;
+    }
+    else{
+      this.transaction_form.patchValue({
+        date: new Date().toISOString().split('T')[0],
+      });
     }
 
-    this.finance_form.patchValue({
-      date: new Date().toISOString().split('T')[0],
-    });
     this.getAlltags();
   }
 
@@ -113,17 +114,15 @@ export class DetailFinanceComponent implements OnInit {
   }
 
   setTag(){
-    const filter = this.categories.find(el => el.id === (this.finance_form.value.category || 0))
-    // if(filter) this.finance_form.get('description')?.patchValue(filter?.name || '')
+    const filter = this.categories.find(el => el.id === (this.transaction_form.value.category || 0))
+    // if(filter) this.transaction_form.get('description')?.patchValue(filter?.name || '')
   }
 
   saveSubmitHandler() {
-    console.log(this.finance_form.value);
-
     if (this.loading) return;
 
-    if (this.finance_form.invalid) {
-      this.finance_form.markAllAsTouched();
+    if (this.transaction_form.invalid) {
+      this.transaction_form.markAllAsTouched();
       return;
     }
 
@@ -139,22 +138,22 @@ export class DetailFinanceComponent implements OnInit {
   }
 
   createFinance() {
-    const value = this.finance_form.get('value')?.value || 0;
-    const installments = this.finance_form.get('installments')?.value || 1;
+    const value = this.transaction_form.get('value')?.value || 0;
+    const installments = this.transaction_form.get('installments')?.value || 1;
 
     const dataCompra = new Date(
-      this.finance_form.value.date + 'T12:00:00' || 0
+      this.transaction_form.value.date + 'T12:00:00' || 0
     );
 
     const body = {
-      category: this.finance_form.value.category,
-      account: this.finance_form.value.account,
+      category: this.transaction_form.value.category,
+      account: this.transaction_form.value.account,
       date: dataCompra.toISOString().split('T')[0],
       value: value || 1,
       number_of_installments: installments,
-      description: this.finance_form.value.description || '',
-      recurrence: this.setRecurrence(this.finance_form.value.recurrence || this.finance_form.value.type),
-      type: this.setType(this.finance_form.value.screen)
+      description: this.transaction_form.value.description || '',
+      recurrence: this.setRecurrence(this.transaction_form.value.recurrence || this.transaction_form.value.type),
+      type: this.setType(this.transaction_form.value.screen)
     };
 
     this.financesService.postFinance(body as unknown as BodyJson).subscribe({
@@ -171,25 +170,25 @@ export class DetailFinanceComponent implements OnInit {
   patchFinance() {
     if(!this.data?.finance?.id) return;
 
-    const value = this.finance_form.get('value')?.value || 0;
-    const installments = this.finance_form.get('installments')?.value || 1;
+    const value = this.transaction_form.get('value')?.value || 0;
+    const installments = this.transaction_form.get('installments')?.value || 1;
 
     // Pegando e formatando a data da compra
     const dataCompra = new Date(
-      this.finance_form.value.date + 'T12:00:00' || 0
+      this.transaction_form.value.date + 'T12:00:00' || 0
     );
 
     const body: any = {
-      description: this.finance_form.value.description || '',
+      description: this.transaction_form.value.description || '',
       date: dataCompra.toISOString().split('T')[0], // Incluindo a data
-      account: this.finance_form.value.account,
-      category: this.finance_form.value.category,
-      edit_all_installments: this.finance_form.value.edit_all || false,
+      account: this.transaction_form.value.account,
+      category: this.transaction_form.value.category,
+      edit_all_installments: this.transaction_form.value.edit_all || false,
       number_of_installments: installments,
-      finance_id: this.data.finance?.id
+      installment_id: this.data.finance?.installment.id
     };
 
-    if (!this.finance_form.value.edit_all) {
+    if (!this.transaction_form.value.edit_all) {
       body.installment_id = this.data.finance?.installment.id;
       body.installment_value = value;
     } else {
@@ -228,6 +227,6 @@ export class DetailFinanceComponent implements OnInit {
   }
 
   chance(chance: 'yes' | 'no'): void {
-    this.dialogRef.close({ action: chance, finance: this.finance_form.value });
+    this.dialogRef.close({ action: chance, finance: this.transaction_form.value });
   }
 }

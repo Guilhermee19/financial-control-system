@@ -1,4 +1,4 @@
-<form (ngSubmit)="saveSubmitHandler()" [formGroup]="finance_form">
+<form (ngSubmit)="saveSubmitHandler()" [formGroup]="transaction_form">
   <i icon="close" class="icon_close" (click)="chance('no')"></i>
 
   <section *ngIf="phase === 0" class="phase_one">
@@ -16,8 +16,8 @@
   </section>
 
   <section *ngIf="phase === 1">
-    <h1 *ngIf="!data?.finance"> {{ finance_form.value.screen || 'receita' }} </h1>
-    <h1 *ngIf="data?.finance"> Editar {{ finance_form.value.screen || 'receita' }} </h1>
+    <h1 *ngIf="!data?.finance"> {{ transaction_form.value.screen || 'receita' }} </h1>
+    <h1 *ngIf="data?.finance"> Editar {{ transaction_form.value.screen || 'receita' }} </h1>
 
     <div class="card_input">
       <i icon="value"></i>
@@ -77,7 +77,7 @@
       <mat-chip-option>parcelada</mat-chip-option>
     </mat-chip-listbox>
 
-    <div class="card_input" *ngIf="!data?.finance && finance_form.value.type === 'recorrente'">
+    <div class="card_input" *ngIf="!data?.finance && transaction_form.value.type === 'recorrente'">
       <i icon="arrows_rotate"></i>
       <mat-select formControlName="recurrence" name="recurrence" placeholder="Recorrência">
         <mat-option *ngFor="let item of recurrences" [value]="item.name">
@@ -86,7 +86,7 @@
       </mat-select>
     </div>
 
-    <div class="card_input" *ngIf="finance_form.value.type === 'parcelada'">
+    <div class="card_input" *ngIf="transaction_form.value.type === 'parcelada'">
       <i icon="installments"></i>
       <input
         title="installments"

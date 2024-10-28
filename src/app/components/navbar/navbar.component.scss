@@ -257,6 +257,34 @@ mat-drawer-container {
   }
 }
 
+.notification {
+  position: absolute;
+  top: 1rem;
+  right: 5rem;
+  width: 48px;
+  height: 48px;
+  z-index: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+
+  .notification_numer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    font-size: 10px;
+  }
+
+  i {
+    --mdc-icon-button-icon-size: 1.2rem;
+  }
+}
+
 app-theme-dark-light {
   position: absolute;
   top: 1rem;

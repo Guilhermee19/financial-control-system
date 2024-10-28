@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/Guilhermee19/financial-control-system/compare/v5.0.3...v5.1.0) (2024-10-28)
+
+
+### Bug Fixes
+
+* fluxo de editar transation na dashboard ([11ee9ad](https://github.com/Guilhermee19/financial-control-system/commit/11ee9ade48d47675ad1306019ef473106696b084))
+
+### [5.0.3](https://github.com/Guilhermee19/financial-control-system/compare/v5.0.2...v5.0.3) (2024-10-28)
+
+
+### Features
+
+* notificação ([da2f5db](https://github.com/Guilhermee19/financial-control-system/commit/da2f5db3815ffd4a8b332c98c1f8ed8988699a65))
+
+
+### Bug Fixes
+
+* edit transaction and installment ([c3c5095](https://github.com/Guilhermee19/financial-control-system/commit/c3c50956d1ddabf3cc5a342bc8453d365024255f))
+
 ### [5.0.2](https://github.com/Guilhermee19/financial-control-system/compare/v5.0.1...v5.0.2) (2024-10-26)
 
 

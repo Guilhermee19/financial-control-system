@@ -13,7 +13,7 @@ import { BodyJson } from 'src/app/services/http.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     public storage: StorageService,
@@ -28,10 +28,6 @@ export class LoginComponent implements OnInit {
     password: ['', Validators.required],
   });
 
-  ngOnInit() {
-    // this.storage.logout();
-    console.log('--');
-  }
 
   loginSubmit() {
     if (this.loading) return;
@@ -49,7 +45,6 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(body as unknown as BodyJson).subscribe(
       (data) => {
-        console.log(data);
         this.storage.setToken(data.token, false);
       },
       () => {
@@ -65,7 +60,6 @@ export class LoginComponent implements OnInit {
     const auth = getAuth();
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result);
 
         this.loginGoogleSuccess(result);
       })

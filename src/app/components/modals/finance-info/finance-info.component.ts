@@ -16,7 +16,7 @@ export interface IData {
   templateUrl: './finance-info.component.html',
   styleUrls: ['./finance-info.component.scss']
 })
-export class FinanceInfoComponent implements OnInit {
+export class FinanceInfoComponent  {
   constructor(
     private fb: FormBuilder,
     private financesService: FinancesService,
@@ -32,22 +32,11 @@ export class FinanceInfoComponent implements OnInit {
 
   compressed_image = [];
 
-  ngOnInit() {
-    console.log(this.data.finance);
-  }
-
   editFinance(){
-    console.log(this.data.finance);
     this.chance('edit')
   }
 
-  deletFinance(){
-    console.log(this.data.finance);
-  }
-
   paymentInstallment(){
-    console.log(this.data.finance);
-
     const body = {
       installment_id: this.data.finance.installment.id,
       installment_image: this.finance_form.value.base64 || ''
@@ -55,8 +44,6 @@ export class FinanceInfoComponent implements OnInit {
 
     this.financesService.payInstallment(body).subscribe({
       next: (data) => {
-        console.log(data);
-
         this.chance('yes')
       }
     })
@@ -70,8 +57,6 @@ export class FinanceInfoComponent implements OnInit {
 
     this.financesService.uploadInstallmentImage(body).subscribe({
       next: (data) => {
-        console.log(data);
-
         this.chance('yes')
       }
     })
