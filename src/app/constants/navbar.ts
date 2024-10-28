@@ -30,12 +30,12 @@ export const NAVBAR_PAGES: {
     link: '/accounts',
     roles: ['Admin', 'Desenvolvedor'],
   },
-  // {
-  //   label: 'Cartão',
-  //   icon: 'cards',
-  //   link: '/cards',
-  //   roles: ['Admin', 'Desenvolvedor'],
-  // },
+  {
+    label: 'Cartão',
+    icon: 'cards',
+    link: '/cards',
+    roles: ['Admin', 'Desenvolvedor'],
+  },
   // {
   //   label: 'Relatórios',
   //   icon: 'report',
