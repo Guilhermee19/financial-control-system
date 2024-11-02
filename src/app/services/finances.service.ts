@@ -11,8 +11,8 @@ import { IFilter, IPagedReq } from '../models/utils';
 export class FinancesService {
   constructor(private http: HttpService) {}
 
-  getAllFinances(params: IFilter): Observable<IPagedReq<ITransaction>> {
-    let query = new HttpParams()
+  getAllFinances(params: IFilter): Observable<ITransaction[]> {
+    let query = new HttpParams().set('return_all', true)
     if (params.year && params.month) {
       const startDate = new Date(params.year, params.month - 1, 1); // mês começa em 0, por isso `month - 1`
       const endDate = new Date(params.year, params.month, 0); // passando 0 como dia retorna o último dia do mês anterior
@@ -21,18 +21,7 @@ export class FinancesService {
       query = query.set('end_date', endDate.toISOString().split('T')[0]);
     }
 
-    if (params.page) {
-      query = query.set('page', params.page);
-    }
-
-    if (params.return_all) {
-      query = query.set('return_all', params.return_all);
-    }
-    else{
-      query = query.set('page_size', 12);
-    }
-
-    return this.http.get<IPagedReq<ITransaction>>('core/all-transaction/', query);
+    return this.http.get<ITransaction[]>('core/all-transaction/', query);
   }
 
   postFinance(body: BodyJson): Observable<ITransaction> {

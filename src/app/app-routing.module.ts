@@ -56,6 +56,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/config/config.module').then((m) => m.ConfigModule),
       },
+      { path: '**', redirectTo: 'dashboard' },
     ],
   },
   { path: '**', redirectTo: 'login' },
