@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -72,7 +72,7 @@ export class LoginComponent {
     this.authService.loginGoogle(response, 'Google').subscribe(
       (data) => {
         localStorage.setItem('token', data.token);
-        this.router.navigate(['/finance']);
+        this.router.navigate(['/dashboard']);
       },
       (error) => {
         this.loading = false;

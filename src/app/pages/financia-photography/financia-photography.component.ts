@@ -46,17 +46,18 @@ export class FinanciaPhotographyComponent implements OnInit {
       page,
       year: this.current_year,
       month: this.months[this.current_month].month,
+      return_all: true
     };
 
     this.financesService.getAllFinances(params).subscribe({
       next: (data) => {
         // this.backupFinancias = this.sortOrder(data.results);
-        this.backupFinancias = data.results;
+        this.backupFinancias = data;
         this.dataSource = this.backupFinancias;
 
-        this.next = data.next != null;
-        this.prev = data.previous != null;
-        this.count_page = Math.ceil(data.count / 10);
+        // this.next = data.next != null;
+        // this.prev = data.previous != null;
+        // this.count_page = Math.ceil(data.count / 10);
 
         this.loading = false;
       },

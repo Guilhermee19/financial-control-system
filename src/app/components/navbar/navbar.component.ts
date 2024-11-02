@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   user: IUser = {} as IUser;
 
-  socket = new WebSocket(environment.socket_url+'ws/notifications/');
+  // socket = new WebSocket(environment.socket_url+'ws/notifications/');
 
   notification = 0;
 
@@ -45,30 +45,30 @@ export class NavbarComponent implements OnInit, OnDestroy {
     });
   }
 
-  connectSocket(){
-    // Evento quando a conexão é aberta
-    this.socket.onopen = () => {
-      console.log("Conectado ao WebSocket");
-    };
+  // connectSocket(){
+  //   // Evento quando a conexão é aberta
+  //   this.socket.onopen = () => {
+  //     console.log("Conectado ao WebSocket");
+  //   };
 
-    // Evento quando uma mensagem é recebida
-    this.socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      console.log("Mensagem recebida:", data);
-      this.getNotification()
-      // Aqui você pode processar a mensagem recebida como quiser
-    };
+  //   // Evento quando uma mensagem é recebida
+  //   this.socket.onmessage = (event) => {
+  //     const data = JSON.parse(event.data);
+  //     console.log("Mensagem recebida:", data);
+  //     this.getNotification()
+  //     // Aqui você pode processar a mensagem recebida como quiser
+  //   };
 
-    // Evento quando a conexão é fechada
-    this.socket.onclose = () => {
-      console.log("Conexão fechada");
-    };
+  //   // Evento quando a conexão é fechada
+  //   this.socket.onclose = () => {
+  //     console.log("Conexão fechada");
+  //   };
 
-    // Evento quando ocorre um erro
-    this.socket.onerror = (error) => {
-      console.error("Erro no WebSocket:", error);
-    };
-  }
+  //   // Evento quando ocorre um erro
+  //   this.socket.onerror = (error) => {
+  //     console.error("Erro no WebSocket:", error);
+  //   };
+  // }
 
   getNotification(){
     this.userService.getNotification().subscribe({

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.2.0](https://github.com/Guilhermee19/financial-control-system/compare/v5.1.1...v5.2.0) (2024-11-02)
+
+
+### Features
+
+* ajuste quantidade itens ([1f4ff49](https://github.com/Guilhermee19/financial-control-system/commit/1f4ff49b809ad6665092821fcb4ab73b8fd5dd33))
+
 ### [5.1.1](https://github.com/Guilhermee19/financial-control-system/compare/v5.1.0...v5.1.1) (2024-10-28)
 
 
