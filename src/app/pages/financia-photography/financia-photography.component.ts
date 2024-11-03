@@ -126,9 +126,9 @@ export class FinanciaPhotographyComponent implements OnInit {
     return this.dataSource.reduce((total, el) => {
       // Extrair o valor e as parcelas
       const value =
-        typeof el.value === 'string'
-          ? parseFloat(el.value)
-          : el.value;
+        typeof el.value_installment === 'string'
+          ? parseFloat(el.value_installment)
+          : el.value_installment;
 
       if(el.type === 'INCOME') return total + 0;
 
