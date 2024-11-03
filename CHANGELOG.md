@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.3.0](https://github.com/Guilhermee19/financial-control-system/compare/v5.2.0...v5.3.0) (2024-11-03)
+
+
+### Features
+
+* nova logica no back para Transaction no lugar de uma Transaction e varias Installments | tela e request de Relatório com um grafico de gastos no mês ([580a959](https://github.com/Guilhermee19/financial-control-system/commit/580a959270e188ae66e77bb4c81f7e5285b89678))
+* troca de variavel de 'value' para 'value_installment' na tela de finance ([2a0e0d5](https://github.com/Guilhermee19/financial-control-system/commit/2a0e0d5cf9920256a3728cef82d86c67113ddab7))
+
 ## [5.2.0](https://github.com/Guilhermee19/financial-control-system/compare/v5.1.1...v5.2.0) (2024-11-02)
 
 
