@@ -106,7 +106,7 @@ export class CardFinancialComponent {
 
   get status() {
     const hoje = new Date();
-    const dataInput = new Date(this.finance.installment.due_date + 'T12:00:00'); // Data sem ajuste de hora
+    const dataInput = new Date(this.finance.expiry_date + 'T12:00:00'); // Data sem ajuste de hora
 
     // Pegue as informações de ano, mês e dia
     const hojeAno = hoje.getFullYear();
@@ -118,7 +118,7 @@ export class CardFinancialComponent {
     const dataDia = dataInput.getDate();
 
     // Se a variável is_paid for true, retorna 'PAID'
-    if (this.finance.installment.is_paid) {
+    if (this.finance.is_paid) {
       return 'PAID';
     }
 

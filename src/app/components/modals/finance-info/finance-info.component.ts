@@ -36,13 +36,13 @@ export class FinanceInfoComponent  {
     this.chance('edit')
   }
 
-  paymentInstallment(){
+  paymentTransaction(){
     const body = {
-      installment_id: this.data.finance.installment.id,
-      installment_image: this.finance_form.value.base64 || ''
+      transaction_id: this.data.finance.id,
+      receipt_image: this.finance_form.value.base64 || ''
     }
 
-    this.financesService.payInstallment(body).subscribe({
+    this.financesService.paymentTransaction(body).subscribe({
       next: (data) => {
         this.chance('yes')
       }
@@ -51,11 +51,11 @@ export class FinanceInfoComponent  {
 
   uploadInstallmentImage(){
     const body = {
-      installment_id: this.data.finance.installment.id,
-      installment_image: this.finance_form.value.base64 || ''
+      transaction_id: this.data.finance.id,
+      receipt_image: this.finance_form.value.base64 || ''
     }
 
-    this.financesService.uploadInstallmentImage(body).subscribe({
+    this.financesService.uploadTransactionReceipt(body).subscribe({
       next: (data) => {
         this.chance('yes')
       }
@@ -77,7 +77,7 @@ export class FinanceInfoComponent  {
           this.finance_form.get('receipt')?.patchValue(target[0].name);
           this.finance_form.get('base64')?.patchValue(this.compressed_image[0]);
 
-          if(this.data.finance.installment.is_paid){
+          if(this.data.finance.is_paid){
             this.uploadInstallmentImage();
           }
 
@@ -102,7 +102,7 @@ export class FinanceInfoComponent  {
 
   get status() {
     const hoje = new Date();
-    const dataInput = new Date(this.data.finance.installment.due_date + 'T12:00:00'); // Data sem ajuste de hora
+    const dataInput = new Date(this.data.finance.expiry_date + 'T12:00:00'); // Data sem ajuste de hora
 
     // Pegue as informações de ano, mês e dia
     const hojeAno = hoje.getFullYear();
@@ -114,7 +114,7 @@ export class FinanceInfoComponent  {
     const dataDia = dataInput.getDate();
 
     // Se a variável is_paid for true, retorna 'PAID'
-    if (this.data.finance.installment.is_paid) {
+    if (this.data.finance.is_paid) {
       return 'PAID';
     }
 

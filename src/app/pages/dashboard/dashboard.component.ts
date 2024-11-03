@@ -1,4 +1,3 @@
-import { Installment } from './../../models/finance';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PreviewDashboardComponent } from 'src/app/components/modals/preview-dashboard/preview-dashboard.component';
@@ -85,10 +84,10 @@ export class DashboardComponent implements OnInit {
 
         this.finances_compact = this.finances.map(el => {
           return {
-            id: el.installment.id,
-            date: el.installment.due_date,
+            id: el.id,
+            date: el.expiry_date,
             label: el.description,
-            color: el.installment?.category_obj?.color || '#64c6e8'
+            color: el?.category_obj?.color || '#64c6e8'
           }
         });
 
@@ -110,7 +109,7 @@ export class DashboardComponent implements OnInit {
 
       const ids = event.data.map(item => item.id);
 
-      const finances = this.finances.filter(el => ids.includes(el.installment.id));
+      const finances = this.finances.filter(el => ids.includes(el.id));
 
       this.openPreview(event, finances)
     }
@@ -142,8 +141,8 @@ export class DashboardComponent implements OnInit {
 
   sortOrder(array: ITransaction[]){
     return array.sort((a:ITransaction, b:ITransaction) => {
-      const dateA = new Date(a.installment?.due_date).getTime();
-      const dateB = new Date(b.installment?.due_date).getTime();
+      const dateA = new Date(a.expiry_date).getTime();
+      const dateB = new Date(b.expiry_date).getTime();
       return dateA - dateB;  // Ordena em ordem crescente
     });
   }

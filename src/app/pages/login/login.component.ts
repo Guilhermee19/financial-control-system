@@ -45,7 +45,7 @@ export class LoginComponent {
 
     this.authService.login(body as unknown as BodyJson).subscribe(
       (data) => {
-        this.storage.setToken(data.token, false);
+        this.storage.setToken(data.token, true);
       },
       () => {
         this.loading = false;

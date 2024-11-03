@@ -64,7 +64,7 @@
 
     <div class="card_input">
       <i icon="date"></i>
-      <input title="date" type="date" formControlName="date" placeholder="Data" />
+      <input title="date" type="date" formControlName="expiry_date" placeholder="Data" />
     </div>
 
     <div class="line"></div>
@@ -107,7 +107,7 @@
     </div> -->
 
     <button type="submit" title="adicionar" mat-raised-button class="primary">
-      {{ !data?.finance?.id ? 'Adicionar' : 'Salvar' }}
+      {{ !data || !data.finance?.id ? 'Adicionar' : 'Salvar' }}
     </button>
   </section>
 </form>

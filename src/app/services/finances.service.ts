@@ -3,7 +3,7 @@ import { BodyJson, HttpService } from './http.service';
 import { Observable } from 'rxjs';
 import { ITransaction } from '../models/finance';
 import { HttpParams } from '@angular/common/http';
-import { IFilter, IPagedReq } from '../models/utils';
+import { IFilter } from '../models/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class FinancesService {
   constructor(private http: HttpService) {}
 
   getAllFinances(params: IFilter): Observable<ITransaction[]> {
-    let query = new HttpParams().set('return_all', true)
+    let query = new HttpParams()
     if (params.year && params.month) {
       const startDate = new Date(params.year, params.month - 1, 1); // mês começa em 0, por isso `month - 1`
       const endDate = new Date(params.year, params.month, 0); // passando 0 como dia retorna o último dia do mês anterior
@@ -32,12 +32,12 @@ export class FinancesService {
     return this.http.patch<ITransaction>(`core/edit-transaction/${id}/`, body);
   }
 
-  payInstallment(body: BodyJson): Observable<ITransaction> {
-    return this.http.patch<ITransaction>(`core/pay-installment/`, body);
+  paymentTransaction(body: BodyJson): Observable<ITransaction> {
+    return this.http.patch<ITransaction>(`core/pay-transaction/`, body);
   }
 
-  uploadInstallmentImage(body: BodyJson): Observable<ITransaction> {
-    return this.http.patch<ITransaction>(`core/upload-installment-image/`, body);
+  uploadTransactionReceipt(body: BodyJson): Observable<ITransaction> {
+    return this.http.patch<ITransaction>(`core/upload-transaction-image/`, body);
   }
 
   deletFinance(id: number): Observable<ITransaction> {
