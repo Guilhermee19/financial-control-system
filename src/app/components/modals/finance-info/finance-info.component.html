@@ -30,7 +30,7 @@
         <i id="TRANSFER" *ngIf="data.finance.type === 'TRANSFER' " icon="arrow_down_arrow_up"></i>
         <i id="EXPENDITURE" *ngIf="data.finance.type === 'EXPENDITURE' " icon="arrow_up"></i>
         <i id="INCOME" *ngIf="data.finance.type === 'INCOME' " icon="arrow_down"></i>
-        {{ data.finance.installment.installment_value | convertMoney }}
+        {{ data.finance.value | convertMoney }}
       </h3>
     </div>
 
@@ -42,19 +42,19 @@
       </h3>
     </div>
 
-    <div class="info" *ngIf="data.finance.installment.category_obj">
+    <div class="info" *ngIf="data.finance.category_obj">
       <label class="f-14"> Categoria: </label>
       <span class="space"></span>
       <h3 class="f-14" [ngClass]="status">
-        {{ data.finance.installment.category_obj.name }}
+        {{ data.finance.category_obj.name }}
       </h3>
     </div>
 
-    <div class="info" *ngIf="data.finance.installment.account_obj">
+    <div class="info" *ngIf="data.finance.account_obj">
       <label class="f-14"> Conta: </label>
       <span class="space"></span>
       <h3 class="f-14" [ngClass]="status">
-        {{ data.finance.installment.account_obj.name }}
+        {{ data.finance.account_obj.name }}
       </h3>
     </div>
 
@@ -62,28 +62,28 @@
       <label class="f-14"> Data vencimento: </label>
       <span class="space"></span>
       <h3 class="f-14" [ngClass]="status">
-        {{ data.finance.installment.due_date | date: 'dd/MM/yyyy' }}
+        {{ data.finance.expiry_date | date: 'dd/MM/yyyy' }}
       </h3>
     </div>
 
-    <div class="info" *ngIf="data.finance.number_of_installments > 1">
+    <div class="info" *ngIf="data.finance.installments > 1">
       <label class="f-14"> Parcela: </label>
       <span class="space"></span>
       <h3 class="f-14" [ngClass]="status">
-        {{ data.finance.installment.current_installment }} de
-      {{ data.finance.number_of_installments }}x
+        {{ data.finance.receipt }} de
+      {{ data.finance.installments }}x
       </h3>
     </div>
 
     <br><br>
 
-    <div class="info" *ngIf="data.finance.installment.installment_image">
+    <div class="info" *ngIf="data.finance.receipt">
       <label class="f-14"> Comprovante: </label>
       <span class="space"></span>
-      <a [href]="data.finance.installment.installment_image" target="_blank"> Abrir </a>
+      <a [href]="data.finance.receipt" target="_blank"> Abrir </a>
     </div>
 
-    <div class="card_input" *ngIf="!data.finance.installment.installment_image">
+    <div class="card_input" *ngIf="!data.finance.receipt">
       <i icon="receipt"></i>
       <input
         title="receipt"
@@ -107,12 +107,12 @@
   </form>
 
   <div class="buttons center">
-    <button *ngIf="!data.finance.installment.is_paid"
+    <button *ngIf="!data.finance.is_paid"
       type="button"
       title="adicionar"
       mat-raised-button
       class="primary"
-      (click)="paymentInstallment()"
+      (click)="paymentTransaction()"
     >
       <i icon="check"></i>
       {{ data.finance.type === 'INCOME' ? 'Rebecido': ( data.finance.type === 'EXPENDITURE' ?  'Pago'  : '' ) }}

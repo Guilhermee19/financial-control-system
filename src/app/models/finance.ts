@@ -11,36 +11,44 @@ export interface Account {
   is_credit: boolean;
 }
 
-export interface Installment {
+// export interface Installment {
+//   created_at: string;
+//   created_by: number;
+//   current_installment: number;
+//   total_installments: number;
+//   due_date: string;
+//   transaction: number;
+//   id: number;
+//   receipt: string
+//   value: number;
+//   is_paid: boolean;
+//   updated_at: string;
+//   updated_by: number;
+//   account: number;
+//   account_obj?: Account;
+//   category: number;
+//   category_obj?: ICategory;
+//   type: 'INCOME' | 'EXPENDITURE' | 'TRANSFER'
+// }
+
+export interface ITransaction {
+  id: number;
   created_at: string;
   created_by: number;
+  expiry_date: string;
+  description: string;
   current_installment: number;
-  total_installments: number;
-  due_date: string;
-  transaction: number;
-  id: number;
-  installment_image: string
-  installment_value: number;
-  is_paid: boolean;
+  installments: number;
   updated_at: string;
   updated_by: number;
+  value: number;
+  value_installment: number;
+  is_paid: boolean;
   account: number;
   account_obj?: Account;
   category: number;
   category_obj?: ICategory;
-}
-
-export interface ITransaction {
-  created_at: string;
-  created_by: number;
-  date: string;
-  description: string;
-  id: number;
-  number_of_installments: number;
-  installment: Installment;
-  updated_at: string;
-  updated_by: number;
-  value: number;
+  receipt: string
   type: 'INCOME' | 'EXPENDITURE' | 'TRANSFER'
   recurrence: 'SINGLE' | 'WEEKLY' | 'MONTHLY' | 'ANNUAL' | 'INSTALLMENTS'
 }

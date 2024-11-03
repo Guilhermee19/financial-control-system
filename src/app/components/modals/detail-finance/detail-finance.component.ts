@@ -41,7 +41,7 @@ export class DetailFinanceComponent implements OnInit {
   transaction_form = this.fb.group({
     category: [0],
     account: [0],
-    date: [new Date().toISOString().split('T')[0], Validators.required],
+    expiry_date: [new Date().toISOString().split('T')[0], Validators.required],
     description: ['', [Validators.required]],
     value: [0, [Validators.required]],
     installments: [0],
@@ -68,20 +68,20 @@ export class DetailFinanceComponent implements OnInit {
 
       this.transaction_form.patchValue({
         screen: this.data.finance.type === 'INCOME' ? 'receita' : 'despesa',
-        value: this.data.finance.installment.installment_value,
+        value: this.data.finance.value,
         description: this.data.finance.description,
-        category: this.data.finance.installment.category,
-        account: this.data.finance.installment.account,
-        date: this.data.finance.installment.due_date,
+        category: this.data.finance.category,
+        account: this.data.finance.account,
+        expiry_date: this.data.finance.expiry_date,
         recurrence: this.data.finance.recurrence,
-        installments: this.data.finance.number_of_installments,
+        installments: this.data.finance.installments,
       });
 
       this.phase = 1;
     }
     else{
       this.transaction_form.patchValue({
-        date: new Date().toISOString().split('T')[0],
+        expiry_date: new Date().toISOString().split('T')[0],
       });
     }
 
@@ -142,15 +142,15 @@ export class DetailFinanceComponent implements OnInit {
     const installments = this.transaction_form.get('installments')?.value || 1;
 
     const dataCompra = new Date(
-      this.transaction_form.value.date + 'T12:00:00' || 0
+      this.transaction_form.value.expiry_date + 'T12:00:00' || 0
     );
 
     const body = {
       category: this.transaction_form.value.category,
       account: this.transaction_form.value.account,
-      date: dataCompra.toISOString().split('T')[0],
+      expiry_date: dataCompra.toISOString().split('T')[0],
       value: value || 1,
-      number_of_installments: installments,
+      installments,
       description: this.transaction_form.value.description || '',
       recurrence: this.setRecurrence(this.transaction_form.value.recurrence || this.transaction_form.value.type),
       type: this.setType(this.transaction_form.value.screen)
@@ -175,22 +175,20 @@ export class DetailFinanceComponent implements OnInit {
 
     // Pegando e formatando a data da compra
     const dataCompra = new Date(
-      this.transaction_form.value.date + 'T12:00:00' || 0
+      this.transaction_form.value.expiry_date + 'T12:00:00' || 0
     );
 
     const body: any = {
       description: this.transaction_form.value.description || '',
-      date: dataCompra.toISOString().split('T')[0], // Incluindo a data
+      expiry_date: dataCompra.toISOString().split('T')[0], // Incluindo a data
       account: this.transaction_form.value.account,
       category: this.transaction_form.value.category,
       edit_all_installments: this.transaction_form.value.edit_all || false,
-      number_of_installments: installments,
-      installment_id: this.data.finance?.installment.id
+      installments,
     };
 
     if (!this.transaction_form.value.edit_all) {
-      body.installment_id = this.data.finance?.installment.id;
-      body.installment_value = value;
+      body.value = value;
     } else {
       body.value = value || 1;
     }
@@ -215,7 +213,7 @@ export class DetailFinanceComponent implements OnInit {
     else if(['semanal', 'WEEKLY'].includes(option)) return 'WEEKLY';
     else if(['mensal', 'MONTHLY'].includes(option)) return 'MONTHLY';
     else if(['anual', 'ANNUAL'].includes(option)) return 'ANNUAL';
-    else if(['parcelada', 'INSTALLMENTS'].includes(option)) return 'INSTALLMENTS';
+    else if(['parcelada', 'INSTALLMENTS'].includes(option)) return 'MONTHLY';
     else return 'SINGLE';
   }
 

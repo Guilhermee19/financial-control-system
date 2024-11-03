@@ -73,8 +73,8 @@ export class FinanciaPhotographyComponent implements OnInit {
 
   sortOrder(array: ITransaction[]){
     return array.sort((a:ITransaction, b:ITransaction) => {
-      const dateA = new Date(a.installment?.due_date).getTime();
-      const dateB = new Date(b.installment?.due_date).getTime();
+      const dateA = new Date(a.expiry_date).getTime();
+      const dateB = new Date(b.expiry_date).getTime();
       return dateA - dateB;  // Ordena em ordem crescente
     });
   }
@@ -126,9 +126,9 @@ export class FinanciaPhotographyComponent implements OnInit {
     return this.dataSource.reduce((total, el) => {
       // Extrair o valor e as parcelas
       const value =
-        typeof el.installment.installment_value === 'string'
-          ? parseFloat(el.installment.installment_value)
-          : el.installment.installment_value;
+        typeof el.value === 'string'
+          ? parseFloat(el.value)
+          : el.value;
 
       if(el.type === 'INCOME') return total + 0;
 
