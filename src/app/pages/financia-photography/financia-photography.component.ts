@@ -1,7 +1,8 @@
 import { configModals } from './../../constants/utils';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DetailFinanceComponent } from 'src/app/components/modals/detail-finance/detail-finance.component';
+import { DrawerComponent } from 'src/app/components/shared/drawer/drawer.component';
 import { MONTHS } from 'src/app/constants/utils';
 import { ITransaction } from 'src/app/models/finance';
 import { FinancesService } from 'src/app/services/finances.service';
@@ -16,6 +17,8 @@ export class FinanciaPhotographyComponent implements OnInit {
     private financesService: FinancesService,
     private dialog: MatDialog
   ) {}
+
+  @ViewChild(DrawerComponent) drawerComponent!: DrawerComponent;
 
   loading = false;
 
@@ -37,6 +40,10 @@ export class FinanciaPhotographyComponent implements OnInit {
 
   ngOnInit() {
     this.getAllFinances(1);
+  }
+
+  openDrawer() {
+    this.drawerComponent.toggleDrawer();
   }
 
   getAllFinances(page: number) {
@@ -122,7 +129,7 @@ export class FinanciaPhotographyComponent implements OnInit {
     if (['PAY', 'DELET', 'EDIT'].includes(event)) this.getAllFinances(1);
   }
 
-  get totalForTheMonth() {
+  get totalForTheMonthIncome() {
     return this.dataSource.reduce((total, el) => {
       // Extrair o valor e as parcelas
       const value =
@@ -136,4 +143,20 @@ export class FinanciaPhotographyComponent implements OnInit {
       return total + value;
     }, 0); // Iniciar o total em 0
   }
+
+  get totalForTheMonthExpenditure() {
+    return this.dataSource.reduce((total, el) => {
+      // Extrair o valor e as parcelas
+      const value =
+        typeof el.value_installment === 'string'
+          ? parseFloat(el.value_installment)
+          : el.value_installment;
+
+      if(el.type === 'EXPENDITURE') return total + 0;
+
+      // Adicionar ao total a divisão do valor pelo número de parcelas
+      return total + value;
+    }, 0); // Iniciar o total em 0
+  }
+
 }

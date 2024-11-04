@@ -1,60 +1,81 @@
-<main>
-  <header>
-    <h1> Finanças </h1>
-  </header>
-
-  <div class="filter_date">
-    <a mat-icon-button (click)="changeMonth('back')">
-      <i icon="angle_left"></i>
-    </a>
-    <div class="date">
-      <h5>
-        {{ current_year }}
-      </h5>
-      <h1>
-        {{ months[current_month].label }}
-      </h1>
-    </div>
-    <a mat-icon-button (click)="changeMonth('next')">
-      <i icon="angle_right"></i>
-    </a>
+<app-drawer>
+  <div drawer-content>
+    <p>Auto-resizing sidenav</p>
   </div>
 
-  <div class="buttons">
-    <button
-      type="button"
-      title="adicionar"
-      mat-raised-button
-      class="primary"
-      (click)="craateFinance()"
-    >
-      Adicionar
-    </button>
+  <main main-content>
+    <header>
+      <h1> Lançamentos </h1>
 
-    <div class="top_info">
-      <h5>Total do Mês</h5>
-      <h3>{{ totalForTheMonth | convertMoney }}</h3>
+      <!-- <button
+        type="button"
+        mat-icon-button
+        class="primary"
+        matTooltip="Adicionar"
+        (click)="openDrawer()"
+      >
+        <i icon="plus" title="aticionar"></i>
+      </button> -->
+
+      <button
+        type="button"
+        mat-icon-button
+        class="primary"
+        matTooltip="Adicionar"
+        (click)="craateFinance()"
+      >
+        <i icon="plus" title="aticionar"></i>
+      </button>
+    </header>
+
+    <div class="buttons center">
+      <div class="filter_date">
+        <a mat-icon-button (click)="changeMonth('back')">
+          <i icon="angle_left"></i>
+        </a>
+        <div class="date">
+          <h5>
+            {{ current_year }}
+          </h5>
+          <h1>
+            {{ months[current_month].label }}
+          </h1>
+        </div>
+        <a mat-icon-button (click)="changeMonth('next')">
+          <i icon="angle_right"></i>
+        </a>
+      </div>
     </div>
-  </div>
 
-  <page-loading *ngIf="loading"></page-loading>
+    <div class="buttons end">
+      <div class="top_info left">
+        <h5>Despesa</h5>
+        <h3 class="output"> <i id="TRANSFER" icon="arrow_up"></i> {{ totalForTheMonthIncome | convertMoney }}</h3>
+      </div>
 
-  <section *ngIf="!loading">
-    <div class="finances">
-      <app-card-financial
-        *ngFor="let finance of dataSource"
-        [finance]="finance"
-        (event)="action($event)"
-      ></app-card-financial>
-      <div class="empyty" *ngFor="let obj of [].constructor(5)"></div>
+      <div class="top_info left">
+        <h5>Saldo</h5>
+        <h3>{{ totalForTheMonthExpenditure - totalForTheMonthIncome | convertMoney }}</h3>
+      </div>
+
+      <div class="top_info left">
+        <h5>Receita</h5>
+        <h3 class="input"> <i id="TRANSFER" icon="arrow_down"></i> {{ totalForTheMonthExpenditure | convertMoney }}</h3>
+      </div>
+
     </div>
 
-    <!-- <pagination
-      (pageChange)="backOrNextPage($event)"
-      [back]="prev"
-      [next]="next"
-      [current]="current_page"
-      [total]="count_page"
-    ></pagination> -->
-  </section>
-</main>
+    <page-loading *ngIf="loading"></page-loading>
+
+    <section *ngIf="!loading">
+      <div class="finances">
+        <app-card-financial
+          *ngFor="let finance of dataSource"
+          [finance]="finance"
+          (event)="action($event)"
+        ></app-card-financial>
+        <div class="empyty" *ngFor="let obj of [].constructor(5)"></div>
+      </div>
+    </section>
+  </main>
+</app-drawer>

@@ -272,31 +272,20 @@ mat-drawer-container {
   }
 }
 
-.notification {
-  position: absolute;
-  top: 1rem;
-  right: 5rem;
-  width: 48px;
-  height: 48px;
-  z-index: 900;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
+.navbarTop {
+  position: fixed;
+  width: 100%;
+  padding: 1rem;
 
-  .notification_numer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background-color: var(--main-color);
-    font-size: 10px;
-  }
+  ul {
+    height: 80px;
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+    gap: 1rem;
 
-  i {
-    --mdc-icon-button-icon-size: 1.2rem;
+    li {
+    }
   }
 }
 
@@ -304,13 +293,6 @@ app-theme-dark-light {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  z-index: 900;
-}
-
-app-button-action {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
   z-index: 900;
 }
 

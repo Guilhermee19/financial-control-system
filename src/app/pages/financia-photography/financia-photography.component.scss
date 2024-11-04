@@ -61,20 +61,42 @@ main {
   }
 
   .buttons {
-    justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
 
     .top_info {
-      width: 100%;
-      text-align: right;
+      flex: 1;
+      max-width: 200px;
       color: var(--text-primary);
+      background-color: var(--input-bg);
+      border-radius: var(--br);
+      padding: 0.7rem 1rem;
+
+      &.right {
+        text-align: right;
+      }
+
+      &.center {
+        text-align: center;
+      }
+
+      &.left {
+        text-align: left;
+      }
 
       h5 {
         opacity: 0.5;
+        color: var(--text-primary);
       }
       h3 {
         margin: 0;
+
+        &.input {
+          color: var(--green);
+        }
+        &.output {
+          color: var(--pink);
+        }
       }
     }
   }

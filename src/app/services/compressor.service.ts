@@ -5,12 +5,12 @@ import { Observable, Observer } from 'rxjs';
   providedIn: 'root',
 })
 export class CompressorService {
-  max_width = 800;
-  max_height = 800;
+  max_width = 1080;
+  max_height = 4000;
 
   compress(file: File, width?: number, height?: number): Observable<string> {
-    this.max_width = width || 800;
-    this.max_height = height || 800;
+    this.max_width = width || 1080;
+    this.max_height = height || 4000;
 
     const reader = new FileReader();
     reader.readAsDataURL(file);

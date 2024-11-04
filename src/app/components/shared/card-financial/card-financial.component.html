@@ -1,13 +1,14 @@
 <section
-  [style.backgroundColor]="finance.category_obj?.bg_color || 'var(--secund-bg)'"
+  [ngClass]="status"
   (click)="openDetail()"
 >
   <div class="left">
     <div class="row">
-      <div *ngIf="finance.category_obj"
+      <div
         class="tag"
-        [style.backgroundColor]="finance.category_obj.color"
-        [initialLetters]="finance.category_obj.name"
+        [matTooltip]="finance.category_obj?.name ?? 'Lançamento'"
+        [style.backgroundColor]="finance.category_obj?.color ?? 'var(--main-color)'"
+        [initialLetters]="finance.category_obj?.name ?? 'L'"
         [length]="2"
       ></div>
 
@@ -15,7 +16,7 @@
         <h5 class="f-10">
           {{ finance.account_obj?.name || '' }}
         </h5>
-        <h2 class="f-16">{{ finance.description }}</h2>
+        <h2 class="f-16 break-line">{{ finance.description }}</h2>
         <h3 class="f-10 status" [ngClass]="status">
           {{ status | convertStatus }}
         </h3>

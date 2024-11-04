@@ -13,7 +13,7 @@ export const NAVBAR_PAGES: {
     roles: ['Admin', 'Desenvolvedor'],
   },
   {
-    label: 'Finanças',
+    label: 'Lançamentos',
     icon: 'finance',
     link: '/finance',
     roles: ['Admin', 'Desenvolvedor'],
