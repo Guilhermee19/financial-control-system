@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.4.0](https://github.com/Guilhermee19/financial-control-system/compare/v5.3.0...v5.4.0) (2024-11-04)
+
+
+### Features
+
+* saldo tela Lançamento ([2584632](https://github.com/Guilhermee19/financial-control-system/commit/25846322db4733ba5ae8a55bf0cfbfb2958603b3))
+
 ## [5.3.0](https://github.com/Guilhermee19/financial-control-system/compare/v5.2.0...v5.3.0) (2024-11-03)
 
 

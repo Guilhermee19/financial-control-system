@@ -23,6 +23,8 @@ import { DetailFinanceComponent } from '../modals/detail-finance/detail-finance.
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DrawerComponent } from './drawer/drawer.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 const IMPORTS = [
   CommonModule,
@@ -35,7 +37,8 @@ const IMPORTS = [
   NgxMaskDirective,
   NgxMaskPipe,
   MatChipsModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSidenavModule
 ];
 
 const DECLARATIONS = [
@@ -51,6 +54,7 @@ const DECLARATIONS = [
   CalendarComponent,
   CardFinancialComponent,
   DetailFinanceComponent,
+  DrawerComponent,
 ];
 
 @NgModule({

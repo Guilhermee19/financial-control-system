@@ -1,0 +1,9 @@
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="over" position="end">
+    <ng-content select="[drawer-content]"></ng-content>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <ng-content select="[main-content]"></ng-content>
+  </div>
+</mat-drawer-container>
