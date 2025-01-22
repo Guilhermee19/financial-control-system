@@ -150,7 +150,7 @@ export class DetailFinanceComponent implements OnInit {
       account: this.transaction_form.value.account,
       expiry_date: dataCompra.toISOString().split('T')[0],
       value: value || 1,
-      installments,
+      installments: this.setInstallmentsToRecurrence(installments, this.transaction_form.value.recurrence || this.transaction_form.value.type),
       description: this.transaction_form.value.description || '',
       recurrence: this.setRecurrence(this.transaction_form.value.recurrence || this.transaction_form.value.type),
       type: this.setType(this.transaction_form.value.screen)
@@ -165,6 +165,33 @@ export class DetailFinanceComponent implements OnInit {
         this.loading = false;
       },
     });
+  }
+
+  setInstallmentsToRecurrence(installments: number, option: string | undefined | null): number {
+    if (!option) return installments;
+
+    const today = new Date();
+    const yearEnd = new Date(today.getFullYear(), 11, 31); // Último dia do ano
+
+    if (['único', 'SINGLE'].includes(option)) {
+      return 1;
+    } else if (['semanal', 'WEEKLY'].includes(option)) {
+      // Diferença em semanas até o final do ano
+      const diffInMillis = yearEnd.getTime() - today.getTime();
+      const weeks = Math.ceil(diffInMillis / (7 * 24 * 60 * 60 * 1000)); // Milissegundos em uma semana
+      return weeks;
+    } else if (['mensal', 'MONTHLY'].includes(option)) {
+      // Diferença em meses até o final do ano
+      const remainingMonths = yearEnd.getMonth() - today.getMonth() + 1; // Inclui o mês atual
+      return remainingMonths;
+    } else if (['anual', 'ANNUAL'].includes(option)) {
+      // Sempre retorna 1, porque é um ciclo anual
+      return 1;
+    } else if (['parcelada', 'INSTALLMENTS'].includes(option)) {
+      return installments;
+    } else {
+      return 1; // Valor padrão
+    }
   }
 
   patchFinance() {
@@ -213,7 +240,7 @@ export class DetailFinanceComponent implements OnInit {
     else if(['semanal', 'WEEKLY'].includes(option)) return 'WEEKLY';
     else if(['mensal', 'MONTHLY'].includes(option)) return 'MONTHLY';
     else if(['anual', 'ANNUAL'].includes(option)) return 'ANNUAL';
-    else if(['parcelada', 'INSTALLMENTS'].includes(option)) return 'MONTHLY';
+    else if(['parcelada', 'INSTALLMENTS'].includes(option)) return 'INSTALLMENTS';
     else return 'SINGLE';
   }
 

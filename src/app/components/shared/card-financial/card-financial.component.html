@@ -32,15 +32,15 @@
 
   <div class="price">
     <h5 class="f-10">
-      {{ finance.installments === 1 ? '' : 'parcelado' }}
+      {{ finance.recurrence === 'INSTALLMENTS' ? 'parcelado' : '' }}
     </h5>
     <h3 class="f-14" [ngClass]="status">
       <i id="TRANSFER" *ngIf="finance.type === 'TRANSFER' " icon="arrow_down_arrow_up"></i>
       <i id="EXPENDITURE" *ngIf="finance.type === 'EXPENDITURE' " icon="arrow_up"></i>
       <i id="INCOME" *ngIf="finance.type === 'INCOME' " icon="arrow_down"></i>
-      {{ finance.value_installment | convertMoney }}
+      {{ finance.recurrence === 'INSTALLMENTS' ? finance.value_installment : finance.value | convertMoney }}
     </h3>
-    <h5 class="f-10" *ngIf="finance.installments > 1">
+    <h5 class="f-10" *ngIf="finance.recurrence === 'INSTALLMENTS'">
       {{ finance.current_installment }} de
       {{ finance.installments }}x
     </h5>
