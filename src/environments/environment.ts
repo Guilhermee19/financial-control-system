@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  // base_url: 'http://127.0.0.1:8000/',
-  base_url: 'https://finance-api.iamgui.dev/',
+  base_url: 'http://127.0.0.1:8000/',
   socket_url: 'ws://127.0.0.1:8080/',
   version: '5.4.0',
   firebase: {
