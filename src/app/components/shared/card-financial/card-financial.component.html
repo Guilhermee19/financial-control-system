@@ -38,11 +38,20 @@
       <i id="TRANSFER" *ngIf="finance.type === 'TRANSFER' " icon="arrow_down_arrow_up"></i>
       <i id="EXPENDITURE" *ngIf="finance.type === 'EXPENDITURE' " icon="arrow_up"></i>
       <i id="INCOME" *ngIf="finance.type === 'INCOME' " icon="arrow_down"></i>
-      {{ finance.recurrence === 'INSTALLMENTS' ? finance.value_installment : finance.value | convertMoney }}
+      {{ (finance.recurrence === 'INSTALLMENTS' ? finance.value_installment : finance.value) | convertMoney }}
     </h3>
     <h5 class="f-10" *ngIf="finance.recurrence === 'INSTALLMENTS'">
       {{ finance.current_installment }} de
       {{ finance.installments }}x
+    </h5>
+    <h5 class="f-10" *ngIf="finance.recurrence === 'WEEKLY'">
+      semanal
+    </h5>
+    <h5 class="f-10" *ngIf="finance.recurrence === 'MONTHLY'">
+      mensal
+    </h5>
+    <h5 class="f-10" *ngIf="finance.recurrence === 'ANNUAL'">
+      anual
     </h5>
   </div>
 </section>
