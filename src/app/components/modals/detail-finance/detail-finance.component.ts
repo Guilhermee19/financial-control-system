@@ -176,23 +176,23 @@ export class DetailFinanceComponent implements OnInit {
     if (['único', 'SINGLE'].includes(option)) {
       return 1;
     } else if (['semanal', 'WEEKLY'].includes(option)) {
-      // Diferença em semanas até o final do ano
-      const diffInMillis = yearEnd.getTime() - today.getTime();
-      const weeks = Math.ceil(diffInMillis / (7 * 24 * 60 * 60 * 1000)); // Milissegundos em uma semana
+      // Calcula a diferença em dias até o final do ano e converte para semanas
+      const diffInDays = Math.ceil((yearEnd.getTime() - today.getTime()) / (24 * 60 * 60 * 1000));
+      const weeks = Math.ceil(diffInDays / 7); // Garante que dezembro seja incluído
       return weeks;
     } else if (['mensal', 'MONTHLY'].includes(option)) {
       // Diferença em meses até o final do ano
-      const remainingMonths = yearEnd.getMonth() - today.getMonth() + 1; // Inclui o mês atual
+      const remainingMonths = (yearEnd.getFullYear() - today.getFullYear()) * 12 + (yearEnd.getMonth() - today.getMonth()) + 1;
       return remainingMonths;
     } else if (['anual', 'ANNUAL'].includes(option)) {
-      // Sempre retorna 1, porque é um ciclo anual
       return 1;
     } else if (['parcelada', 'INSTALLMENTS'].includes(option)) {
       return installments;
     } else {
-      return 1; // Valor padrão
+      return 1;
     }
   }
+
 
   patchFinance() {
     if(!this.data?.finance?.id) return;
