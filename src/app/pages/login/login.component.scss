@@ -64,4 +64,12 @@ main {
     margin-left: 5px;
     text-decoration: none;
   }
+
+  .version {
+    position: absolute;
+    opacity: 0.5;
+    bottom: 0px;
+    right: 5px;
+    color: white;
+  }
 }
