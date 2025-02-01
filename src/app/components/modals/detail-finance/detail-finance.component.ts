@@ -113,11 +113,6 @@ export class DetailFinanceComponent implements OnInit {
     });
   }
 
-  setTag(){
-    const filter = this.categories.find(el => el.id === (this.transaction_form.value.category || 0))
-    // if(filter) this.transaction_form.get('description')?.patchValue(filter?.name || '')
-  }
-
   saveSubmitHandler() {
     if (this.loading) return;
 
@@ -185,7 +180,7 @@ export class DetailFinanceComponent implements OnInit {
       const remainingMonths = (yearEnd.getFullYear() - today.getFullYear()) * 12 + (yearEnd.getMonth() - today.getMonth()) + 1;
       return remainingMonths;
     } else if (['anual', 'ANNUAL'].includes(option)) {
-      return 1;
+      return 10;
     } else if (['parcelada', 'INSTALLMENTS'].includes(option)) {
       return installments;
     } else {
@@ -232,6 +227,20 @@ export class DetailFinanceComponent implements OnInit {
     });
   }
 
+  deletFinance() {
+    if(!this.data?.finance?.id) return;
+
+    // Chama o serviço de edição da Finance
+    this.financesService.deletFinance(this.data.finance?.id, this.transaction_form.value.edit_all || false).subscribe({
+      next: () => {
+        this.chance('yes');
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      }
+    });
+  }
 
   setRecurrence(option: string | undefined | null){
     if(!option) return 'SINGLE';
@@ -254,4 +263,5 @@ export class DetailFinanceComponent implements OnInit {
   chance(chance: 'yes' | 'no'): void {
     this.dialogRef.close({ action: chance, finance: this.transaction_form.value });
   }
+
 }
