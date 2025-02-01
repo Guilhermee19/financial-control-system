@@ -7,6 +7,7 @@ import { StorageService } from 'src/app/services/storage.service';
 import { getAuth } from '@firebase/auth';
 import { Md5 } from 'md5-typescript';
 import { BodyJson } from 'src/app/services/http.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ export class LoginComponent {
     password: ['', Validators.required],
   });
 
+  version = environment.version;
 
   loginSubmit() {
     if (this.loading) return;
