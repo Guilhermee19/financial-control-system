@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.4.1](https://github.com/Guilhermee19/financial-control-system/compare/v5.4.0...v5.4.1) (2025-01-31)
+
+
+### Features
+
+* ajuste criação transaction recorente ([62af811](https://github.com/Guilhermee19/financial-control-system/commit/62af811bf7a713034bb269478840a9d60db0606e))
+
+
+### Bug Fixes
+
+*  masca de valor | feat:  labal da recorencia em baixo do valor ([cc0f856](https://github.com/Guilhermee19/financial-control-system/commit/cc0f856f8f61633b1ac3384ce1e065143599643a))
+* tratamento de variavel no detail-finance ([b0d97c1](https://github.com/Guilhermee19/financial-control-system/commit/b0d97c16abbb764c7bb122bf7b6bd3cdf82c3d4a))
+* tratamento na navbar para validar o token antes de mostrar as telas ([677303a](https://github.com/Guilhermee19/financial-control-system/commit/677303af084d7ce3ed37cc13d362000390aeb7f5))
+
 ## [5.4.0](https://github.com/Guilhermee19/financial-control-system/compare/v5.3.0...v5.4.0) (2024-11-04)
 
 

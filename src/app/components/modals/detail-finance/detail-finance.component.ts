@@ -113,11 +113,6 @@ export class DetailFinanceComponent implements OnInit {
     });
   }
 
-  setTag(){
-    const filter = this.categories.find(el => el.id === (this.transaction_form.value.category || 0))
-    // if(filter) this.transaction_form.get('description')?.patchValue(filter?.name || '')
-  }
-
   saveSubmitHandler() {
     if (this.loading) return;
 
@@ -150,7 +145,7 @@ export class DetailFinanceComponent implements OnInit {
       account: this.transaction_form.value.account,
       expiry_date: dataCompra.toISOString().split('T')[0],
       value: value || 1,
-      installments,
+      installments: this.setInstallmentsToRecurrence(installments, this.transaction_form.value.recurrence || this.transaction_form.value.type),
       description: this.transaction_form.value.description || '',
       recurrence: this.setRecurrence(this.transaction_form.value.recurrence || this.transaction_form.value.type),
       type: this.setType(this.transaction_form.value.screen)
@@ -166,6 +161,33 @@ export class DetailFinanceComponent implements OnInit {
       },
     });
   }
+
+  setInstallmentsToRecurrence(installments: number, option: string | undefined | null): number {
+    if (!option) return installments;
+
+    const today = new Date();
+    const yearEnd = new Date(today.getFullYear(), 11, 31); // Último dia do ano
+
+    if (['único', 'SINGLE'].includes(option)) {
+      return 1;
+    } else if (['semanal', 'WEEKLY'].includes(option)) {
+      // Calcula a diferença em dias até o final do ano e converte para semanas
+      const diffInDays = Math.ceil((yearEnd.getTime() - today.getTime()) / (24 * 60 * 60 * 1000));
+      const weeks = Math.ceil(diffInDays / 7); // Garante que dezembro seja incluído
+      return weeks;
+    } else if (['mensal', 'MONTHLY'].includes(option)) {
+      // Diferença em meses até o final do ano
+      const remainingMonths = (yearEnd.getFullYear() - today.getFullYear()) * 12 + (yearEnd.getMonth() - today.getMonth()) + 1;
+      return remainingMonths;
+    } else if (['anual', 'ANNUAL'].includes(option)) {
+      return 10;
+    } else if (['parcelada', 'INSTALLMENTS'].includes(option)) {
+      return installments;
+    } else {
+      return 1;
+    }
+  }
+
 
   patchFinance() {
     if(!this.data?.finance?.id) return;
@@ -205,6 +227,20 @@ export class DetailFinanceComponent implements OnInit {
     });
   }
 
+  deletFinance() {
+    if(!this.data?.finance?.id) return;
+
+    // Chama o serviço de edição da Finance
+    this.financesService.deletFinance(this.data.finance?.id, this.transaction_form.value.edit_all || false).subscribe({
+      next: () => {
+        this.chance('yes');
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      }
+    });
+  }
 
   setRecurrence(option: string | undefined | null){
     if(!option) return 'SINGLE';
@@ -213,7 +249,7 @@ export class DetailFinanceComponent implements OnInit {
     else if(['semanal', 'WEEKLY'].includes(option)) return 'WEEKLY';
     else if(['mensal', 'MONTHLY'].includes(option)) return 'MONTHLY';
     else if(['anual', 'ANNUAL'].includes(option)) return 'ANNUAL';
-    else if(['parcelada', 'INSTALLMENTS'].includes(option)) return 'MONTHLY';
+    else if(['parcelada', 'INSTALLMENTS'].includes(option)) return 'INSTALLMENTS';
     else return 'SINGLE';
   }
 
@@ -227,4 +263,5 @@ export class DetailFinanceComponent implements OnInit {
   chance(chance: 'yes' | 'no'): void {
     this.dialogRef.close({ action: chance, finance: this.transaction_form.value });
   }
+
 }
